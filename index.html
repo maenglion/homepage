@@ -6,6 +6,159 @@
   <title>LOZEE - 신경다양성을 위한 인지·감정 리터러시</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+  <link href="https://cdn.jsdelivr.net/npm/font-kopubworld@1.0/css/all.min.css" rel="stylesheet">
+
+  <style>
+    /* 기존 Tailwind CSS 스타일은 그대로 유지하고, font-family만 추가 */
+    body {
+      font-family: 'KoPubWorld Dotum', 'Pretendard', sans-serif; /* 기본 돋움체, 없으면 Pretendard fallback */
+      margin: 0;
+      padding: 0;
+      background-color: #f9fafb;
+    }
+    
+    /* 필요하다면 특정 요소에 바탕체를 적용할 수 있습니다. 예시: */
+    /* .some-section {
+      font-family: 'KoPubWorld Batang', serif;
+    } */
+
+    .container {
+      max-width: 800px;
+      margin: auto;
+      padding: 2rem;
+      background-color: #ffffff;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
+      border-radius: 10px;
+    }
+    .profile-img {
+      width: 160px;
+      height: 160px; /* 이미지 비율 유지를 위해 높이도 지정 */
+      object-fit: cover; /* 이미지가 잘리지 않게 조정 */
+      border-radius: 50%; /* 둥근 이미지 */
+      margin: 0 auto 1.5rem;
+      display: block;
+      border: 3px solid #6366f1; /* 프로필 이미지 테두리 */
+    }
+    h1 {
+      text-align: center;
+      color: #2c3e50;
+      margin-bottom: 0.5rem;
+      font-size: 2.5rem;
+    }
+    h2 {
+      text-align: center;
+      color: #34495e;
+      margin-top: 0;
+      font-size: 1.5rem;
+      font-weight: normal;
+    }
+    p, ul {
+      line-height: 1.7;
+      color: #333;
+    }
+    ul {
+      list-style-type: none; /* 기본 블렛 제거 */
+      padding-left: 0;
+    }
+    ul li {
+      position: relative;
+      padding-left: 1.5em; /* 블렛 아이콘 공간 확보 */
+      margin-bottom: 0.5em;
+    }
+    ul li::before {
+      content: '•'; /* 사용자 정의 블렛 아이콘 */
+      color: #6366f1;
+      font-weight: bold;
+      display: inline-block;
+      width: 1em;
+      margin-left: -1.5em;
+      position: absolute;
+    }
+    .linkedin {
+      display: block;
+      text-align: center;
+      margin-top: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    .linkedin a {
+      color: #2563eb;
+      text-decoration: none;
+      font-weight: bold;
+      padding: 0.75rem 1.5rem;
+      border: 1px solid #2563eb;
+      border-radius: 5px;
+      transition: all 0.3s ease;
+    }
+    .linkedin a:hover {
+      background-color: #2563eb;
+      color: white;
+    }
+    .section {
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid #eee;
+    }
+    .section h3 {
+      color: #333;
+      font-size: 1.8rem;
+      margin-bottom: 1.5rem;
+      border-bottom: 2px solid #6366f1;
+      padding-bottom: 0.5rem;
+      display: inline-block;
+    }
+    .contact-btn {
+      display: block;
+      margin: 2.5rem auto;
+      padding: 1rem 2rem;
+      background-color: #6366f1;
+      color: white;
+      font-size: 1.1rem;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    .contact-btn:hover {
+      background-color: #4f46e5;
+    }
+    footer {
+      text-align: center;
+      margin-top: 4rem;
+      padding-top: 2rem;
+      border-top: 1px solid #eee;
+      font-size: 0.875rem;
+      color: #888;
+    }
+    .career-item {
+      margin-bottom: 2rem;
+      padding: 1rem;
+      background-color: #fefefe;
+      border-left: 5px solid #a78bfa;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.03);
+    }
+    .career-item h4 {
+      margin-top: 0;
+      margin-bottom: 0.5rem;
+      color: #444;
+      font-size: 1.2rem;
+    }
+    .career-item small {
+      color: #777;
+      font-size: 0.9rem;
+      display: block;
+      margin-top: 0.3rem;
+    }
+    .career-item ul {
+      margin-top: 0.8rem;
+      padding-left: 1em;
+    }
+    .career-item ul li::before {
+      content: '✓'; /* 경력 세부사항 블렛 아이콘 */
+      color: #4CAF50;
+    }
+  </style>
 </head>
 <body class="bg-white text-gray-900 font-sans">
 
@@ -57,10 +210,10 @@
     <div class="max-w-6xl mx-auto text-center px-4">
       <h3 class="text-2xl font-bold mb-4">about LOZEE </h3>
       <p class="text-gray-700 leading-relaxed mb-4">
-        LOZEE는 자폐, ADHD, 2e 등 신경다양성을 지닌 사용자들이 감정과 사고 구조를 스스로 이해하고 <br>성장할 수 있도록 설계된 디지털 리터러시 훈련 서비스입니다.
+        LOZEE는 자폐, ADHD, 2e 등 신경다양성을 지닌 사용자들이 감정과 사고 구조를 스스로 이해하고<br>성장할 수 있도록 설계된 디지털 리터러시 훈련 서비스입니다.
       </p>
       <p class="text-gray-700 leading-relaxed">
-        단순한 공감에서 그치지 않고, 감정 패턴 분석과 인지 왜곡을 데이터로 시각화하여 보여주며 <br>자기이해와 행동조절을 돕는 AI 기반 심리훈련 도구입니다.
+        단순한 공감에서 그치지 않고, 감정 패턴 분석과 인지 왜곡을 데이터로 시각화하여 보여주며<br> 자기이해와 행동조절을 돕는 AI 기반 심리훈련 도구입니다.
       </p>
     </div>
   </section>
