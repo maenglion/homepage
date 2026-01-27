@@ -218,6 +218,36 @@ ul, ol {
   margin: 0 auto 48px;
 }
 
+/* SQ Index & Callout Section 보완 */
+.callout {
+  background-color: var(--card-bg); /* 독립된 박스로 격리 */
+  border: 1px solid var(--border-color);
+  border-left: 4px solid var(--accent-purple); /* 사이먼 배런 코언의 SQ 포인트 컬러 */
+  border-radius: 12px;
+  padding: 48px 40px; /* 내부 여백 확장 */
+  margin: 60px auto 0; /* 상단 Tiles와 확실한 거리 확보 및 중앙 배치 */
+  max-width: 850px; /* 너무 길게 늘어지지 않도록 폭 제한 */
+  text-align: center; /* 텍스트 중앙 정렬 */
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+.callout-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--accent-purple);
+  margin-bottom: 20px;
+  letter-spacing: -0.01em;
+}
+
+.callout-desc {
+  font-size: 1.1rem;
+  line-height: 1.8; /* 줄 간격 최적화 */
+  color: var(--text-main);
+  word-break: keep-all; /* 단어 단위 줄바꿈으로 가독성 향상 */
+  margin: 0 auto;
+  max-width: 680px; /* 본문 텍스트가 너무 넓게 퍼지지 않도록 한 번 더 제한 */
+}
+
 /* Grids & Tiles */
 .grid-4, .grid-3, .grid-2 {
   display: grid;
@@ -340,4 +370,16 @@ ul, ol {
   .grid-4, .grid-3, .grid-2 { grid-template-columns: 1fr; }
   .hero-title { font-size: 2.2rem; }
   .cta-strip { flex-direction: column; text-align: center; gap: 24px; }
+}
+
+/* Image Placeholders */
+.hero-visual, .image-blank {
+  width: 100%;
+  height: 400px; /* 정의된 블랙 블랑크 사이즈 */
+  background-color: var(--black);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
