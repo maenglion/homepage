@@ -95,6 +95,25 @@
             </div>
           </li>
 
+
+          <!-- 2026 (target) -->
+          <li class="timeline-item">
+            <div class="timeline-date">2026.12</div>
+            <div class="timeline-card">
+              <h3 class="timeline-title">CASP Engine v1.0</h3>
+              <p class="timeline-desc">
+                파라링귀스틱 지표 추출과 스코어링을 엔진화하여,
+                다양한 제품/환경에 재사용 가능한 분석 코어로 확장합니다.
+              </p>
+              <div class="timeline-tags">
+                <span class="badge">Engine Core</span>
+                <span class="badge">Indexing</span>
+                <span class="badge">Integration-ready</span>
+                <span class="badge">SDK / API</span>
+              </div>
+            </div>
+          </li>
+
           <!-- 2026 -->
           <li class="timeline-item">
             <div class="timeline-date">2026.01</div>
@@ -130,72 +149,65 @@
   </div>
 </li>
 
-
-          <!-- 2026 (target) -->
-          <li class="timeline-item">
-            <div class="timeline-date">2026.12</div>
-            <div class="timeline-card">
-              <h3 class="timeline-title">CASP Engine v1.0</h3>
-              <p class="timeline-desc">
-                파라링귀스틱 지표 추출과 스코어링을 엔진화하여,
-                다양한 제품/환경에 재사용 가능한 분석 코어로 확장합니다.
-              </p>
-              <div class="timeline-tags">
-                <span class="badge">Engine Core</span>
-                <span class="badge">Indexing</span>
-                <span class="badge">Integration-ready</span>
-                <span class="badge">SDK / API</span>
-              </div>
-            </div>
-          </li>
         </ol>
       </div>
     </section>
 
     <!-- CASP Protocol v1 detail -->
-    <section class="section section-muted">
-      <div class="container">
-        <h2 class="section-title">CASP Protocol v1 — SQ 지수와의 연결</h2>
-        <p class="section-desc">
-          CASP Protocol v1은 단순 분석 결과가 아니라, <strong>반복 측정 가능한 지표 체계</strong>를 만드는 데 목적이 있습니다.
-          이 과정에서 <strong>SQ 지수</strong>를 “커뮤니케이션/시스템화 특성”의 기준축으로 활용하여,
-          음성 기반 지표와의 연관을 검증할 수 있도록 설계했습니다.
-        </p>
+   <section class="section section-muted">
+  <div class="container">
+    <h2 class="section-title">CASP Protocol v1</h2>
+    <p class="section-desc">
+      CASP Protocol v1은 세션 기반 음성 데이터를
+      <strong>반복 측정 가능한 지표</strong>로 전환하기 위한 표준 흐름(수집→품질→지표)을 정의했습니다.
+      SQ 지수는 개인의 시스템화 경향을 나타내는 기준축으로 활용되어,
+      음성 지표와의 관계를 검증 가능한 형태로 정리했습니다.
+    </p>
 
-        <div class="grid-3">
-          <div class="tile">
-            <h3>1) 입력(데이터)</h3>
-            <p>
-              세션 기반 음성 수집(상황/과제 단위) + 기본 설문(예: SQ 지수)을 결합하여
-              상태/특성의 기준점을 확보합니다.
-            </p>
-          </div>
-          <div class="tile">
-            <h3>2) 품질 게이트</h3>
-            <p>
-              SNR, 녹음 길이, 말-침묵 비율 등 품질 기준으로
-              분석 가능 여부를 먼저 판정합니다.
-            </p>
-          </div>
-          <div class="tile">
-            <h3>3) 지표 산출 & 연결</h3>
-            <p>
-              말속도/멈춤/리듬/변동성 지표를 산출하고,
-              SQ 지수와의 관계를 탐색 가능한 형태로 인덱싱합니다.
-            </p>
-          </div>
-        </div>
-
-        <div class="callout">
-          <h2 class="callout-title">왜 SQ 지수인가</h2>
-          <p class="callout-desc">
-            SQ 지수는 개인의 시스템화 경향(구조화/규칙성 선호)을 반영하는 축으로,
-            발화 패턴의 구조성·일관성·전환 양상과 함께 해석될 때
-            커뮤니케이션 특성의 설명력을 높일 수 있습니다.
-          </p>
-        </div>
+    <div class="grid-3">
+      <div class="tile">
+        <h3>Input</h3>
+        <p>세션 음성 + 설문(SQ 등) 결합</p>
       </div>
-    </section>
+      <div class="tile">
+        <h3>Quality Gate</h3>
+        <p>SNR/길이/말-침묵 비율 기반 품질 판정</p>
+      </div>
+      <div class="tile">
+        <h3>Indexing</h3>
+        <p>말속도·멈춤·리듬·변동성 지표 산출 및 인덱싱</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CASP Protocol v2 (compact) -->
+<section class="section">
+  <div class="container">
+    <h2 class="section-title">CASP Protocol v2</h2>
+    <p class="section-desc">
+      v2는 실환경에서의 반복 사용을 전제로,
+      <strong>다회 세션 변화(trajectory)</strong>와 <strong>맥락(context)</strong>을 포함해 해석하도록 확장했습니다.
+      또한 제품/플랫폼 적용을 위해 <strong>SDK/API 연동</strong>을 고려한 운영 구조를 갖춥니다.
+    </p>
+
+    <div class="grid-3">
+      <div class="tile">
+        <h3>Longitudinal</h3>
+        <p>단일 측정이 아닌 세션 간 변화 추적</p>
+      </div>
+      <div class="tile">
+        <h3>Context-aware</h3>
+        <p>과제/환경/관계 맥락과 함께 기록·해석</p>
+      </div>
+      <div class="tile">
+        <h3>Integration</h3>
+        <p>Engine 및 SDK/API 기반 연동 고려</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 
     <!-- CTA -->
     <section class="section">
