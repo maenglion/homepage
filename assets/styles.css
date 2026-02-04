@@ -373,13 +373,23 @@ ul, ol {
 }
 
 /* Image Placeholders */
-.hero-visual, .image-blank {
-  width: 100%;
-  height: 400px; /* 정의된 블랙 블랑크 사이즈 */
-  background-color: var(--black);
-  border: 1px solid var(--border-color);
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+/* 1. 이미지 컨테이너의 보더 제거 */
+.hero-visual {
+    border: none !important;
+    background: transparent !important;
+    outline: none !important;
+}
+
+.hero-visual img {
+    border: none !important;
+    /* 이미지가 컨테이너보다 작을 때 뒤의 박스가 보이지 않도록 설정 */
+    display: block; 
+}
+
+/* 2. 폴백(Fallback) 박스 스타일 수정 */
+/* 이미지 로드 성공 시 이 클래스가 완전히 숨겨지는지 확인이 필요합니다 */
+.hero-fallback .card {
+    border: none !important; 
+    box-shadow: none !important;
+    background: none !important;
 }
