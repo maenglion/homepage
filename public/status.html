@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="SLDA 분석 접수 상태 조회 — 접수번호로 진행 상태와 파기 기록을 확인합니다." />
+  <title>접수 조회 | SLDA 분석</title>
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="접수 조회 | SLDA 분석" />
+  <meta property="og:locale" content="ko_KR" />
+
+  <link rel="stylesheet" href="assets/styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    .lookup { max-width: 620px; margin: 0 auto; }
+    .lookup-row { display: flex; gap: 12px; }
+    .lookup input {
+      flex: 1; padding: 14px 16px; border-radius: 8px;
+      border: 1px solid rgba(128,128,128,.35); background: transparent;
+      color: inherit; font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+      font-size: 16px; letter-spacing: .03em; box-sizing: border-box;
+    }
+    .log { margin-top: 32px; }
+    .log-item { display: grid; grid-template-columns: 150px 1fr; gap: 20px; padding: 18px 0; border-bottom: 1px solid rgba(128,128,128,.2); }
+    .log-time { font-size: 13px; opacity: .65; font-variant-numeric: tabular-nums; }
+    .log-status { font-weight: 600; font-size: 16px; }
+    .log-note { font-size: 13px; opacity: .7; margin-top: 4px; }
+    .log-item.purged .log-status { opacity: .6; }
+    .msg { padding: 14px 16px; border-radius: 8px; font-size: 14px; margin-top: 20px; }
+    .msg.err { border: 1px solid #d9534f; color: #d9534f; }
+    .readonly-note { font-size: 13px; opacity: .6; margin-top: 28px; line-height: 1.8; }
+    @media (max-width: 640px) {
+      .lookup-row { flex-direction: column; }
+      .log-item { grid-template-columns: 1fr; gap: 6px; }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="./index.html" aria-label="소울스펙트럼 홈">
+        <img class="brand-logo" src="./assets/logo.svg" alt="Soulspectrum" />
+      </a>
+      <nav class="nav">
+        <a class="nav-link" href="./index.html">Intro</a>
+        <a class="nav-link" href="./journey.html">Journey</a>
+        <a class="nav-link" href="./founder.html">Founder</a>
+        <a class="nav-link" href="./contact.html">Partner</a>
+      </nav>
+      <div class="header-cta">
+        <a class="btn btn-outline" href="./slda.html">분석 신청</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-hero">
+      <div class="container page-hero-inner">
+        <p class="eyebrow">SLDA · Semantic Logic Drift Analysis</p>
+        <h1 class="page-title">접수 조회</h1>
+        <p class="page-desc">
+          접수번호를 입력하면 진행 상태와 파기 기록을 확인할 수 있습니다.
+          기록은 읽기 전용이며, 신청자와 운영자 모두 수정하거나 삭제할 수 없습니다.
+        </p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="lookup">
+          <div class="lookup-row">
+            <input type="text" id="ref" placeholder="SLDA-XXXXXXXXXXXXXXXX" spellcheck="false" autocomplete="off" />
+            <button class="btn btn-primary" id="lookup" style="padding:14px 28px">조회</button>
+          </div>
+
+          <div class="msg err" id="error" style="display:none"></div>
+          <div class="log" id="log"></div>
+
+          <p class="readonly-note" id="note" style="display:none">
+            이 기록은 데이터베이스에 append-only 로 저장됩니다.
+            파기 기록은 파일이 실제로 삭제된 뒤에만 기록되며, 예약 작업이 자동으로 남깁니다.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-left">
+        <div class="footer-brand">소울스펙트럼 Soul Spectrum Inc.</div>
+        <div class="footer-meta">
+          SLDA · Semantic Logic Drift Analysis · 의미·논리 드리프트 분석<br />
+          © <span id="y"></span> Soul Spectrum Inc. All rights reserved.
+        </div>
+      </div>
+      <div class="footer-right">
+        <a class="footer-link" href="./slda.html">분석 신청</a>
+        <a class="footer-link" href="./contact.html">Partner</a>
+        <a class="footer-link" href="./founder.html">Founder</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script>
+    document.getElementById("y").textContent = new Date().getFullYear();
+
+    const SUPABASE_URL = "https://nafpbwqdjxcftwfpadfr.supabase.co";
+    const SUPABASE_KEY = "sb_publishable_pcH7-XaKo2anPRWRjX5psg_Jd2qrQoJ";
+    const db = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+    const $ = (id) => document.getElementById(id);
+
+    function fmt(iso) {
+      const d = new Date(iso);
+      const p = (n) => String(n).padStart(2, "0");
+      return `${d.getFullYear()}-${p(d.getMonth() + 1)}-${p(d.getDate())} ${p(d.getHours())}:${p(d.getMinutes())}`;
+    }
+
+    async function lookup() {
+      const ref = $("ref").value.trim().toUpperCase();
+      $("error").style.display = "none";
+      $("log").innerHTML = "";
+      $("note").style.display = "none";
+
+      if (!ref) return;
+
+      const { data, error } = await db.rpc("get_status", { p_ref: ref });
+
+      if (error) {
+        $("error").textContent = "조회에 실패했습니다. " + error.message;
+        $("error").style.display = "block";
+        return;
+      }
+
+      if (!data || data.length === 0) {
+        $("error").textContent = "해당 접수번호를 찾을 수 없습니다. 대소문자와 하이픈을 확인해주세요.";
+        $("error").style.display = "block";
+        return;
+      }
+
+      for (const row of data) {
+        const item = document.createElement("div");
+        item.className = "log-item" + (row.status === "파기 완료" ? " purged" : "");
+        item.innerHTML =
+          `<div class="log-time">${fmt(row.logged_at)}</div>` +
+          `<div><div class="log-status">${row.status}</div>` +
+          (row.note ? `<div class="log-note">${row.note}</div>` : "") +
+          `</div>`;
+        $("log").appendChild(item);
+      }
+      $("note").style.display = "block";
+    }
+
+    $("lookup").addEventListener("click", lookup);
+    $("ref").addEventListener("keydown", (e) => { if (e.key === "Enter") lookup(); });
+
+    const fromUrl = new URLSearchParams(location.search).get("ref");
+    if (fromUrl) { $("ref").value = fromUrl; lookup(); }
+  </script>
+</body>
+</html>
