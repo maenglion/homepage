@@ -1,19 +1,66 @@
-  <!-- Open Graph -->
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Soul Spectrum | CASP ENGINE · SLDA</title>
+  <meta name="description" content="소울스펙트럼은 CASP ENGINE을 중심으로 음성의 파라링귀스틱 신호와 문서의 의미·논리 드리프트를 데이터로 구조화합니다." />
+  <link rel="canonical" href="https://soulspectrum.kr/" />
+
   <meta property="og:type" content="website" />
-  <meta property="og:title" content="CASP ENGINE" />
-  <meta property="og:description" content="Cognitive–Adaptive Stress Paralinguistic Engine — 음성이 담고 있는 상태를 정량화하는 엔진." />
+  <meta property="og:title" content="Soul Spectrum | CASP ENGINE · SLDA" />
+  <meta property="og:description" content="CASP ENGINE — Cognitive–Adaptive Stress Paralinguistic Engine. SLDA — 의미·논리 드리프트 분석." />
   <meta property="og:locale" content="ko_KR" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="CASP ENGINE" />
-  <meta name="twitter:description" content="Cognitive–Adaptive Stress Paralinguistic Engine — 음성이 담고 있는 상태를 정량화하는 엔진." />
- 
+  <meta name="twitter:title" content="Soul Spectrum | CASP ENGINE · SLDA" />
+  <meta name="twitter:description" content="음성과 문서에서 발생하는 변화 신호를 데이터로 구조화합니다." />
+
   <link rel="stylesheet" href="assets/styles.css" />
- 
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <script type="application/ld+json">
+  [
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "@id": "https://soulspectrum.kr/#org",
+      "name": "소울스펙트럼",
+      "alternateName": ["Soul Spectrum", "Soul Spectrum Inc.", "Soulspectrum"],
+      "url": "https://soulspectrum.kr/",
+      "email": "nanyoung@soulspectrum.kr",
+      "foundingDate": "2025-07-21",
+      "founder": { "@id": "https://soulspectrum.kr/founder.html#person" }
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "@id": "https://soulspectrum.kr/#casp",
+      "name": "CASP ENGINE",
+      "alternateName": ["CASP 엔진", "Cognitive-Adaptive Stress Paralinguistic Engine", "파라링귀스틱 엔진", "Paralinguistic AI Engine"],
+      "applicationCategory": "음성 신호 분석 · 파라링귀스틱 분석",
+      "disambiguatingDescription": "발화의 pause, rhythm, energy, transition 등 비언어 음성 신호를 개인 기준점 대비 변이량으로 측정하는 파라링귀스틱 분석 엔진. STT에 의존하지 않는다.",
+      "creator": { "@id": "https://soulspectrum.kr/founder.html#person" },
+      "publisher": { "@id": "https://soulspectrum.kr/#org" }
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "@id": "https://soulspectrum.kr/slda.html#app",
+      "name": "SLDA",
+      "alternateName": ["Semantic Logic Drift Analysis", "의미·논리 드리프트 분석", "논리 드리프트 분석", "논리 정합성 분석", "문서 드리프트 분석", "SLDA 분석", "SLDA분석"],
+      "applicationCategory": "텍스트 분석 · 문서 드리프트 분석",
+      "disambiguatingDescription": "다차수 문서와 논쟁 자료에서 논점 이동, 표현강도, 주체귀속, 전제충돌을 문장 단위로 측정하는 텍스트 분석 소프트웨어.",
+      "isBasedOn": { "@id": "https://soulspectrum.kr/#casp" },
+      "creator": { "@id": "https://soulspectrum.kr/founder.html#person" },
+      "publisher": { "@id": "https://soulspectrum.kr/#org" }
+    }
+  ]
+  </script>
 </head>
- 
+
 <body>
   <!-- Header -->
   <header class="site-header">
@@ -21,20 +68,21 @@
       <a class="brand" href="./index.html" aria-label="소울스펙트럼 홈">
         <img class="brand-logo" src="./assets/logo.svg" alt="Soulspectrum" />
       </a>
- 
+
       <nav class="nav">
         <a class="nav-link is-active" href="./index.html">Intro</a>
         <a class="nav-link" href="./journey.html">Journey</a>
+        <a class="nav-link" href="./slda.html">SLDA</a>
         <a class="nav-link" href="./founder.html">Founder</a>
         <a class="nav-link" href="./contact.html">Partner</a>
       </nav>
- 
+
       <div class="header-cta">
         <a class="btn btn-outline" href="./contact.html">제휴 문의</a>
       </div>
     </div>
   </header>
- 
+
   <main>
     <!-- Hero -->
     <section class="hero">
@@ -43,26 +91,26 @@
           <span class="eyebrow">Paralinguistic AI Engine</span>
           <h1 class="hero-title">
             텍스트가 아닌 파라링귀스틱.<br />
-            <span class="accent">음성이 담고 있는 상태를 정량화합니다.</span>
+            <span class="accent">음성이 담고 있는 변이량을 정량화합니다.</span>
           </h1>
           <p class="hero-desc">
             CASP ENGINE은 발화의 의미가 아닌 비언어 음성 신호 — 말속도·멈춤·리듬·떨림·에너지 변이 —
-            를 추출하고 정규화하여, 커뮤니케이션의 상태 변화를 데이터로 구조화합니다.
+            를 추출하고 정규화하여, 커뮤니케이션의 발화 신호 변화를 데이터로 구조화합니다.
           </p>
- 
+
           <div class="hero-actions">
             <a class="btn btn-primary" href="./journey.html">우리가 걸어온 길</a>
             <a class="btn btn-ghost" href="#casp">CASP 개요 →</a>
           </div>
- 
+
           <div class="hero-badges">
-            <span class="badge badge-ip">IP 출원 1건 (2026)</span>
+            <span class="badge badge-ip">특허 출원 중</span>
             <span class="badge">Feature Extraction</span>
             <span class="badge">Scoring / Indexing</span>
             <span class="badge">SDK / API Ready</span>
           </div>
         </div>
- 
+
         <div class="hero-visual">
           <div class="hero-visual-inner">
             <img class="hero-visual-logo" src="./assets/logo-stacked.svg" alt="Soulspectrum 로고" />
@@ -70,7 +118,7 @@
         </div>
       </div>
     </section>
- 
+
     <!-- CASP Definition -->
     <section id="casp" class="section">
       <div class="container">
@@ -80,7 +128,7 @@
           모바일·웨어러블·차량·콜센터·교육/코칭 등 현장 환경에서 발생하는 커뮤니케이션 신호를
           세션 단위 지표로 변환해, 운영·지원·개입 판단에 활용할 수 있습니다.
         </p>
- 
+
         <div class="grid-4">
           <article class="tile">
             <h3>C — Cognitive</h3>
@@ -92,7 +140,7 @@
           </article>
           <article class="tile">
             <h3>S — Stress</h3>
-            <p>인지 과부하·긴장·감각 과잉 상태에서의 반응</p>
+            <p>인지 과부하·긴장·감각 과잉 상황에서의 반응</p>
           </article>
           <article class="tile">
             <h3>P — Paralinguistics</h3>
@@ -101,7 +149,7 @@
         </div>
       </div>
     </section>
- 
+
     <!-- Focus -->
     <section class="section section-muted">
       <div class="container">
@@ -110,7 +158,7 @@
           실제 커뮤니케이션의 오해는 "무엇을 말했는가"보다 "어떻게 말했는가"에서 발생합니다.
           CASP ENGINE은 다음 요소를 핵심 신호로 봅니다.
         </p>
- 
+
         <div class="grid-3">
           <div class="tile">
             <h3>변동성</h3>
@@ -127,7 +175,7 @@
         </div>
       </div>
     </section>
- 
+
     <!-- Direction -->
     <section class="section">
       <div class="container">
@@ -136,7 +184,7 @@
           CASP ENGINE은 진단을 대체하지 않습니다.
           대신 연구·검증·응용이 가능한 <strong>데이터 구조</strong>로 커뮤니케이션을 재정의합니다.
         </p>
- 
+
         <div class="grid-3">
           <div class="tile">
             <h3>Paralinguistic Feature Extraction</h3>
@@ -151,7 +199,61 @@
             <p>대화 흐름(세션) 기반 상호작용 패턴 모델링</p>
           </div>
         </div>
- 
+      </div>
+    </section>
+
+    <!-- SLDA — Applied Product Line -->
+    <section id="slda" class="section section-muted">
+      <div class="container">
+        <h2 class="section-title">SLDA — Applied Product Line</h2>
+        <p class="section-desc">
+          <strong>SLDA (Semantic Logic Drift Analysis)</strong> 는
+          CASP의 변화량 분석 관점을 문서와 논쟁 자료에 확장한 <strong>의미·논리 드리프트 분석</strong> 제품군입니다.
+          여러 차수의 문서를 시간순·주체별·쟁점별로 교차 분석하여
+          논점 이동, 표현강도 변화, 주체귀속 전환, 전제충돌을 문장 단위로 측정하고 표시합니다.
+        </p>
+
+        <p class="section-desc">
+          CASP는 <strong>음성의 드리프트</strong>를, SLDA는 <strong>문서의 드리프트</strong>를 봅니다.
+          두 엔진은 같은 명제 위에 있습니다 — <strong>개인 기준점 대비 변화량</strong>.
+        </p>
+
+        <div class="grid-3">
+          <div class="tile">
+            <h3>논리 드리프트 분석</h3>
+            <p>주장이 시간에 따라 어디에서 이동했는지 타임라인으로 표시</p>
+          </div>
+          <div class="tile">
+            <h3>논리 정합성 분석</h3>
+            <p>양립하기 어려운 두 전제를 전제충돌 후보로 묶어 원문과 함께 제시</p>
+          </div>
+          <div class="tile">
+            <h3>주체귀속 이동</h3>
+            <p>능력·책임·행위·지배가 누구에게 귀속되는지의 변화 측정</p>
+          </div>
+        </div>
+
+        <p class="section-desc" style="margin-top:28px">
+          SLDA는 변화의 <strong>양·분포·진폭을 산출</strong>합니다.
+          변화의 <strong>원인·진위·의도는 산출하지 않습니다.</strong>
+        </p>
+
+        <div class="cta-strip">
+          <div class="cta-copy">
+            <h3>SLDA Early Access · 3 / 20</h3>
+            <p>법률·계약 문서, 논쟁·토론 자료의 초기 분석 케이스를 받고 있습니다. (2026.07 기준)</p>
+          </div>
+          <div class="cta-actions">
+            <a class="btn btn-primary" href="./slda.html">SLDA 분석 신청</a>
+            <a class="btn btn-outline" href="./status.html">접수 조회</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Partner CTA -->
+    <section class="section">
+      <div class="container">
         <div class="cta-strip">
           <div class="cta-copy">
             <h3>협업·검증·PoC가 필요한 기관·기업을 찾습니다.</h3>
@@ -165,24 +267,28 @@
       </div>
     </section>
   </main>
- 
+
   <!-- Footer -->
   <footer class="site-footer">
     <div class="container footer-inner">
       <div class="footer-left">
-        <div class="footer-brand">Soulspectrum Inc.</div>
+        <div class="footer-brand">소울스펙트럼 Soul Spectrum Inc.</div>
         <div class="footer-meta">
-          © <span id="y"></span> Soulspectrum Inc. All rights reserved.
+          SLDA · Semantic Logic Drift Analysis · 의미·논리 드리프트 분석<br />
+          © <span id="y"></span> Soul Spectrum Inc. All rights reserved.
         </div>
       </div>
       <div class="footer-right">
-        <a class="footer-link" href="./contact.html">Partner</a>
+        <a class="footer-link" href="./slda.html">SLDA 분석 신청</a>
+        <a class="footer-link" href="./status.html">접수 조회</a>
         <a class="footer-link" href="./journey.html">Journey</a>
         <a class="footer-link" href="./founder.html">Founder</a>
+        <a class="footer-link" href="./contact.html">Partner</a>
+        <a class="footer-link" href="./privacy.html">개인정보 처리방침</a>
       </div>
     </div>
   </footer>
- 
+
   <script>
     document.getElementById("y").textContent = new Date().getFullYear();
   </script>

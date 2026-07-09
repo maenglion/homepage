@@ -1,0 +1,30 @@
+[build]
+  publish = "public"
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+
+[[redirects]]
+  from = "/sdla"
+  to = "/slda.html"
+  status = 301
+
+[[redirects]]
+  from = "/sdla-analysis"
+  to = "/slda.html"
+  status = 301
+
+[[redirects]]
+  from = "/slda"
+  to = "/slda.html"
+  status = 301
+
+[[redirects]]
+  from = "/casp-engine"
+  to = "/index.html"
+  status = 301
