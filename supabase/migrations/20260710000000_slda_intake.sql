@@ -139,18 +139,8 @@ grant execute on function public.ref_accepts_upload(text) to anon;
 -- ---------------------------------------------------------------
 -- 8. 스토리지 — 비공개 버킷. 넣을 수만 있고 못 꺼낸다.
 -- ---------------------------------------------------------------
-insert into storage.buckets (id, name, public, file_size_limit, allowed_mime_types)
-values (
-  'slda-uploads', 'slda-uploads', false, 52428800,
-  array[
-    'application/pdf',
-    'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
-    'application/haansofthwp',
-    'text/plain',
-    'text/markdown',
-    'application/zip'
-  ]
-)
+insert into storage.buckets (id, name, public, file_size_limit)
+values ('slda-uploads', 'slda-uploads', false, 104857600)
 on conflict (id) do nothing;
 
 create policy "upload into own ref folder"
