@@ -891,7 +891,8 @@ css/* 위 1번 GNB 블록의 .nav-link 를 이걸로 교체 */
 }
 
 /* ============================================================
-   13. 칩 — 검은 알약. GNB 우측 버튼과 같은 형태
+   13. 칩
+   채운 것은 누르는 것뿐. eyebrow 는 검정, 나머지는 테두리.
    ============================================================ */
 .eyebrow,
 .badge,
@@ -899,7 +900,6 @@ css/* 위 1번 GNB 블록의 .nav-link 를 이걸로 교체 */
   display: inline-flex;
   align-items: center;
   border-radius: 100px;
-  border: 0;
   font-family: "Inter", "Pretendard", sans-serif;
   letter-spacing: -0.005em;
   text-transform: none;
@@ -907,21 +907,32 @@ css/* 위 1번 GNB 블록의 .nav-link 를 이걸로 교체 */
   white-space: nowrap;
 }
 
-/* 채워진 검정 — 히어로 태그라인, 특허 */
-.eyebrow,
-.badge-ip {
-  background: #0A1628;
-  color: #fff;
-  font-weight: 600;
-}
+/* 채워진 검정 — 페이지의 태그라인 */
 .eyebrow {
+  background: #0A1628;
+  border: 0;
+  color: #fff;
   font-size: 0.8rem;
+  font-weight: 600;
   padding: 8px 20px;
   margin-bottom: 26px;
 }
-.badge-ip {
+
+/* 테두리 — 누르는 것이 아니다 */
+.badge {
+  background: transparent;
+  border: 1.5px solid var(--border-strong);
+  color: var(--text-muted);
   font-size: 0.78rem;
+  font-weight: 500;
   padding: 8px 16px;
+}
+
+/* 특허만 진하게 — 제3자가 찍어준 사실 */
+.badge-ip {
+  border-color: var(--navy);
+  color: var(--navy);
+  font-weight: 700;
 }
 .badge-ip::before {
   content: '';
@@ -932,16 +943,14 @@ css/* 위 1번 GNB 블록의 .nav-link 를 이걸로 교체 */
   flex-shrink: 0;
 }
 
-/* 비어 있는 회색 — 보조 정보 */
-.badge,
 .meta-pill {
-  background: var(--bg-soft);
+  background: transparent;
+  border: 1.5px solid var(--border-strong);
   color: var(--text-muted);
+  font-size: 0.82rem;
   font-weight: 500;
-  font-size: 0.78rem;
-  padding: 8px 16px;
+  padding: 9px 18px;
 }
-.meta-pill { font-size: 0.82rem; padding: 9px 18px; }
 .meta-pill strong { color: var(--text); font-weight: 700; }
 
 /* 어두운 섹션에서는 반전 */
@@ -952,7 +961,8 @@ css/* 위 1번 GNB 블록의 .nav-link 를 이걸로 교체 */
   color: var(--ink);
 }
 .section-ink .badge,
-.section-slda .badge {
-  background: rgba(255,255,255,0.08);
+.section-slda .badge,
+.section-brand .badge {
+  border-color: rgba(255,255,255,0.28);
   color: #93A6BC;
 }
