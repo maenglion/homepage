@@ -436,3 +436,57 @@ body {
   }
   .tile:hover, .btn-primary:hover { transform: none; }
 }
+
+/* ── CASP 두문자 — 상자를 없애고 글자를 세운다 ── */
+.acronym {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  border-top: 1px solid var(--border);
+  margin: 0;
+}
+.acronym > div {
+  padding: 36px 28px 32px 0;
+  border-right: 1px solid var(--border);
+}
+.acronym > div:last-child { border-right: 0; padding-right: 0; }
+
+.acronym dt {
+  font-size: 1.05rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  letter-spacing: -0.01em;
+  margin-bottom: 14px;
+}
+.acronym dt b {
+  display: block;
+  font-family: var(--mono);
+  font-size: 2.6rem;
+  font-weight: 400;
+  line-height: 1;
+  color: var(--navy);
+  margin-bottom: 10px;
+}
+.acronym dd {
+  margin: 0;
+  font-size: 0.92rem;
+  line-height: 1.7;
+  color: var(--text-muted);
+  max-width: 24ch;
+}
+
+/* 마지막 P만 틸 — 이 엔진의 실제 주어 */
+.acronym > div:last-child dt b { color: var(--teal); }
+
+@media (max-width: 900px) {
+  .acronym { grid-template-columns: repeat(2, 1fr); }
+  .acronym > div { border-bottom: 1px solid var(--border); padding-right: 24px; }
+  .acronym > div:nth-child(2n) { border-right: 0; padding-right: 0; }
+  .acronym > div:nth-last-child(-n+2) { border-bottom: 0; }
+  .acronym dt b { font-size: 2.2rem; }
+}
+@media (max-width: 560px) {
+  .acronym { grid-template-columns: 1fr; }
+  .acronym > div { border-right: 0; padding-right: 0; }
+  .acronym > div:last-child { border-bottom: 0; }
+}
