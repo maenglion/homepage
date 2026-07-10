@@ -80,10 +80,7 @@ body {
 }
 
 /* 오른쪽 알약 — GNB보다 작게, semibold, 글자에 맞춰 늘어남 */
-그러면 중간중간 필요한 곳에 저렇게 해놨으니 블랙 바탕이 들어갈 수 있거든. 섹션 나눌때. 그게 쉽지맞다. 그게 지금 가장 큰 개선이야.
-지금 페이지는 흰 → 연회색 → 흰 → 연회색이 전부라 섹션 경계가 안 느껴져. 근데 GNB가 진한 그라디언트로 잡히면, 아래에 어두운 섹션을 놓아도 뜬금없지 않아. 상단이 이미 어두우니까 "이 사이트는 원래 이런 색을 쓴다"가 성립하거든.
-섹션 배경 4종
-css/* ============================================================
+/* ============================================================
    섹션 배경 — 순서로 리듬을 만든다
    ============================================================ */
 
@@ -145,46 +142,7 @@ css/* ============================================================
 
 /* 4. .section-ink — 잉크. SLDA 전용 */
 .section-ink { background: #061524; color: #DCE6F0; }
-그리고 규칙 하나
-어두운 섹션은 페이지당 한 번. 두 번 나오면 둘 다 평범해진다.
-index.html이라면:
-GNB          진한 그라디언트
-Hero         흰색
-CASP 두문자   흰색
-집중하는 것    연회색
-향하는 방향    흰색  ← .rows 목록
-SLDA         ★ .section-ink (잉크)
-Partner CTA  흰색
-Footer       연회색
-SLDA가 유일한 어두운 블록이라서 스크롤하다 딱 걸린다. 브랜드 그라디언트(section-brand)는 다른 페이지에 아껴둬 — engine.html의 파이프라인 섹션 같은 데.
-왜 잉크(#061524)를 따로 두나
-GNB랑 SLDA가 같은 그라디언트면 SLDA가 "헤더 연장선"으로 읽힌다. 별개 제품이라는 신호가 죽어.
-
-GNB / section-brand = 브랜드 자기 자신 (파랑~틸)
-section-ink = SLDA (거의 검정에 가까운 네이비)
-
-색이 다르니 위계도 다르게 읽힌다. SLDA가 CASP 응용이라는 건 카피가 말하고, 다른 물건이라는 건 색이 말한다.
-
-델타 PNG는 28×44라 세로가 길다. height: 34px면 폭이 22px 정도. 진한 바 위에서 흰 델타 하나면 충분해 — 텍스트 로고까지 얹으면 GNB가 다시 지저분해진다.
-.section-ink 안쪽 스타일은 기존 .section-slda 걸 그대로 쓰면 된다. 클래스명만 바꿀까, 아니면 section-slda를 유지하고 .section-ink를 별칭으로 둘까?응 그렇게 하자! .section-ink 안쪽 스타일은 기존 .section-slda 걸 그대로 쓰면 된다.생각해보기: `.section-ink` 스타일을 `.section-slda`에서 상속 적용하기생각해보기: `.section-ink` 스타일을 `.section-slda`에서 상속 적용하기.section-ink와 .section-slda를 선택자 목록으로 묶었다. 지금 HTML은 안 건드려도 되고, 새 페이지에선 section-ink를 쓰면 돼.
-색 배치
-색쓰는 곳GNB#1B74C7 → #036E8D헤더.section-brand같은 그라디언트Engine 파이프라인 등.section-ink#061524SLDA만
-SLDA를 GNB랑 다른 색으로 둔 게 핵심이야. 같으면 "헤더 연장"으로 읽히고, 별개 제품이라는 신호가 죽는다.
-.section-brand는 index에 쓰지 마라. 어두운 섹션은 페이지당 하나.
-
-지워야 할 것
-styles.css 맨 아래 어제 붙인 .nav-sep · .nav-link-alt · .footer-cols · .section-slda 블록 전부. index.html·slda.html의 <style> 블록도.
-.nav-sep / .nav-link-alt는 이제 필요 없어 — 2depth 서브메뉴가 그 역할을 대신한다.
-
-HTML 쪽 변경
-.grid-4 .tile 네 개 → .acronym
-기술이 향하는 방향의 .grid-3 → .rows
-이 둘만 바꿔도 카드 반복이 4번에서 2번으로 준다.
-
-새 페이지 세 장 — engine.html · company.html · research-casp.html. engine.html부터 뽑을까? 거기가 .section-brand랑 .rows가 제대로 일하는 자리야. 파이프라인은 순서가 정보라서 목록이 맞고.Theme코드 · CSS 응 그리고 또 해야할게 지금 index 보면 1) paralinguistic AI engine 이라고 타이틀 상단 박스 스타일을  이제 검은색 박스 border를 최대한 주는 스타일들로 대체해야해  :  저 명칭은 "Realtime Paralinguistic Analysis Engine" 으로 바꾸는 게 맞다.     우리가 걸어온길 casp 개요 없애고  gnb 글씨체는 inter로 bold   오른족 사이드의 두 박스는 inter semibold gnb보다 글씨 작게 (박스크기는 글씨에 맞춰 늘어남) 텍스트 박스는 전부 이런 형태로 가야 해.  지금 로고는 바뀌지 않았군. 아직 네임도 안 바뀐 거니까 뭐.  여튼 바꿔보자웹사이트 인덱스 페이지 디자인 요소 업데이트 및 스타일링 변경 검토웹사이트 인덱스 페이지 디자인 요소 업데이트 및 스타일링 변경 검토GNB 폰트, 칩 스타일, 히어로 정리. 그리고 명칭 교체.
-Realtime Paralinguistic Analysis Engine — 이게 훨씬 낫다. AI Engine은 아무 말도 안 하는데, Realtime과 Analysis는 각각 주장이 있어. 코너스 관제 문맥에도 붙고.
-theme.css에 추가
-css/* ============================================================
+/* ============================================================
    13. 칩 — 채운 알약 대신 테두리 상자
    .eyebrow · .badge · .meta-pill 을 한 형태로 통일한다
    ============================================================ */
@@ -533,58 +491,6 @@ css/* 위 1번 GNB 블록의 .nav-link 를 이걸로 교체 */
    <dl class="acronym"><div><dt><b>C</b>ognitive</dt><dd>…</dd></div></dl>
    ============================================================ */
 .grid-4 .tile::before { display: none; }   /* 좌측 그라디언트 바 제거 */
-
-.acronym {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  border-top: 1px solid var(--border);
-  margin: 0;
-}
-.acronym > div {
-  padding: 36px 28px 32px 0;
-  border-right: 1px solid var(--border);
-}
-.acronym > div:last-child { border-right: 0; padding-right: 0; }
-
-.acronym dt {
-  font-size: 1.05rem;
-  font-weight: 500;
-  color: var(--text-muted);
-  letter-spacing: -0.01em;
-  margin-bottom: 14px;
-}
-.acronym dt b {
-  display: block;
-  font-family: var(--mono);
-  font-size: 2.6rem;
-  font-weight: 400;
-  line-height: 1;
-  color: var(--navy);
-  margin-bottom: 10px;
-}
-.acronym > div:last-child dt b { color: var(--teal); }  /* 실제 측정 대상은 P */
-
-.acronym dd {
-  margin: 0;
-  font-size: 0.92rem;
-  line-height: 1.7;
-  color: var(--text-muted);
-  max-width: 24ch;
-}
-
-@media (max-width: 900px) {
-  .acronym { grid-template-columns: repeat(2, 1fr); }
-  .acronym > div { border-bottom: 1px solid var(--border); padding-right: 24px; }
-  .acronym > div:nth-child(2n) { border-right: 0; padding-right: 0; }
-  .acronym > div:nth-last-child(-n+2) { border-bottom: 0; }
-  .acronym dt b { font-size: 2.2rem; }
-}
-@media (max-width: 560px) {
-  .acronym { grid-template-columns: 1fr; }
-  .acronym > div { border-right: 0; padding-right: 0; }
-  .acronym > div:last-child { border-bottom: 0; }
-}
-
 
 /* ============================================================
    4. 좌측정렬 섹션 — 가운데정렬 반복을 깬다
