@@ -874,3 +874,32 @@ css/* 위 1번 GNB 블록의 .nav-link 를 이걸로 교체 */
 }
 /*방어용 */
 .nav-group, .nav-sep, .nav-link-alt { display: none; }
+
+/* ============================================================
+   14. 페이지 전환
+   ============================================================ */
+@view-transition { navigation: auto; }
+
+::view-transition-old(root) {
+  animation: fade-out 0.16s ease both;
+}
+::view-transition-new(root) {
+  animation: fade-in 0.26s ease both;
+}
+
+@keyframes fade-out {
+  to { opacity: 0; }
+}
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* GNB 는 넘어가지 않는다 — 자리에 그대로 있다 */
+.site-header { view-transition-name: header; }
+::view-transition-old(header),
+::view-transition-new(header) { animation: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  @view-transition { navigation: none; }
+}
