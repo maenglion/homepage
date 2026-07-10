@@ -891,44 +891,37 @@ css/* 위 1번 GNB 블록의 .nav-link 를 이걸로 교체 */
 }
 
 /* ============================================================
-   13. 칩 — 채운 알약 대신 테두리 상자
-   .eyebrow · .badge · .meta-pill 을 한 형태로 통일한다
+   13. 칩 — 검은 알약. GNB 우측 버튼과 같은 형태
    ============================================================ */
 .eyebrow,
 .badge,
 .meta-pill {
   display: inline-flex;
   align-items: center;
-  background: transparent;
-  border: 1.5px solid var(--text);
-  border-radius: 4px;
-  color: var(--text);
+  border-radius: 100px;
+  border: 0;
   font-family: "Inter", "Pretendard", sans-serif;
-  font-weight: 600;
-  letter-spacing: 0.01em;
+  letter-spacing: -0.005em;
   text-transform: none;
   box-shadow: none;
+  white-space: nowrap;
 }
 
-.eyebrow {
-  font-size: 0.78rem;
-  font-weight: 700;
-  letter-spacing: 0.02em;
-  padding: 8px 14px;
-  margin-bottom: 24px;
-}
-
-.badge {
-  font-size: 0.78rem;
-  padding: 7px 13px;
-  color: var(--text-muted);
-  border-color: var(--border-strong);
-}
-
+/* 채워진 검정 — 히어로 태그라인, 특허 */
+.eyebrow,
 .badge-ip {
-  color: var(--text);
-  border-color: var(--text);
-  font-weight: 700;
+  background: #0A1628;
+  color: #fff;
+  font-weight: 600;
+}
+.eyebrow {
+  font-size: 0.8rem;
+  padding: 10px 20px;
+  margin-bottom: 26px;
+}
+.badge-ip {
+  font-size: 0.78rem;
+  padding: 8px 16px;
 }
 .badge-ip::before {
   content: '';
@@ -936,23 +929,30 @@ css/* 위 1번 GNB 블록의 .nav-link 를 이걸로 교체 */
   border-radius: 50%;
   background: var(--teal);
   margin-right: 8px;
-  font-size: 0;
+  flex-shrink: 0;
 }
 
+/* 비어 있는 회색 — 보조 정보 */
+.badge,
 .meta-pill {
-  font-size: 0.82rem;
-  font-weight: 500;
-  padding: 8px 14px;
+  background: var(--bg-soft);
   color: var(--text-muted);
-  border-color: var(--border-strong);
+  font-weight: 500;
+  font-size: 0.78rem;
+  padding: 8px 16px;
 }
+.meta-pill { font-size: 0.82rem; padding: 9px 18px; }
 .meta-pill strong { color: var(--text); font-weight: 700; }
 
-/* 어두운 섹션 위에서는 흰 테두리 */
+/* 어두운 섹션에서는 반전 */
 .section-ink .eyebrow,
 .section-slda .eyebrow,
 .section-brand .eyebrow {
-  background: transparent;
-  border-color: rgba(255,255,255,0.5);
-  color: #fff;
+  background: #fff;
+  color: var(--ink);
+}
+.section-ink .badge,
+.section-slda .badge {
+  background: rgba(255,255,255,0.08);
+  color: #93A6BC;
 }
