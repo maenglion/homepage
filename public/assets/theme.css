@@ -447,7 +447,7 @@ css/* 위 1번 GNB 블록의 .nav-link 를 이걸로 교체 */
 .section-slda .rows p { color: #8798AE; }
 
 .section-ink .rule,
-.section-slda .rule { color: #93A6BC; margin-top: 44px; }
+.section-slda .rule { color: #93A6BC; margin: 44px auto; }
 .section-ink .rule strong,
 .section-slda .rule strong { color: #fff; }
 .section-ink .rule::before,
@@ -571,10 +571,11 @@ css/* 위 1번 GNB 블록의 .nav-link 를 이걸로 교체 */
    7. ★ Signature — drift rule
    세로선이 위에서 아래로 옅어진다. 드리프트를 형태로.
    ============================================================ */
+
 .rule {
   position: relative;
-  max-width: 680px;
-  margin: 40 auto;
+  max-width: 100%;
+  margin: 48px auto;          /* ← 0 auto 였다. 위아래 여백 + 가운데 정렬 */
   padding: 6px 0 6px 30px;
   font-size: 1.02rem;
   line-height: 1.95;
@@ -590,6 +591,12 @@ css/* 위 1번 GNB 블록의 .nav-link 를 이걸로 교체 */
 }
 .rule strong { color: var(--text); font-weight: 600; }
 
+/* 좌측정렬 섹션 안에서는 왼쪽에 붙는다 */
+.section-lead .rule {
+  margin-left: 0;
+  margin-right: 0;
+  max-width: 72ch;
+}
 
 /* ============================================================
    8. 푸터 2열
