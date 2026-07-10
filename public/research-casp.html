@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="view-transition" content="same-origin" />
+  <title>CASP | 음성 발화의 비언어 신호 · Soul Spectrum</title>
+  <meta name="description" content="STT는 무엇을 말했는지만 남깁니다. CASP는 어떻게 말했는지를 봅니다. 한국어 화자의 파라링귀스틱 신호를 정량 지표로 변환하는 연구." />
+  <link rel="canonical" href="https://soulspectrum.kr/research-casp.html" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="CASP | 음성 발화의 비언어 신호" />
+  <meta property="og:description" content="STT가 버리는 신호에 무엇이 남아 있는가. 한국어 파라링귀스틱 연구." />
+  <meta property="og:locale" content="ko_KR" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="CASP | 음성 발화의 비언어 신호" />
+  <meta name="twitter:description" content="STT가 버리는 신호에 무엇이 남아 있는가." />
+
+  <link rel="stylesheet" href="assets/styles.css" />
+  <link rel="stylesheet" href="assets/theme.css" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="./index.html" aria-label="소울스펙트럼 홈">
+        <img class="brand-logo" src="./assets/soulspectrum_delta.png" width="28" height="44" alt="Soul Spectrum" />
+      </a>
+
+      <nav class="nav">
+        <div class="nav-item has-sub">
+          <button class="nav-link is-active" aria-expanded="false" aria-haspopup="true">
+            Research
+            <svg class="chev" width="10" height="6" viewBox="0 0 10 6" aria-hidden="true">
+              <path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6"/>
+            </svg>
+          </button>
+          <div class="submenu">
+            <a href="./research-casp.html"><b>CASP</b><span>음성 발화의 비언어 신호</span></a>
+            <a href="./slda.html"><b>SLDA</b><span>문서·논쟁의 의미 드리프트</span></a>
+          </div>
+        </div>
+
+        <a class="nav-link" href="./engine.html">Engine</a>
+        <a class="nav-link" href="./company.html">Company</a>
+        <a class="nav-link" href="./founder.html">Founder</a>
+      </nav>
+
+      <div class="header-cta">
+        <a class="pill pill-dark" href="./slda.html">Early Access</a>
+        <a class="pill pill-light" href="./contact.html">Partnership</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero -->
+    <section class="page-hero">
+      <div class="container page-hero-inner">
+        <span class="eyebrow">Research · CASP</span>
+        <h1 class="page-title">STT가 버린 것에 무엇이 남아 있는가</h1>
+        <p class="page-desc">
+          음성 인식은 발화를 텍스트로 옮기고 나머지를 버립니다.
+          버려지는 쪽 — 속도, 멈춤, 리듬, 강세, 불연속 — 에도 정보가 있습니다.
+          CASP는 그 신호를 정량 지표로 변환하는 연구입니다.
+        </p>
+      </div>
+    </section>
+
+    <!-- The loss -->
+    <section class="section section-lead">
+      <div class="container">
+        <div class="lead-head">
+          <h2 class="section-title">무엇이 사라지는가</h2>
+          <p class="section-desc">
+            같은 문장도 어떻게 발화되느냐에 따라 다른 사건이 됩니다.
+            STT를 거치고 나면 그 차이가 남지 않습니다.
+            텍스트만 보는 시스템은 두 발화를 동일하게 처리합니다.
+          </p>
+        </div>
+
+        <ol class="rows">
+          <li>
+            <span class="rows-k">Pause<br />멈춤</span>
+            <p>어디에서 끊었는가. 문장 사이의 멈춤과 단어 사이의 멈춤은 다른 뜻을 갖습니다. 긴 침묵 전후로 발화가 어떻게 달라지는지가 관찰 대상입니다.</p>
+          </li>
+          <li>
+            <span class="rows-k">Rhythm<br />리듬</span>
+            <p>말이 고르게 흐르는가, 끊기는가. 리듬의 붕괴는 평소와의 비교에서만 드러납니다.</p>
+          </li>
+          <li>
+            <span class="rows-k">Energy<br />에너지</span>
+            <p>목소리의 크기와 강세 분포. 급락과 급등은 절대값이 아니라 그 사람의 평소 폭 안에서 판단됩니다.</p>
+          </li>
+          <li>
+            <span class="rows-k">Transition<br />전환</span>
+            <p>구간과 구간 사이에서 일어나는 변화. 단일 시점의 값이 아니라 이동의 크기와 방향이 지표가 됩니다.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- Korean -->
+    <section class="section section-brand">
+      <div class="container">
+        <span class="eyebrow">Korean</span>
+        <h2 class="section-title">한국어는 어떻게 말하느냐가 관계를 바꾼다</h2>
+        <p class="section-desc">
+          존댓말 체계, 말끝 처리, 억양, 휴지의 위치.
+          한국어는 발화 방식에 따라 의미와 관계 맥락이 크게 달라지는 언어입니다.
+          같은 어휘를 쓰고도 전혀 다른 말이 됩니다.
+        </p>
+
+        <div class="grid-2">
+          <div class="tile">
+            <h3>영어 중심 모델의 한계</h3>
+            <p>
+              해외 범용 모델을 그대로 적용하면, 한국어 화자의 정상적인 발화 패턴이
+              이상 신호로 오탐될 수 있습니다. 언어마다 정상 변이의 범위가 다릅니다.
+            </p>
+          </div>
+          <div class="tile">
+            <h3>기준 데이터의 부재</h3>
+            <p>
+              한국어 화자의 파라링귀스틱 정상 변이 범위를 정의한 산업용 표준 데이터셋이
+              아직 없습니다. 기준값이 없으면 개인의 변화를 측정해도 해석할 수 없습니다.
+            </p>
+          </div>
+        </div>
+
+        <div class="rule">
+          개인의 변화를 측정하려면 그 사람의 평소를 알아야 하고,<br />
+          <strong>그 평소가 이례적인지 판단하려면 집단의 평소를 알아야 합니다.</strong>
+        </div>
+      </div>
+    </section>
+
+    <!-- Two references -->
+    <section class="section">
+      <div class="container">
+        <h2 class="section-title">두 개의 기준</h2>
+        <p class="section-desc">
+          개인 기준점(baseline)과 집단 분포(Normal Range)는 역할이 다릅니다.
+          하나로 섞으면 개인의 고유한 특성이 이상 신호로 잘못 읽힙니다.
+        </p>
+
+        <div class="grid-2">
+          <div class="tile">
+            <h3>개인 기준점 · baseline</h3>
+            <p>
+              반복 측정으로 그 사람의 평소를 세웁니다.
+              변화는 언제나 자기 자신과의 비교입니다.
+            </p>
+          </div>
+          <div class="tile">
+            <h3>집단 분포 · Normal Range</h3>
+            <p>
+              권역·연령·성별 단위의 정상 변이 범위입니다.
+              개인의 지표를 집단 내 상대 위치로 읽을 수 있게 합니다.
+            </p>
+          </div>
+        </div>
+
+        <p class="section-desc" style="margin-top:44px; margin-bottom:0">
+          한국어 화자의 Normal Range 데이터셋은 현재 구축 중입니다.
+          권역·연령·성별 분포를 반영한 해석 기준을 마련하는 것을 목표로 합니다.
+        </p>
+      </div>
+    </section>
+
+    <!-- Protocol v1 / SQ -->
+    <section class="section section-muted">
+      <div class="container">
+        <h2 class="section-title">인지 축과 발화 지표의 관계</h2>
+        <p class="section-desc">
+          발화 지표만으로는 그 값이 무엇을 뜻하는지 정렬할 수 없습니다.
+          Protocol v1은 <strong>구조화 성향</strong>이라는 인지 축을 먼저 세우고,
+          음성 지표와의 관계를 검증 가능한 형태로 정리했습니다.
+        </p>
+
+        <div class="grid-3">
+          <div class="tile">
+            <h3>SQ · Systemizing Quotient</h3>
+            <p>Simon Baron-Cohen이 제안한 체계화 경향 척도입니다. Protocol v1의 인지 축으로 참조했습니다.</p>
+          </div>
+          <div class="tile">
+            <h3>세션 기반 반복 측정</h3>
+            <p>단일 측정이 아니라 세션 단위로 반복 기록합니다. 개인 기준점은 반복에서만 만들어집니다.</p>
+          </div>
+          <div class="tile">
+            <h3>Anchor Point</h3>
+            <p>기준축의 끝점을 확인하는 별도 프로토콜입니다. 무엇을 양 끝으로 둘지가 정해져야 변화량이 계산됩니다.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Not -->
+    <section class="section">
+      <div class="container">
+        <h2 class="section-title">진단을 대체하지 않습니다</h2>
+        <p class="section-desc">
+          CASP는 발화 신호의 변이량을 측정합니다.
+          변화가 어디에서, 어느 정도, 어떤 방식으로 발생했는지를 구조화합니다.
+          <strong>원인·진단·의도는 산출하지 않습니다.</strong>
+        </p>
+        <p class="section-desc" style="margin-bottom:0">
+          연구·검증·응용이 가능한 데이터 구조로 커뮤니케이션을 재정의하는 것이 목적이며,
+          그 데이터를 어떻게 읽을지는 사람이 판단합니다.
+        </p>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section">
+      <div class="container">
+        <div class="cta-strip">
+          <div class="cta-copy">
+            <h3>Research · PoC · Pilot</h3>
+            <p>기관·기업 환경에 맞춘 프로토콜 적용과 검증 협업이 가능합니다.</p>
+          </div>
+          <div class="cta-actions">
+            <a class="btn btn-primary" href="./contact.html">연구 협업 문의</a>
+            <a class="btn btn-outline" href="./engine.html">엔진 구조 보기</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-left">
+        <div class="footer-brand">소울스펙트럼 Soul Spectrum Inc.</div>
+        <div class="footer-meta">
+          CASP ENGINE · Cognitive–Adaptive Stress Paralinguistic Engine<br />
+          SLDA · Semantic Logic Drift Analysis · 의미·논리 드리프트 분석<br />
+          soulspectrum.kr · nanyoung@soulspectrum.kr<br />
+          © <span id="y"></span> Soul Spectrum Inc. All rights reserved.
+        </div>
+      </div>
+
+      <div class="footer-right footer-cols">
+        <div class="footer-col">
+          <div class="footer-col-title">CASP</div>
+          <a class="footer-link" href="./index.html">Intro</a>
+          <a class="footer-link" href="./research-casp.html">Research</a>
+          <a class="footer-link" href="./engine.html">Engine</a>
+          <a class="footer-link" href="./company.html">Company</a>
+          <a class="footer-link" href="./founder.html">Founder</a>
+          <a class="footer-link" href="./contact.html">Partnership</a>
+        </div>
+
+        <div class="footer-col">
+          <div class="footer-col-title">SLDA</div>
+          <a class="footer-link" href="./slda.html">분석 신청</a>
+          <a class="footer-link" href="./status.html">접수 조회</a>
+          <a class="footer-link" href="./privacy.html">개인정보 처리방침</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("y").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
