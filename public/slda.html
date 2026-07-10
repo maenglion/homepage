@@ -3,8 +3,9 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="SLDA(Semantic Logic Drift Analysis) 분석 신청 — 의미·논리 드리프트 분석. 논점 이동과 논리적 모순을 문장 단위로 측정합니다." />
   <title>SLDA 분석 신청 | Semantic Logic Drift Analysis</title>
+  <meta name="description" content="SLDA(Semantic Logic Drift Analysis) 분석 신청 — 의미·논리 드리프트 분석. 논점 이동과 논리적 모순을 문장 단위로 측정합니다. 논점 흐리기, 물타기, 말바꾸기가 일어난 지점을 타임라인으로 표시하는 논리 정합성 분석 도구." />
+  <link rel="canonical" href="https://soulspectrum.kr/slda.html" />
 
   <meta property="og:type" content="website" />
   <meta property="og:title" content="SLDA 분석 신청 | Soul Spectrum" />
@@ -15,25 +16,46 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;500;600;700&display=swap" rel="stylesheet">
-   <script type="application/ld+json">
-  [
-    {
-      "@context": "https://schema.org",
-      "@type": "SoftwareApplication",
-      "@id": "https://soulspectrum.kr/slda.html#app",
-      "name": "SLDA",
-      "alternateName": ["Semantic Logic Drift Analysis", "의미·논리 드리프트 분석", "논리 드리프트 분석", "논리 정합성 분석", "문서 드리프트 분석", "SLDA 분석", "SLDA분석"],
-      "applicationCategory": "텍스트 분석 · 문서 드리프트 분석",
-      "disambiguatingDescription": "다차수 문서와 논쟁 자료에서 논점 이동, 표현강도, 주체귀속, 전제충돌을 문장 단위로 측정하는 텍스트 분석 소프트웨어.",
-      "isBasedOn": { "@id": "https://soulspectrum.kr/#casp" },
-      "creator": { "@id": "https://soulspectrum.kr/founder.html#person" },
-      "publisher": { "@id": "https://soulspectrum.kr/#org" }
-    }
-  ]
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "@id": "https://soulspectrum.kr/slda.html#app",
+    "name": "SLDA",
+    "alternateName": ["Semantic Logic Drift Analysis", "의미·논리 드리프트 분석", "논리 드리프트 분석", "논리 정합성 분석", "문서 드리프트 분석", "SLDA 분석", "SLDA분석"],
+    "applicationCategory": "텍스트 분석 · 문서 드리프트 분석",
+    "operatingSystem": "Web",
+    "disambiguatingDescription": "다차수 문서와 논쟁 자료에서 논점 이동, 표현강도, 주체귀속, 전제충돌을 문장 단위로 측정하는 결정적 텍스트 분석 소프트웨어. 확률적 토픽 모델과 무관하다.",
+    "isBasedOn": { "@id": "https://soulspectrum.kr/#casp" },
+    "creator": { "@id": "https://soulspectrum.kr/founder.html#person" },
+    "publisher": { "@id": "https://soulspectrum.kr/#org" }
+  }
   </script>
 
   <style>
-    .form-grid { display: grid; gap: 22px; max-width: 720px; margin: 0 auto; }
+    /* nav · footer 공통 */
+    .nav-group { font-size: 10px; letter-spacing: .14em; font-weight: 700; opacity: .38; margin-right: 10px; align-self: center; flex-shrink: 0; }
+    .nav-sep { width: 1px; height: 16px; background: currentColor; opacity: .22; margin: 0 18px; align-self: center; flex-shrink: 0; }
+    .nav-link-alt { opacity: .78; }
+    .nav-link-alt:hover, .nav-link-alt.is-active { opacity: 1; }
+    @media (max-width: 860px) { .nav-group { display: none; } }
+    @media (max-width: 720px) { .nav-sep { display: none; } }
+    .footer-cols { display: flex; gap: 56px; }
+    .footer-col-title { font-size: 11px; letter-spacing: .12em; opacity: .45; margin-bottom: 10px; }
+    .footer-col a { display: block; margin-bottom: 6px; }
+    @media (max-width: 720px) { .footer-cols { gap: 32px; } }
+
+    /* 관찰 규율 */
+    .rule {
+      max-width: 720px; margin: 0 auto 48px;
+      padding: 20px 24px;
+      border-left: 2px solid rgba(128,128,128,.4);
+      font-size: 15px; line-height: 1.9; opacity: .85;
+    }
+
+    /* 폼 */
+    .form-grid { display: grid; gap: 26px; max-width: 720px; margin: 0 auto; }
     .field label { display: block; font-weight: 600; margin-bottom: 8px; font-size: 15px; }
     .field .hint { font-size: 13px; opacity: .7; margin: 6px 0 0; line-height: 1.6; }
     .field input[type=text], .field input[type=number], .field select, .field textarea {
@@ -41,7 +63,7 @@
       border: 1px solid rgba(128,128,128,.35); background: transparent;
       color: inherit; font: inherit; box-sizing: border-box;
     }
-    .field textarea { min-height: 160px; resize: vertical; line-height: 1.7; }
+    .field textarea { min-height: 170px; resize: vertical; line-height: 1.7; }
     .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
     .filelist { margin-top: 10px; font-size: 13px; }
     .filelist div { padding: 6px 0; border-bottom: 1px solid rgba(128,128,128,.2); }
@@ -71,12 +93,20 @@
       <a class="brand" href="./index.html" aria-label="소울스펙트럼 홈">
         <img class="brand-logo" src="./assets/logo.svg" alt="Soulspectrum" />
       </a>
+
       <nav class="nav">
+        <span class="nav-group">CASP</span>
         <a class="nav-link" href="./index.html">Intro</a>
         <a class="nav-link" href="./journey.html">Journey</a>
         <a class="nav-link" href="./founder.html">Founder</a>
         <a class="nav-link" href="./contact.html">Partner</a>
+
+        <span class="nav-sep" aria-hidden="true"></span>
+
+        <span class="nav-group">SLDA</span>
+        <a class="nav-link nav-link-alt is-active" href="./slda.html">분석 신청</a>
       </nav>
+
       <div class="header-cta">
         <a class="btn btn-outline" href="./status.html">접수 조회</a>
       </div>
@@ -84,61 +114,14 @@
   </header>
 
   <main>
-       <!-- SLDA — Applied Product Line -->
-    <section id="slda" class="section section-muted">
-      <div class="container">
-        <h2 class="section-title">SLDA - Applied Product Line</h2>
-        <p class="section-desc">
-          <strong>SLDA (Semantic Logic Drift Analysis)</strong> 는
-          CASP의 변화량 분석 관점을 문서와 논쟁 자료에 확장한 <strong>의미·논리 드리프트 분석</strong> 제품군입니다.
-          여러 차수의 문서를 시간순·주체별·쟁점별로 교차 분석하여
-          논점 이동, 표현강도 변화, 주체귀속 전환, 전제충돌을 문장 단위로 측정하고 표시합니다.
-        </p>
-
-        <p class="section-desc">
-          CASP는 <strong>음성의 드리프트</strong>를, SLDA는 <strong>문서의 드리프트</strong>를 봅니다.
-          두 엔진은 같은 명제 위에 있습니다 — <strong>개인 기준점 대비 변화량</strong>.
-        </p>
-
-        <div class="grid-3">
-          <div class="tile">
-            <h3>논리 드리프트 분석</h3>
-            <p>주장이 시간에 따라 어디에서 이동했는지 타임라인으로 표시</p>
-          </div>
-          <div class="tile">
-            <h3>논리 정합성 분석</h3>
-            <p>양립하기 어려운 두 전제를 전제충돌 후보로 묶어 원문과 함께 제시</p>
-          </div>
-          <div class="tile">
-            <h3>주체귀속 이동</h3>
-            <p>능력·책임·행위·지배가 누구에게 귀속되는지의 변화 측정</p>
-          </div>
-        </div>
-
-        <p class="section-desc" style="margin-top:28px">
-          SLDA는 변화의 <strong>양·분포·진폭을 산출</strong>합니다.
-          변화의 <strong>원인·진위·의도는 산출하지 않습니다.</strong>
-        </p>
-
-        <div class="cta-strip">
-          <div class="cta-copy">
-            <h3>SLDA Early Access · 3 / 20</h3>
-            <p>법률·계약 문서, 논쟁·토론 자료의 초기 분석 케이스를 받고 있습니다. (2026.07 기준)</p>
-          </div>
-          <div class="cta-actions">
-               <a class="btn btn-outline" href="./status.html">접수 조회</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
+    <!-- Hero -->
     <section class="page-hero">
       <div class="container page-hero-inner">
         <p class="eyebrow">SLDA · Semantic Logic Drift Analysis</p>
-        <h1 class="page-title">분석 신청</h1>
+        <h1 class="page-title">의미·논리 드리프트 분석</h1>
         <p class="page-desc">
-          SLDA는 여러 차수의 문서와 논쟁 자료에서 논점 이동, 표현강도 변화, 주체귀속 변화, 전제충돌을
-          문장 단위로 측정하고 표시합니다. 변화의 원인·진위·의도는 산출하지 않습니다.
+          여러 차수의 문서와 논쟁 자료를 시간순·주체별·쟁점별로 교차 분석하여
+          논점 이동, 표현강도 변화, 주체귀속 전환, 전제충돌을 문장 단위로 측정하고 표시합니다.
         </p>
         <div class="meta-line">
           <span class="meta-pill">Early Access · <strong id="slots">3 / 20</strong></span>
@@ -147,8 +130,42 @@
       </div>
     </section>
 
+    <!-- 무엇을 보는가 -->
     <section class="section">
       <div class="container">
+        <div class="grid-3">
+          <div class="tile">
+            <h3>논리 드리프트 분석</h3>
+            <p>주장이 시간에 따라 어디에서 이동했는지 타임라인으로 표시합니다.</p>
+          </div>
+          <div class="tile">
+            <h3>논리 정합성 분석</h3>
+            <p>양립하기 어려운 두 전제를 전제충돌 후보로 묶어 원문과 함께 제시합니다.</p>
+          </div>
+          <div class="tile">
+            <h3>주체귀속 이동</h3>
+            <p>능력·책임·행위·지배가 누구에게 귀속되는지의 변화를 측정합니다.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 관찰 규율 -->
+    <section class="section section-muted">
+      <div class="container">
+        <div class="rule" style="margin-bottom:0">
+          SLDA는 변화의 <strong>양·분포·진폭을 산출</strong>합니다.<br />
+          변화의 <strong>원인·진위·의도는 산출하지 않습니다.</strong><br />
+          <span style="opacity:.75">읽는 사람이 "왜 여기서 바뀌었지?"를 스스로 묻게 하는 것이 산출의 목적이며, 그 질문을 대신 답하지 않습니다.</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- 신청 폼 -->
+    <section class="section">
+      <div class="container">
+        <h2 class="section-title">분석 신청</h2>
+
         <div id="form-wrap" class="form-grid">
 
           <div class="field">
@@ -207,6 +224,9 @@
               <li>기록은 <strong>누구도 수정하거나 삭제할 수 없습니다.</strong> 신청자와 운영자 모두 포함됩니다.</li>
               <li>필요 시 NDA를 선행합니다. 연락처를 남겨주세요.</li>
             </ul>
+            <p class="hint" style="margin-top:14px">
+              자세한 내용은 <a href="./privacy.html">개인정보 처리방침</a>을 확인해주세요.
+            </p>
           </div>
 
           <div>
@@ -234,6 +254,59 @@
         </div>
       </div>
     </section>
+
+    <!-- FAQ -->
+    <section class="section section-muted">
+      <div class="container">
+        <h2 class="section-title">자주 묻는 질문</h2>
+        <div class="form-grid">
+          <div class="tile">
+            <h3>SDLA 분석인가요, SLDA 분석인가요?</h3>
+            <p>
+              정확한 표기는 <strong>SLDA (Semantic Logic Drift Analysis)</strong> 입니다.
+              Semantic <strong>L</strong>ogic <strong>D</strong>rift Analysis 의 약어이며, SDLA로 잘못 표기되는 경우가 있습니다.
+              국문으로는 의미·논리 드리프트 분석, 줄여서 논리 드리프트 분석 또는 논리 정합성 분석이라 합니다.
+            </p>
+          </div>
+          <div class="tile">
+            <h3>논점 흐리기나 물타기를 잡아낼 수 있나요?</h3>
+            <p>
+              SLDA는 논점이 어디서 이동했는지를 문장 단위로 표시합니다.
+              어느 지점에서 쟁점이 바뀌었고, 표현강도와 주체귀속이 어떻게 변했는지가 타임라인으로 나옵니다.
+              그 이동을 무엇이라 부를지는 읽는 사람의 판단입니다.
+            </p>
+          </div>
+          <div class="tile">
+            <h3>말바꾸기나 논리적 모순을 찾을 수 있나요?</h3>
+            <p>
+              서로 양립하기 어려운 두 전제를 사용한 지점을 전제충돌 후보로 묶어 원문과 함께 제시합니다.
+              SLDA는 변화와 충돌 후보를 표시하며, 의도나 진위를 단정하지 않습니다.
+            </p>
+          </div>
+          <div class="tile">
+            <h3>토론이나 논쟁에서 쟁점 찾기에 쓸 수 있나요?</h3>
+            <p>
+              그것이 논쟁 패널의 주된 용도입니다. 수십~수백 페이지 자료에서 쟁점 묶음을 추출하고,
+              차수별 강도를 표시합니다. 논쟁 자료는 <strong>양쪽을 동시에 분석</strong>하며,
+              한쪽만 분석한 결과물은 제공하지 않습니다.
+            </p>
+          </div>
+          <div class="tile">
+            <h3>분석 결과의 근거를 확인할 수 있나요?</h3>
+            <p>
+              모든 수치는 문장 단위 원자료에 기록되며, 동일 규칙 적용 시 동일 값이 재현됩니다.
+            </p>
+          </div>
+          <div class="tile">
+            <h3>CASP와 SLDA는 어떤 관계인가요?</h3>
+            <p>
+              CASP는 음성의 드리프트를, SLDA는 문서의 드리프트를 측정합니다.
+              두 엔진 모두 <strong>개인 기준점 대비 변화량</strong>이라는 같은 명제 위에 있습니다.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
   </main>
 
   <footer class="site-footer">
@@ -241,14 +314,28 @@
       <div class="footer-left">
         <div class="footer-brand">소울스펙트럼 Soul Spectrum Inc.</div>
         <div class="footer-meta">
+          CASP ENGINE · Cognitive–Adaptive Stress Paralinguistic Engine<br />
           SLDA · Semantic Logic Drift Analysis · 의미·논리 드리프트 분석<br />
+          soulspectrum.kr · nanyoung@soulspectrum.kr<br />
           © <span id="y"></span> Soul Spectrum Inc. All rights reserved.
         </div>
       </div>
-      <div class="footer-right">
-        <a class="footer-link" href="./status.html">접수 조회</a>
-        <a class="footer-link" href="./contact.html">Partner</a>
-        <a class="footer-link" href="./founder.html">Founder</a>
+
+      <div class="footer-right footer-cols">
+        <div class="footer-col">
+          <div class="footer-col-title">CASP</div>
+          <a class="footer-link" href="./index.html">Intro</a>
+          <a class="footer-link" href="./journey.html">Journey</a>
+          <a class="footer-link" href="./founder.html">Founder</a>
+          <a class="footer-link" href="./contact.html">Partner</a>
+        </div>
+
+        <div class="footer-col">
+          <div class="footer-col-title">SLDA</div>
+          <a class="footer-link" href="./slda.html">분석 신청</a>
+          <a class="footer-link" href="./status.html">접수 조회</a>
+          <a class="footer-link" href="./privacy.html">개인정보 처리방침</a>
+        </div>
       </div>
     </div>
   </footer>

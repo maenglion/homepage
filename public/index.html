@@ -47,65 +47,94 @@
     }
   ]
   </script>
+
   <style>
+    /* ── nav 구역 ── */
+    .nav-group {
+      font-size: 10px;
+      letter-spacing: .14em;
+      font-weight: 700;
+      opacity: .38;
+      margin-right: 10px;
+      align-self: center;
+      flex-shrink: 0;
+    }
+    .nav-sep {
+      width: 1px;
+      height: 16px;
+      background: currentColor;
+      opacity: .22;
+      margin: 0 18px;
+      align-self: center;
+      flex-shrink: 0;
+    }
+    .nav-link-alt { opacity: .78; }
+    .nav-link-alt:hover { opacity: 1; }
+    @media (max-width: 860px) { .nav-group { display: none; } }
+    @media (max-width: 720px) { .nav-sep { display: none; } }
+
+    /* ── 푸터 2열 ── */
+    .footer-cols { display: flex; gap: 56px; }
+    .footer-col-title {
+      font-size: 11px;
+      letter-spacing: .12em;
+      opacity: .45;
+      margin-bottom: 10px;
+    }
+    .footer-col a { display: block; margin-bottom: 6px; }
+    @media (max-width: 720px) { .footer-cols { gap: 32px; } }
+
     /* ── SLDA — Applied Product Line ── */
-.section-slda {
-  background: #10131c;
-  color: #e8eaf0;
-  padding: 96px 0;
-  margin-top: 40px;
-  border-top: 1px solid rgba(255,255,255,.08);
-  border-bottom: 1px solid rgba(255,255,255,.08);
-}
-
-.section-slda .section-title,
-.section-slda .tile h3 { color: #fff; }
-
-.section-slda .section-desc { color: #a8adbb; }
-.section-slda .section-desc strong { color: #e8eaf0; font-weight: 600; }
-
-.section-slda .eyebrow {
-  color: #7d8598;
-  letter-spacing: .14em;
-  text-transform: uppercase;
-  font-size: 12px;
-  display: block;
-  margin-bottom: 14px;
-}
-
-.section-slda .tile {
-  background: rgba(255,255,255,.04);
-  border: 1px solid rgba(255,255,255,.09);
-}
-.section-slda .tile p { color: #9ba1b0; }
-
-.section-slda .cta-strip {
-  background: rgba(255,255,255,.05);
-  border: 1px solid rgba(255,255,255,.1);
-  margin-top: 44px;
-}
-.section-slda .cta-copy h3 { color: #fff; }
-.section-slda .cta-copy p { color: #a8adbb; }
-
-.section-slda .btn-outline {
-  color: #e8eaf0;
-  border-color: rgba(255,255,255,.28);
-}
-.section-slda .btn-outline:hover {
-  border-color: rgba(255,255,255,.55);
-  background: rgba(255,255,255,.06);
-}
-
-.section-slda .rule {
-  margin: 36px auto 0;
-  max-width: 620px;
-  padding: 20px 24px;
-  border-left: 2px solid #4a5268;
-  color: #a8adbb;
-  font-size: 15px;
-  line-height: 1.9;
-}
-.section-slda .rule strong { color: #fff; }
+    .section-slda {
+      background: #10131c;
+      color: #e8eaf0;
+      padding: 96px 0;
+      margin-top: 40px;
+      border-top: 1px solid rgba(255,255,255,.08);
+      border-bottom: 1px solid rgba(255,255,255,.08);
+    }
+    .section-slda .section-title,
+    .section-slda .tile h3 { color: #fff; }
+    .section-slda .section-desc { color: #a8adbb; }
+    .section-slda .section-desc strong { color: #e8eaf0; font-weight: 600; }
+    .section-slda .eyebrow {
+      color: #7d8598;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      font-size: 12px;
+      display: block;
+      margin-bottom: 14px;
+    }
+    .section-slda .tile {
+      background: rgba(255,255,255,.04);
+      border: 1px solid rgba(255,255,255,.09);
+    }
+    .section-slda .tile p { color: #9ba1b0; }
+    .section-slda .cta-strip {
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,255,255,.1);
+      margin-top: 44px;
+    }
+    .section-slda .cta-copy h3 { color: #fff; }
+    .section-slda .cta-copy p { color: #a8adbb; }
+    .section-slda .btn-outline {
+      color: #e8eaf0;
+      border-color: rgba(255,255,255,.28);
+    }
+    .section-slda .btn-outline:hover {
+      border-color: rgba(255,255,255,.55);
+      background: rgba(255,255,255,.06);
+    }
+    .section-slda .rule {
+      margin: 36px auto 0;
+      max-width: 620px;
+      padding: 20px 24px;
+      border-left: 2px solid #4a5268;
+      color: #a8adbb;
+      font-size: 15px;
+      line-height: 1.9;
+    }
+    .section-slda .rule strong { color: #fff; }
   </style>
 </head>
 
@@ -117,14 +146,18 @@
         <img class="brand-logo" src="./assets/logo.svg" alt="Soulspectrum" />
       </a>
 
-     <nav class="nav">
-  <a class="nav-link" href="./index.html">Intro</a>
-  <a class="nav-link" href="./journey.html">Journey</a>
-  <a class="nav-link" href="./founder.html">Founder</a>
-  <a class="nav-link" href="./contact.html">Partner</a>
-  <span class="nav-sep" aria-hidden="true"></span>
-  <a class="nav-link nav-link-alt" href="./slda.html">SLDA</a>
-</nav>
+      <nav class="nav">
+        <span class="nav-group">CASP</span>
+        <a class="nav-link is-active" href="./index.html">Intro</a>
+        <a class="nav-link" href="./journey.html">Journey</a>
+        <a class="nav-link" href="./founder.html">Founder</a>
+        <a class="nav-link" href="./contact.html">Partner</a>
+
+        <span class="nav-sep" aria-hidden="true"></span>
+
+        <span class="nav-group">SLDA</span>
+        <a class="nav-link nav-link-alt" href="./slda.html">분석 신청</a>
+      </nav>
 
       <div class="header-cta">
         <a class="btn btn-outline" href="./contact.html">제휴 문의</a>
@@ -143,7 +176,7 @@
             <span class="accent">음성이 담고 있는 변이량을 정량화합니다.</span>
           </h1>
           <p class="hero-desc">
-            CASP ENGINE은 발화의 의미가 아닌 비언어 음성 신호 : 말속도·멈춤·리듬·떨림·에너지 변이 :
+            CASP ENGINE은 발화의 의미가 아닌 비언어 음성 신호 — 말속도·멈춤·리듬·떨림·에너지 변이 —
             를 추출하고 정규화하여, 커뮤니케이션의 발화 신호 변화를 데이터로 구조화합니다.
           </p>
 
@@ -171,7 +204,7 @@
     <!-- CASP Definition -->
     <section id="casp" class="section">
       <div class="container">
-        <h2 class="section-title">CASP - Congnitive Addaptive Stress Paralinguistics</h2>
+        <h2 class="section-title">CASP — Cognitive–Adaptive Stress Paralinguistics</h2>
         <p class="section-desc">
           CASP는 단독 서비스가 아니라, 기존 제품·조직의 의사결정 과정에 붙는 엔진입니다.
           모바일·웨어러블·차량·콜센터·교육/코칭 등 현장 환경에서 발생하는 커뮤니케이션 신호를
@@ -250,7 +283,58 @@
         </div>
       </div>
     </section>
-      <!-- Partner CTA -->
+
+    <!-- SLDA — Applied Product Line -->
+    <section id="slda" class="section section-slda">
+      <div class="container">
+        <span class="eyebrow">Applied Product Line</span>
+        <h2 class="section-title">SLDA — 의미·논리 드리프트 분석</h2>
+        <p class="section-desc">
+          <strong>SLDA (Semantic Logic Drift Analysis)</strong> 는
+          CASP의 변화량 분석 관점을 문서와 논쟁 자료에 확장한 응용 제품군입니다.
+          여러 차수의 문서를 시간순·주체별·쟁점별로 교차 분석하여
+          논점 이동, 표현강도 변화, 주체귀속 전환, 전제충돌을 문장 단위로 측정하고 표시합니다.
+        </p>
+
+        <p class="section-desc">
+          CASP는 <strong>음성의 드리프트</strong>를, SLDA는 <strong>문서의 드리프트</strong>를 봅니다.
+          두 엔진은 같은 명제 위에 있습니다 — <strong>개인 기준점 대비 변화량</strong>.
+        </p>
+
+        <div class="grid-3">
+          <div class="tile">
+            <h3>논리 드리프트 분석</h3>
+            <p>주장이 시간에 따라 어디에서 이동했는지 타임라인으로 표시</p>
+          </div>
+          <div class="tile">
+            <h3>논리 정합성 분석</h3>
+            <p>양립하기 어려운 두 전제를 전제충돌 후보로 묶어 원문과 함께 제시</p>
+          </div>
+          <div class="tile">
+            <h3>주체귀속 이동</h3>
+            <p>능력·책임·행위·지배가 누구에게 귀속되는지의 변화 측정</p>
+          </div>
+        </div>
+
+        <div class="rule">
+          SLDA는 변화의 <strong>양·분포·진폭을 산출</strong>합니다.<br />
+          변화의 <strong>원인·진위·의도는 산출하지 않습니다.</strong>
+        </div>
+
+        <div class="cta-strip">
+          <div class="cta-copy">
+            <h3>SLDA Early Access · 3 / 20</h3>
+            <p>법률·계약 문서, 논쟁·토론 자료의 초기 분석 케이스를 받고 있습니다. (2026.07 기준)</p>
+          </div>
+          <div class="cta-actions">
+            <a class="btn btn-primary" href="./slda.html">SLDA 분석 신청</a>
+            <a class="btn btn-outline" href="./status.html">접수 조회</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Partner CTA -->
     <section class="section">
       <div class="container">
         <div class="cta-strip">
@@ -265,39 +349,39 @@
         </div>
       </div>
     </section>
-   </main>
+  </main>
 
   <!-- Footer -->
   <footer class="site-footer">
-  <div class="container footer-inner">
-    <div class="footer-left">
-      <div class="footer-brand">소울스펙트럼 Soul Spectrum Inc.</div>
-      <div class="footer-meta">
-        CASP ENGINE · Cognitive–Adaptive Stress Paralinguistic Engine<br />
-        SLDA · Semantic Logic Drift Analysis · 의미·논리 드리프트 분석<br />
-        soulspectrum.kr · nanyoung@soulspectrum.kr<br />
-        © <span id="y"></span> Soul Spectrum Inc. All rights reserved.
-      </div>
-    </div>
-
-    <div class="footer-right footer-cols">
-      <div class="footer-col">
-        <div class="footer-col-title">CASP</div>
-        <a class="footer-link" href="./index.html">Intro</a>
-        <a class="footer-link" href="./journey.html">Journey</a>
-        <a class="footer-link" href="./founder.html">Founder</a>
-        <a class="footer-link" href="./contact.html">Partner</a>
+    <div class="container footer-inner">
+      <div class="footer-left">
+        <div class="footer-brand">소울스펙트럼 Soul Spectrum Inc.</div>
+        <div class="footer-meta">
+          CASP ENGINE · Cognitive–Adaptive Stress Paralinguistic Engine<br />
+          SLDA · Semantic Logic Drift Analysis · 의미·논리 드리프트 분석<br />
+          soulspectrum.kr · nanyoung@soulspectrum.kr<br />
+          © <span id="y"></span> Soul Spectrum Inc. All rights reserved.
+        </div>
       </div>
 
-      <div class="footer-col">
-        <div class="footer-col-title">SLDA</div>
-        <a class="footer-link" href="./slda.html">분석 신청</a>
-        <a class="footer-link" href="./status.html">접수 조회</a>
-        <a class="footer-link" href="./privacy.html">개인정보 처리방침</a>
+      <div class="footer-right footer-cols">
+        <div class="footer-col">
+          <div class="footer-col-title">CASP</div>
+          <a class="footer-link" href="./index.html">Intro</a>
+          <a class="footer-link" href="./journey.html">Journey</a>
+          <a class="footer-link" href="./founder.html">Founder</a>
+          <a class="footer-link" href="./contact.html">Partner</a>
+        </div>
+
+        <div class="footer-col">
+          <div class="footer-col-title">SLDA</div>
+          <a class="footer-link" href="./slda.html">분석 신청</a>
+          <a class="footer-link" href="./status.html">접수 조회</a>
+          <a class="footer-link" href="./privacy.html">개인정보 처리방침</a>
+        </div>
       </div>
     </div>
-  </div>
-</footer>
+  </footer>
 
   <script>
     document.getElementById("y").textContent = new Date().getFullYear();
