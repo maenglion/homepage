@@ -574,7 +574,7 @@ css/* 위 1번 GNB 블록의 .nav-link 를 이걸로 교체 */
 .rule {
   position: relative;
   max-width: 680px;
-  margin: 0 auto;
+  margin: 40 auto;
   padding: 6px 0 6px 30px;
   font-size: 1.02rem;
   line-height: 1.95;
