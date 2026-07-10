@@ -872,3 +872,5 @@ css/* 위 1번 GNB 블록의 .nav-link 를 이걸로 교체 */
   border-color: rgba(255,255,255,0.28);
   color: #93A6BC;
 }
+/*방어용 */
+.nav-group, .nav-sep, .nav-link-alt { display: none; }
