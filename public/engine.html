@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Engine | CASP ENGINE · Soul Spectrum</title>
+  <meta name="description" content="CASP ENGINE의 분석 파이프라인 — Raw Signal에서 Calibration까지. 실시간 처리와 기준값 갱신을 분리하여 재현 가능성을 확보합니다." />
+  <link rel="canonical" href="https://soulspectrum.kr/engine.html" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Engine | CASP ENGINE" />
+  <meta property="og:description" content="Raw Signal → Feature → Transition → Score → Calibration. 재현 가능한 파라링귀스틱 분석 엔진." />
+  <meta property="og:locale" content="ko_KR" />
+
+  <link rel="stylesheet" href="assets/styles.css" />
+  <link rel="stylesheet" href="assets/theme.css" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="./index.html" aria-label="소울스펙트럼 홈">
+        <img class="brand-logo" src="./assets/soulspectrum_delta.png" width="28" height="44" alt="Soul Spectrum" />
+      </a>
+
+      <nav class="nav">
+        <div class="nav-item has-sub">
+          <button class="nav-link" aria-expanded="false" aria-haspopup="true">
+            Research
+            <svg class="chev" width="10" height="6" viewBox="0 0 10 6" aria-hidden="true">
+              <path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6"/>
+            </svg>
+          </button>
+          <div class="submenu">
+            <a href="./research-casp.html"><b>CASP</b><span>음성 발화의 비언어 신호</span></a>
+            <a href="./slda.html"><b>SLDA</b><span>문서·논쟁의 의미 드리프트</span></a>
+          </div>
+        </div>
+        <a class="nav-link is-active" href="./engine.html">Engine</a>
+        <a class="nav-link" href="./company.html">Company</a>
+        <a class="nav-link" href="./founder.html">Founder</a>
+      </nav>
+
+      <div class="header-cta">
+        <a class="pill pill-dark" href="./slda.html">Early Access</a>
+        <a class="pill pill-light" href="./contact.html">Partnership</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero -->
+    <section class="page-hero">
+      <div class="container page-hero-inner">
+        <span class="eyebrow">Realtime Paralinguistic Analysis Engine</span>
+        <h1 class="page-title">같은 음성은 같은 값을 낸다</h1>
+        <p class="page-desc">
+          CASP ENGINE은 발화를 텍스트로 옮기지 않습니다.
+          음성 신호에서 지표를 뽑고, 개인 기준점 대비 변이량으로 정렬합니다.
+          기준값이 갱신되더라도 과거 분석 결과는 그대로 재현됩니다.
+        </p>
+        <div class="meta-line">
+          <span class="meta-pill">Feature <strong>20+</strong></span>
+          <span class="meta-pill">Transition Indicator <strong>6</strong></span>
+          <span class="meta-pill">QA <strong>5</strong></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pipeline -->
+    <section class="section">
+      <div class="container">
+        <h2 class="section-title">분석 파이프라인</h2>
+        <p class="section-desc">
+          다섯 단계가 순서대로 작동합니다.
+          앞 단계의 산출을 뒤 단계가 받고, 각 단계의 값은 원자료에 남습니다.
+        </p>
+
+        <ol class="rows">
+          <li>
+            <span class="rows-k">Raw Signal</span>
+            <p>세션 음성을 침묵(pause) 기준으로 10~15초 세그먼트로 분절합니다. 텍스트 변환은 하지 않습니다.</p>
+          </li>
+          <li>
+            <span class="rows-k">Feature</span>
+            <p>말속도, 휴지 비율, 음조 표준편차, 에너지 변이 등 20여 개의 파라링귀스틱 지표를 추출합니다.</p>
+          </li>
+          <li>
+            <span class="rows-k">Transition</span>
+            <p>단일 시점이 아니라 구간과 구간 사이의 변화를 봅니다. pause 전후의 속도·음조·발화량 변화가 여기서 잡힙니다.</p>
+          </li>
+          <li>
+            <span class="rows-k">Score</span>
+            <p>지표와 전이값을 결합해 raw score를 산출합니다. 이 값은 어떤 보정도 거치지 않은 원천 값입니다.</p>
+          </li>
+          <li>
+            <span class="rows-k">Calibration</span>
+            <p>raw score를 개인 baseline과 집단 분포에 맞춰 해석 가능한 좌표계로 정렬합니다. 개인의 변화와 집단 내 위치를 함께 읽을 수 있습니다.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- Realtime / Batch -->
+    <section class="section section-brand">
+      <div class="container">
+        <span class="eyebrow">Realtime</span>
+        <h2 class="section-title">실시간 처리와 기준값 갱신을 분리합니다</h2>
+        <p class="section-desc">
+          기준값이 바뀔 때마다 실시간 분석이 흔들리면 엔진을 신뢰할 수 없습니다.
+          CASP는 두 흐름을 끊어놓았습니다.
+        </p>
+
+        <div class="grid-2">
+          <div class="tile">
+            <h3>실시간 — 세션 단위</h3>
+            <p>
+              들어온 음성은 즉시 지표와 raw score로 변환됩니다.
+              이 경로는 참조 데이터를 조회하지 않으므로, 기준값 갱신의 영향을 받지 않습니다.
+            </p>
+          </div>
+          <div class="tile">
+            <h3>배치 — 기준값 동기화</h3>
+            <p>
+              참조 데이터는 실시간 분석에 직접 개입하지 않고, 배치로 동기화됩니다.
+              보정 기준이 바뀌어도 진행 중인 세션의 처리에는 영향이 없습니다.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Reproducibility -->
+    <section class="section section-lead">
+      <div class="container">
+        <div class="lead-head">
+          <h2 class="section-title">재현 가능성</h2>
+          <p class="section-desc">
+            분석 결과를 근거로 쓰려면, 몇 달 뒤에도 같은 값이 나와야 합니다.
+            기준값은 계속 정교해지는데 과거 결과가 따라 바뀌면 그 결과는 근거가 되지 못합니다.
+            CASP는 원천 값과 보정 값을 함께 보존합니다.
+          </p>
+        </div>
+
+        <div class="grid-3">
+          <div class="tile">
+            <h3>raw score 보존</h3>
+            <p>보정을 거치지 않은 원천 값을 그대로 저장합니다. 기준값이 갱신되어도 이 값은 변하지 않습니다.</p>
+          </div>
+          <div class="tile">
+            <h3>calibrated score 보존</h3>
+            <p>보정된 값을 별도로 저장합니다. 어떤 기준으로 보정되었는지가 함께 기록됩니다.</p>
+          </div>
+          <div class="tile">
+            <h3>Snapshot 보정</h3>
+            <p>특정 시점의 참조 데이터 상태를 스냅샷으로 관리합니다. 과거 분석을 당시 기준으로 다시 확인할 수 있습니다.</p>
+          </div>
+        </div>
+
+        <div class="rule">
+          기준값은 시간이 지나며 정교해집니다.<br />
+          <strong>정교해진 기준이 과거의 관측을 덮어쓰지 않도록</strong> 두 값을 나누어 둡니다.
+        </div>
+      </div>
+    </section>
+
+    <!-- Reference structure -->
+    <section class="section section-muted">
+      <div class="container">
+        <h2 class="section-title">두 가지 기준</h2>
+        <p class="section-desc">
+          지표를 <strong>산출하는</strong> 기준과 그 결과를 <strong>해석하는</strong> 기준은 역할이 다릅니다.
+          섞으면 개인의 고유 특성이 이상 신호로 오탐됩니다.
+        </p>
+
+        <div class="grid-2">
+          <div class="tile">
+            <h3>Anchor Point</h3>
+            <p>기준축의 끝점을 확인합니다. 변화량을 계산할 때 무엇을 0으로 두고 무엇을 100으로 둘지의 문제입니다.</p>
+          </div>
+          <div class="tile">
+            <h3>Normal Range</h3>
+            <p>권역·연령·성별 단위의 집단 분포입니다. 개인의 지표를 집단 내 상대 위치로 읽을 수 있게 합니다.</p>
+          </div>
+        </div>
+
+        <p class="section-desc" style="margin-top:40px; margin-bottom:0">
+          두 기준은 별도로 관리됩니다.
+          한국어 화자의 Normal Range 데이터셋은 현재 구축 중이며,
+          권역·연령·성별 분포를 반영한 해석 기준을 마련하는 것을 목표로 합니다.
+        </p>
+      </div>
+    </section>
+
+    <!-- Not -->
+    <section class="section">
+      <div class="container">
+        <h2 class="section-title">산출하지 않는 것</h2>
+        <p class="section-desc">
+          CASP는 발화 신호의 변이량을 측정합니다.
+          변화가 어디에서, 어느 정도, 어떤 방식으로 일어났는지를 구조화합니다.
+        </p>
+
+        <div class="rule">
+          <strong>산출합니다</strong> — 변화의 존재 · 양 · 분포 · 진폭<br />
+          <strong>산출하지 않습니다</strong> — 원인 · 진단 · 의도<br />
+          <span style="opacity:.8">읽는 사람이 "왜 여기서 바뀌었지?"를 스스로 묻게 하는 것이 산출의 목적이며, 그 질문을 대신 답하지 않습니다.</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section">
+      <div class="container">
+        <div class="cta-strip">
+          <div class="cta-copy">
+            <h3>Research · PoC · Pilot</h3>
+            <p>기관·기업 환경에 맞춘 프로토콜 적용과 검증 협업이 가능합니다.</p>
+          </div>
+          <div class="cta-actions">
+            <a class="btn btn-primary" href="./contact.html">협업 문의</a>
+            <a class="btn btn-outline" href="./research-casp.html">CASP 연구 보기</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-left">
+        <div class="footer-brand">소울스펙트럼 Soul Spectrum Inc.</div>
+        <div class="footer-meta">
+          CASP ENGINE · Cognitive–Adaptive Stress Paralinguistic Engine<br />
+          SLDA · Semantic Logic Drift Analysis · 의미·논리 드리프트 분석<br />
+          soulspectrum.kr · nanyoung@soulspectrum.kr<br />
+          © <span id="y"></span> Soul Spectrum Inc. All rights reserved.
+        </div>
+      </div>
+
+      <div class="footer-right footer-cols">
+        <div class="footer-col">
+          <div class="footer-col-title">CASP</div>
+          <a class="footer-link" href="./index.html">Intro</a>
+          <a class="footer-link" href="./engine.html">Engine</a>
+          <a class="footer-link" href="./company.html">Company</a>
+          <a class="footer-link" href="./founder.html">Founder</a>
+          <a class="footer-link" href="./contact.html">Partnership</a>
+        </div>
+
+        <div class="footer-col">
+          <div class="footer-col-title">SLDA</div>
+          <a class="footer-link" href="./slda.html">분석 신청</a>
+          <a class="footer-link" href="./status.html">접수 조회</a>
+          <a class="footer-link" href="./privacy.html">개인정보 처리방침</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("y").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
