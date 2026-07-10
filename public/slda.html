@@ -33,59 +33,6 @@
     "publisher": { "@id": "https://soulspectrum.kr/#org" }
   }
   </script>
-
-  <style>
-    /* nav · footer 공통 */
-    .nav-group { font-size: 10px; letter-spacing: .14em; font-weight: 700; opacity: .38; margin-right: 10px; align-self: center; flex-shrink: 0; }
-    .nav-sep { width: 1px; height: 16px; background: currentColor; opacity: .22; margin: 0 18px; align-self: center; flex-shrink: 0; }
-    .nav-link-alt { opacity: .78; }
-    .nav-link-alt:hover, .nav-link-alt.is-active { opacity: 1; }
-    @media (max-width: 860px) { .nav-group { display: none; } }
-    @media (max-width: 720px) { .nav-sep { display: none; } }
-    .footer-cols { display: flex; gap: 56px; }
-    .footer-col-title { font-size: 11px; letter-spacing: .12em; opacity: .45; margin-bottom: 10px; }
-    .footer-col a { display: block; margin-bottom: 6px; }
-    @media (max-width: 720px) { .footer-cols { gap: 32px; } }
-
-    /* 관찰 규율 */
-    .rule {
-      max-width: 720px; margin: 0 auto 48px;
-      padding: 20px 24px;
-      border-left: 2px solid rgba(128,128,128,.4);
-      font-size: 15px; line-height: 1.9; opacity: .85;
-    }
-
-    /* 폼 */
-    .form-grid { display: grid; gap: 26px; max-width: 720px; margin: 0 auto; }
-    .field label { display: block; font-weight: 600; margin-bottom: 8px; font-size: 15px; }
-    .field .hint { font-size: 13px; opacity: .7; margin: 6px 0 0; line-height: 1.6; }
-    .field input[type=text], .field input[type=number], .field select, .field textarea {
-      width: 100%; padding: 12px 14px; border-radius: 8px;
-      border: 1px solid rgba(128,128,128,.35); background: transparent;
-      color: inherit; font: inherit; box-sizing: border-box;
-    }
-    .field textarea { min-height: 170px; resize: vertical; line-height: 1.7; }
-    .field-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-    .filelist { margin-top: 10px; font-size: 13px; }
-    .filelist div { padding: 6px 0; border-bottom: 1px solid rgba(128,128,128,.2); }
-    .filelist .bad { color: #d9534f; }
-    .counter { text-align: right; font-size: 12px; opacity: .6; margin-top: 4px; }
-    .policy { font-size: 14px; line-height: 1.9; }
-    .policy li { margin-bottom: 4px; }
-    #result { display: none; }
-    .ref-box {
-      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-      font-size: 20px; letter-spacing: .04em;
-      padding: 18px 20px; border-radius: 10px;
-      border: 1px dashed rgba(128,128,128,.5);
-      display: flex; align-items: center; justify-content: space-between; gap: 16px;
-      margin: 18px 0;
-    }
-    .msg { padding: 14px 16px; border-radius: 8px; font-size: 14px; margin-top: 16px; }
-    .msg.err { border: 1px solid #d9534f; color: #d9534f; }
-    .progress { font-size: 13px; opacity: .75; margin-top: 12px; }
-    @media (max-width: 640px) { .field-row { grid-template-columns: 1fr; } }
-  </style>
 </head>
 
 <body>

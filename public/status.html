@@ -16,30 +16,6 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;500;600;700&display=swap" rel="stylesheet">
   
-
-  <style>
-    .lookup { max-width: 620px; margin: 0 auto; }
-    .lookup-row { display: flex; gap: 12px; }
-    .lookup input {
-      flex: 1; padding: 14px 16px; border-radius: 8px;
-      border: 1px solid rgba(128,128,128,.35); background: transparent;
-      color: inherit; font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-      font-size: 16px; letter-spacing: .03em; box-sizing: border-box;
-    }
-    .log { margin-top: 32px; }
-    .log-item { display: grid; grid-template-columns: 150px 1fr; gap: 20px; padding: 18px 0; border-bottom: 1px solid rgba(128,128,128,.2); }
-    .log-time { font-size: 13px; opacity: .65; font-variant-numeric: tabular-nums; }
-    .log-status { font-weight: 600; font-size: 16px; }
-    .log-note { font-size: 13px; opacity: .7; margin-top: 4px; }
-    .log-item.purged .log-status { opacity: .6; }
-    .msg { padding: 14px 16px; border-radius: 8px; font-size: 14px; margin-top: 20px; }
-    .msg.err { border: 1px solid #d9534f; color: #d9534f; }
-    .readonly-note { font-size: 13px; opacity: .6; margin-top: 28px; line-height: 1.8; }
-    @media (max-width: 640px) {
-      .lookup-row { flex-direction: column; }
-      .log-item { grid-template-columns: 1fr; gap: 6px; }
-    }
-  </style>
 </head>
 
 <body>
