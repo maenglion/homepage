@@ -1,0 +1,430 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="view-transition" content="same-origin" />
+  <meta name="theme-color" content="#036E8D" />
+  <title>Early Access | SLDA 분석 신청 · Soul Spectrum</title>
+  <meta name="description" content="SLDA(Semantic Logic Drift Analysis) 분석 신청. 접수된 자료의 처리 현황과 파기 기록을 공개합니다. 논점 이동과 논리적 모순을 문장 단위로 측정하는 의미·논리 드리프트 분석." />
+  <link rel="canonical" href="https://soulspectrum.kr/early-access.html" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Early Access | SLDA 분석 신청" />
+  <meta property="og:description" content="SLDA 분석 신청과 처리 현황판. 파기 기록까지 공개합니다." />
+  <meta property="og:locale" content="ko_KR" />
+
+  <link rel="stylesheet" href="assets/styles.css" />
+  <link rel="stylesheet" href="assets/theme.css" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="./index.html" aria-label="소울스펙트럼 홈">
+        <img class="brand-logo" src="./assets/soulspectrum_delta.png" width="28" height="44" alt="Soul Spectrum" />
+      </a>
+
+      <button class="nav-toggle" aria-label="메뉴 열기" aria-expanded="false" onclick="this.setAttribute('aria-expanded', document.querySelector('.nav').classList.toggle('is-open'))">
+        <svg width="22" height="16" viewBox="0 0 22 16" aria-hidden="true">
+          <rect y="0" width="22" height="2" rx="1"/>
+          <rect y="7" width="22" height="2" rx="1"/>
+          <rect y="14" width="22" height="2" rx="1"/>
+        </svg>
+      </button>
+
+      <nav class="nav">
+        <div class="nav-item has-sub">
+          <button class="nav-link" aria-expanded="false" aria-haspopup="true">
+            Research
+            <svg class="chev" width="10" height="6" viewBox="0 0 10 6" aria-hidden="true">
+              <path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6"/>
+            </svg>
+          </button>
+          <div class="submenu">
+            <a href="./research-casp.html"><b>CASP</b><span>음성 발화의 비언어 신호</span></a>
+            <a href="./slda.html"><b>SLDA</b><span>문서·논쟁의 의미 드리프트</span></a>
+          </div>
+        </div>
+
+        <a class="nav-link" href="./engine.html">Engine</a>
+        <a class="nav-link" href="./company.html">Company</a>
+        <a class="nav-link" href="./founder.html">Founder</a>
+
+        <div class="header-cta-mobile">
+          <a class="pill pill-dark" href="./early-access.html">Early Access</a>
+          <a class="pill pill-light" href="./contact.html">Partnership</a>
+        </div>
+      </nav>
+
+      <div class="header-cta">
+        <a class="pill pill-dark" href="./early-access.html">Early Access</a>
+        <a class="pill pill-light" href="./contact.html">Partnership</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero -->
+    <section class="page-hero">
+      <div class="container page-hero-inner">
+        <span class="eyebrow">Early Access</span>
+        <h1 class="page-title">SLDA 분석 신청</h1>
+        <p class="page-desc">
+          법률·계약 문서와 논쟁·토론 자료의 초기 분석 케이스를 받고 있습니다.
+          접수된 자료의 처리 현황과 파기 기록을 아래에 공개합니다.
+          제출 자료는 학습에 쓰이지 않고, 분석 종료 후 파기됩니다.
+        </p>
+        <div class="meta-line">
+          <span class="meta-pill">모집 <strong id="slots">3 / 20</strong></span>
+          <span class="meta-pill">2026.07 기준</span>
+          <a class="meta-pill" href="./status.html" style="text-decoration:none">접수번호로 조회 →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Board -->
+    <section class="section">
+      <div class="container">
+        <div class="lead-head" style="display:flex; justify-content:space-between; align-items:baseline; gap:20px; flex-wrap:wrap; margin-bottom:8px">
+          <h2 class="section-title" style="margin-bottom:0">처리 현황</h2>
+          <p class="section-desc" style="margin:0; font-size:0.9rem">
+            접수자는 닉네임으로 표시됩니다. 파기 기록은 예약 작업이 자동으로 남깁니다.
+          </p>
+        </div>
+
+        <div class="board" id="board">
+          <div class="board-empty" id="board-empty">불러오는 중…</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Form -->
+    <section class="section section-muted">
+      <div class="container">
+        <h2 class="section-title">신청하기</h2>
+        <p class="section-desc">
+          접수하면 닉네임과 접수번호가 발급됩니다.
+          닉네임은 위 현황판에 표시되고, 접수번호로는 진행 상태를 조회할 수 있습니다.
+        </p>
+
+        <div id="form-wrap" class="form-grid">
+
+          <div class="field">
+            <label for="kind">자료 유형</label>
+            <select id="kind">
+              <option value="litigation">법률 · 계약 문서 (준비서면, 계약서, 의견서)</option>
+              <option value="controversy">논쟁 · 토론 자료 (SNS 스레드, 공개 토론, 성명문)</option>
+              <option value="general">기획 · 제안 문서 (기획안, 제안서, 개정 이력)</option>
+            </select>
+            <p class="hint" id="kind-hint">최소 3차수 이상, 동일 쟁점에 대해 주장이 변화한 자료가 적합합니다.</p>
+          </div>
+
+          <div class="field">
+            <label for="title">제목</label>
+            <input type="text" id="title" maxlength="60" placeholder="예) 계약 해지 통보 3차수 비교" />
+            <label style="display:flex; align-items:center; gap:8px; font-weight:400; margin-top:10px; cursor:pointer">
+              <input type="checkbox" id="title_public" style="width:auto; margin:0" />
+              <span class="hint" style="margin:0">이 제목을 현황판에 공개합니다. (체크하지 않으면 <strong>제목 비공개</strong>로 표시)</span>
+            </label>
+          </div>
+
+          <div class="field">
+            <label for="story">사연 · 분석 요청 내용</label>
+            <textarea id="story" maxlength="5000" placeholder="어떤 자료인지, 무엇이 궁금한지 적어주세요.&#10;&#10;예) 2024년 10월부터 2026년 4월까지 상대방이 제출한 준비서면 6건입니다. 같은 사실관계를 두고 주장이 계속 바뀌는 것 같은데, 어느 지점에서 바뀌었는지 확인하고 싶습니다."></textarea>
+            <div class="counter"><span id="cnt">0</span> / 5000</div>
+            <p class="hint">최소 20자. 화자 또는 작성자가 구분되는 자료일수록 분석 정확도가 높습니다.</p>
+          </div>
+
+          <div class="field-row">
+            <div class="field">
+              <label for="doc_count">문서 개수 (차수)</label>
+              <input type="number" id="doc_count" min="1" max="200" value="3" />
+            </div>
+            <div class="field">
+              <label for="page_est">대략 분량 (페이지)</label>
+              <input type="number" id="page_est" min="1" max="100000" placeholder="선택" />
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="files">파일 첨부</label>
+            <input type="file" id="files" multiple />
+            <p class="hint">PDF · HWP · HWPX · DOCX · DOC · TXT · MD · ZIP · 파일당 100MB 이하</p>
+            <div class="filelist" id="filelist"></div>
+          </div>
+
+          <div class="field">
+            <label for="contact">연락처 <span style="font-weight:400;opacity:.6">(선택)</span></label>
+            <input type="text" id="contact" placeholder="이메일 또는 전화번호" />
+            <p class="hint">
+              <strong>비워두면 익명으로 접수됩니다.</strong>
+              접수 후 발급되는 접수번호로 진행 상태와 파기 기록을 조회할 수 있습니다.
+              접수번호를 잃어버리면 복구할 방법이 없습니다.
+            </p>
+          </div>
+
+          <div class="tile">
+            <h3 style="margin-top:0">제출 자료 처리</h3>
+            <ul class="policy">
+              <li>제출 자료는 <strong>국내(서울) 데이터베이스</strong>에 저장되며 국외로 이전되지 않습니다.</li>
+              <li><strong>학습 데이터로 사용하지 않습니다.</strong> 제품 개선에는 익명화된 지표만 반영합니다.</li>
+              <li><strong>분석 불가</strong>로 판정된 자료는 즉시 파기합니다.</li>
+              <li><strong>분석 완료</strong> 후 30일이 지나면 파기합니다.</li>
+              <li>파기는 수동 처리가 아니라 <strong>예약 작업으로 실행</strong>되며, 파기 시각이 접수번호별로 기록됩니다.</li>
+              <li>기록은 <strong>누구도 수정하거나 삭제할 수 없습니다.</strong> 신청자와 운영자 모두 포함됩니다.</li>
+              <li>필요 시 NDA를 선행합니다. 연락처를 남겨주세요.</li>
+            </ul>
+            <p class="hint" style="margin-top:14px">
+              자세한 내용은 <a href="./privacy.html">개인정보 처리방침</a>을 확인해주세요.
+            </p>
+          </div>
+
+          <div>
+            <button class="btn btn-primary" id="submit" style="width:100%;padding:16px;font-size:16px">신청하기</button>
+            <div class="progress" id="progress"></div>
+            <div class="msg err" id="error" style="display:none"></div>
+          </div>
+
+        </div>
+
+        <div id="result" class="form-grid">
+          <div class="tile" style="text-align:center">
+            <h2 class="section-title" style="margin-top:0">접수되었습니다</h2>
+            <p class="section-desc" style="margin-bottom:8px">현황판에 표시되는 닉네임</p>
+            <div class="ref-box" style="justify-content:center; font-size:1.3rem" id="nick"></div>
+            <p class="section-desc" style="margin:24px 0 8px">진행 조회용 접수번호 · 반드시 보관하세요</p>
+            <div class="ref-box">
+              <span id="ref"></span>
+              <button class="btn btn-outline" id="copy" style="flex-shrink:0">복사</button>
+            </div>
+            <p class="section-desc" id="upload-summary"></p>
+            <div class="cta-actions" style="justify-content:center">
+              <a class="btn btn-primary" href="./status.html">접수 조회</a>
+              <a class="btn btn-outline" href="./index.html">홈으로</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-left">
+        <div class="footer-brand">소울스펙트럼 Soul Spectrum Inc.</div>
+        <div class="footer-meta">
+          CASP ENGINE · Cognitive–Adaptive Stress Paralinguistic Engine<br />
+          SLDA · Semantic Logic Drift Analysis · 의미·논리 드리프트 분석<br />
+          soulspectrum.kr · nanyoung@soulspectrum.kr<br />
+          © <span id="y"></span> Soul Spectrum Inc. All rights reserved.
+        </div>
+      </div>
+
+      <div class="footer-right footer-cols">
+        <div class="footer-col">
+          <div class="footer-col-title">CASP</div>
+          <a class="footer-link" href="./index.html">Intro</a>
+          <a class="footer-link" href="./engine.html">Engine</a>
+          <a class="footer-link" href="./company.html">Company</a>
+          <a class="footer-link" href="./founder.html">Founder</a>
+          <a class="footer-link" href="./contact.html">Partnership</a>
+        </div>
+
+        <div class="footer-col">
+          <div class="footer-col-title">SLDA</div>
+          <a class="footer-link" href="./slda.html">소개</a>
+          <a class="footer-link" href="./early-access.html">분석 신청</a>
+          <a class="footer-link" href="./status.html">접수 조회</a>
+          <a class="footer-link" href="./privacy.html">개인정보 처리방침</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script>
+    document.getElementById("y").textContent = new Date().getFullYear();
+
+    const SUPABASE_URL = "https://nafpbwqdjxcftwfpadfr.supabase.co";
+    const SUPABASE_KEY = "sb_publishable_pcH7-XaKo2anPRWRjX5psg_Jd2qrQoJ";
+    const db = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+    const $ = (id) => document.getElementById(id);
+
+    const KIND_LABEL = { litigation: "법률", controversy: "논쟁", general: "기획" };
+    const STATUS_CLASS = {
+      "접수": "s-new", "분석 가능": "s-ok", "분석 불가": "s-no",
+      "분석 진행": "s-run", "분석 완료": "s-done", "파기 완료": "s-purged"
+    };
+
+    function fmtDate(iso) {
+      const d = new Date(iso);
+      const p = (n) => String(n).padStart(2, "0");
+      return `${p(d.getMonth() + 1)}.${p(d.getDate())}`;
+    }
+
+    // ---------- 게시판 ----------
+    async function loadBoard() {
+      try {
+        const { data, error } = await db.rpc("list_board");
+        if (error) throw error;
+
+        const board = $("board");
+        if (!data || data.length === 0) {
+          board.innerHTML = '<div class="board-empty">아직 접수된 케이스가 없습니다. 첫 신청을 받고 있습니다.</div>';
+          return;
+        }
+
+        board.innerHTML =
+          '<div class="board-head">' +
+          '<span>닉네임</span><span>유형</span><span>제목</span><span>상태</span><span>갱신</span>' +
+          '</div>' +
+          data.map((r) => {
+            const title = r.title ? escapeHtml(r.title) : '<em>제목 비공개</em>';
+            const cls = STATUS_CLASS[r.status] || "";
+            return (
+              '<div class="board-row">' +
+              `<span class="b-nick">${escapeHtml(r.nickname)}</span>` +
+              `<span class="b-kind">${KIND_LABEL[r.kind] || r.kind}</span>` +
+              `<span class="b-title">${title}</span>` +
+              `<span class="b-status ${cls}">${r.status}</span>` +
+              `<span class="b-date">${fmtDate(r.updated_at)}</span>` +
+              '</div>'
+            );
+          }).join("");
+      } catch (e) {
+        $("board").innerHTML = '<div class="board-empty">현황을 불러오지 못했습니다.</div>';
+        console.error(e);
+      }
+    }
+
+    function escapeHtml(s) {
+      return String(s).replace(/[&<>"']/g, (c) =>
+        ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+    }
+
+    loadBoard();
+
+    // ---------- 폼 ----------
+    const OK_EXT = [".pdf", ".hwp", ".hwpx", ".docx", ".doc", ".txt", ".md", ".zip"];
+    const MAX_BYTES = 100 * 1024 * 1024;
+
+    const HINTS = {
+      litigation: "최소 3차수 이상, 동일 쟁점에 대해 주장이 변화한 자료가 적합합니다.",
+      controversy: "A4 10장 이상, 화자가 구분되고 복수 입장이 오간 자료가 적합합니다. 양쪽을 함께 분석하며, 한쪽만 분석한 결과물은 제공하지 않습니다.",
+      general: "초안 → 수정안 → 회신서처럼 개정 이력이 남아 있는 자료가 적합합니다."
+    };
+
+    $("kind").addEventListener("change", (e) => { $("kind-hint").textContent = HINTS[e.target.value]; });
+    $("story").addEventListener("input", (e) => { $("cnt").textContent = e.target.value.length; });
+
+    function extOf(name) { const i = name.lastIndexOf("."); return i < 0 ? "" : name.slice(i).toLowerCase(); }
+    function validFiles() {
+      return [...$("files").files].filter((f) => OK_EXT.includes(extOf(f.name)) && f.size <= MAX_BYTES);
+    }
+
+    $("files").addEventListener("change", () => {
+      const list = $("filelist");
+      list.innerHTML = "";
+      for (const f of $("files").files) {
+        const mb = (f.size / 1048576).toFixed(1);
+        const bad = !OK_EXT.includes(extOf(f.name)) || f.size > MAX_BYTES;
+        const row = document.createElement("div");
+        if (bad) { row.className = "bad"; row.textContent = `${f.name} — 지원하지 않거나 용량 초과`; }
+        else { row.textContent = `${f.name} · ${mb}MB`; }
+        list.appendChild(row);
+      }
+    });
+
+    function safeName(name, i) {
+      const ext = extOf(name);
+      const base = name.slice(0, name.length - ext.length).replace(/[^\w.\-가-힣]/g, "_").slice(0, 60);
+      return `${String(i + 1).padStart(2, "0")}_${base}${ext}`;
+    }
+
+    function fail(msg) {
+      const box = $("error");
+      box.textContent = msg; box.style.display = "block";
+      $("submit").disabled = false; $("submit").textContent = "신청하기"; $("progress").textContent = "";
+    }
+
+    $("submit").addEventListener("click", async () => {
+      $("error").style.display = "none";
+
+      const kind = $("kind").value;
+      const title = $("title").value.trim();
+      const title_public = $("title_public").checked;
+      const story = $("story").value.trim();
+      const doc_count = parseInt($("doc_count").value, 10);
+      const page_est = $("page_est").value ? parseInt($("page_est").value, 10) : null;
+      const contact = $("contact").value.trim() || null;
+
+      if (story.length < 20) return fail("사연을 20자 이상 적어주세요.");
+      if (!doc_count || doc_count < 1) return fail("문서 개수를 입력해주세요.");
+      if (title_public && !title) return fail("제목을 공개하려면 제목을 입력해주세요.");
+
+      const files = validFiles();
+      if ($("files").files.length > 0 && files.length === 0) {
+        return fail("첨부한 파일이 모두 허용되지 않는 형식이거나 용량을 초과했습니다.");
+      }
+
+      $("submit").disabled = true;
+      $("submit").textContent = "접수 중...";
+      $("progress").textContent = "접수번호를 발급하고 있습니다.";
+
+      const { data, error } = await db.rpc("create_submission", {
+        p_kind: kind,
+        p_story: story,
+        p_doc_count: doc_count,
+        p_page_est: page_est,
+        p_contact: contact,
+        p_title: title || null,
+        p_title_public: title_public,
+      });
+
+      if (error) return fail("접수에 실패했습니다. " + error.message);
+
+      const row = Array.isArray(data) ? data[0] : data;
+      const ref = row.ref;
+      const nickname = row.nickname;
+
+      let uploaded = 0;
+      for (let i = 0; i < files.length; i++) {
+        $("progress").textContent = `파일 업로드 중 (${i + 1} / ${files.length}) — ${files[i].name}`;
+        const { error: upErr } = await db.storage
+          .from("slda-uploads")
+          .upload(`${ref}/${safeName(files[i].name, i)}`, files[i], { upsert: false });
+        if (!upErr) uploaded++;
+        else console.error(files[i].name, upErr.message);
+      }
+
+      $("nick").textContent = nickname;
+      $("ref").textContent = ref;
+      $("upload-summary").textContent =
+        files.length === 0
+          ? "파일 없이 접수되었습니다. 분석 가능 여부를 확인한 뒤 안내드립니다."
+          : uploaded === files.length
+            ? `파일 ${uploaded}개가 함께 접수되었습니다.`
+            : `파일 ${uploaded} / ${files.length}개만 업로드되었습니다. 접수번호로 문의해주세요.`;
+
+      $("form-wrap").style.display = "none";
+      $("result").style.display = "grid";
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+
+    $("copy").addEventListener("click", async () => {
+      await navigator.clipboard.writeText($("ref").textContent);
+      $("copy").textContent = "복사됨";
+      setTimeout(() => ($("copy").textContent = "복사"), 1500);
+    });
+  </script>
+</body>
+</html>
