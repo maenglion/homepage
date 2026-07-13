@@ -92,15 +92,20 @@
     <!-- Board -->
     <section class="section">
       <div class="container">
-        <div class="lead-head" style="display:flex; justify-content:space-between; align-items:baseline; gap:20px; flex-wrap:wrap; margin-bottom:8px">
-          <h2 class="section-title" style="margin-bottom:0">처리 현황</h2>
-          <p class="section-desc" style="margin:0; font-size:0.9rem">
-            접수자는 닉네임으로 표시됩니다. 파기 기록은 예약 작업이 자동으로 남깁니다.
-          </p>
+        <div class="board-topbar">
+          <h2 class="section-title" style="margin-bottom:0">신청 현황</h2>
+          <span class="board-views">조회 <strong id="views">—</strong></span>
         </div>
 
+        <!-- 공지 -->
+        <div class="notice" id="notice">
+          <span class="notice-tag">공지</span>
+          <p id="notice-text">불러오는 중…</p>
+        </div>
+
+        <!-- 리스트 -->
         <div class="board" id="board">
-          <div class="board-empty" id="board-empty">불러오는 중…</div>
+          <div class="board-empty">불러오는 중…</div>
         </div>
       </div>
     </section>
@@ -271,7 +276,27 @@
       return `${p(d.getMonth() + 1)}.${p(d.getDate())}`;
     }
 
-    // ---------- 게시판 ----------
+    function escapeHtml(s) {
+      return String(s).replace(/[&<>"']/g, (c) =>
+        ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+    }
+
+    // ---------- 공지 + 조회수 ----------
+    async function loadMeta() {
+      try {
+        const { data, error } = await db.rpc("bump_board_views");
+        if (error) throw error;
+        const m = Array.isArray(data) ? data[0] : data;
+        $("views").textContent = Number(m.views).toLocaleString();
+        $("notice-text").textContent = m.notice || "";
+      } catch (e) {
+        $("views").textContent = "—";
+        $("notice-text").textContent = "첫 번째 분석 케이스를 받고 있습니다.";
+        console.error(e);
+      }
+    }
+
+    // ---------- 리스트 ----------
     async function loadBoard() {
       try {
         const { data, error } = await db.rpc("list_board");
@@ -279,7 +304,7 @@
 
         const board = $("board");
         if (!data || data.length === 0) {
-          board.innerHTML = '<div class="board-empty">아직 접수된 케이스가 없습니다. 첫 신청을 받고 있습니다.</div>';
+          board.innerHTML = '<div class="board-empty">아직 접수된 케이스가 없습니다.</div>';
           return;
         }
 
@@ -306,11 +331,7 @@
       }
     }
 
-    function escapeHtml(s) {
-      return String(s).replace(/[&<>"']/g, (c) =>
-        ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
-    }
-
+    loadMeta();
     loadBoard();
 
     // ---------- 폼 ----------
