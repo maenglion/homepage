@@ -82,7 +82,7 @@
           제출 자료는 학습에 쓰이지 않고, 분석 종료 후 파기됩니다.
         </p>
         <div class="meta-line">
-          <span class="meta-pill">모집 <strong id="slots">3 / 20</strong></span>
+          <span class="meta-pill">모집 <strong id="slots">4 / 20</strong></span>
           <span class="meta-pill">2026.07 기준</span>
           <a class="meta-pill" href="./status.html" style="text-decoration:none">접수번호로 조회 →</a>
         </div>
@@ -97,13 +97,11 @@
           <span class="board-views">조회 <strong id="views">—</strong></span>
         </div>
 
-        <!-- 공지 -->
         <div class="notice" id="notice">
           <span class="notice-tag">공지</span>
           <p id="notice-text">불러오는 중…</p>
         </div>
 
-        <!-- 리스트 -->
         <div class="board" id="board">
           <div class="board-empty">불러오는 중…</div>
         </div>
@@ -175,20 +173,42 @@
             </p>
           </div>
 
-          <div class="tile">
-            <h3 style="margin-top:0">제출 자료 처리</h3>
-            <ul class="policy">
-              <li>제출 자료는 <strong>국내(서울) 데이터베이스</strong>에 저장되며 국외로 이전되지 않습니다.</li>
-              <li><strong>학습 데이터로 사용하지 않습니다.</strong> 제품 개선에는 익명화된 지표만 반영합니다.</li>
-              <li><strong>분석 불가</strong>로 판정된 자료는 즉시 파기합니다.</li>
-              <li><strong>분석 완료</strong> 후 30일이 지나면 파기합니다.</li>
-              <li>파기는 수동 처리가 아니라 <strong>예약 작업으로 실행</strong>되며, 파기 시각이 접수번호별로 기록됩니다.</li>
-              <li>기록은 <strong>누구도 수정하거나 삭제할 수 없습니다.</strong> 신청자와 운영자 모두 포함됩니다.</li>
-              <li>필요 시 NDA를 선행합니다. 연락처를 남겨주세요.</li>
-            </ul>
-            <p class="hint" style="margin-top:14px">
-              자세한 내용은 <a href="./privacy.html">개인정보 처리방침</a>을 확인해주세요.
-            </p>
+          <div class="field">
+            <label>제출 자료 처리 안내 <span style="font-weight:400;opacity:.6">(끝까지 읽어주세요)</span></label>
+            <div class="terms-box" id="terms">
+              <h4>1. 저장 위치</h4>
+              <p>제출하신 자료는 대한민국 서울에 위치한 데이터베이스에 저장됩니다. 자료가 해외로 옮겨지거나 국외 서버에 보관되는 일은 없습니다.</p>
+
+              <h4>2. 학습에 사용하지 않습니다</h4>
+              <p>제출 자료의 내용을 인공지능 학습에 쓰지 않습니다. 서비스 품질을 개선할 때에도 원문이 아니라, 문장 수·표현 분포 같은 익명 통계 지표만 반영합니다. 이 지표에서 원문이나 신청자를 되살릴 수 없습니다.</p>
+
+              <h4>3. 분석할 수 없는 경우 즉시 파기</h4>
+              <p>자료가 분석 조건에 맞지 않아 분석이 불가능하다고 판정되면, 그 즉시 자료를 파기합니다.</p>
+
+              <h4>4. 분석이 끝나면 30일 후 파기</h4>
+              <p>분석이 완료된 자료는 종료일로부터 30일이 지나면 파기합니다. 30일은 결과에 대한 문의·재확인을 위한 기간입니다.</p>
+
+              <h4>5. 파기는 사람이 아니라 예약 작업이 합니다</h4>
+              <p>파기는 담당자가 손으로 지우는 것이 아니라, 매일 정해진 시각에 자동 실행되는 작업이 처리합니다. 파일이 실제로 삭제된 뒤에야 파기 기록이 남으므로, 사실과 다른 파기 기록이 만들어질 수 없습니다.</p>
+
+              <h4>6. 기록은 누구도 고치거나 지울 수 없습니다</h4>
+              <p>접수·상태·파기 기록은 추가만 가능하고 수정·삭제가 불가능한 구조로 저장됩니다. 신청자는 물론 운영자도 이미 남은 기록을 바꿀 수 없습니다.</p>
+
+              <h4>7. 비밀유지계약(NDA)</h4>
+              <p>비밀유지계약(NDA, Non-Disclosure Agreement)은 제출하신 자료의 내용을 외부에 공개하지 않겠다는 약속을 문서로 남기는 것입니다. 원하시는 경우 분석에 앞서 이 계약을 먼저 맺을 수 있습니다. 연락처를 남겨주시면 안내해 드립니다.</p>
+
+              <h4>8. 익명 접수</h4>
+              <p>연락처를 남기지 않으면 익명으로 접수됩니다. 이 경우 회사는 신청자를 알 수 있는 정보를 가지지 않으며, 접수 시 발급되는 접수번호가 유일한 확인 수단입니다. 접수번호를 잃어버리면 해당 건을 조회하거나 파기를 요청할 수 없고, 접수번호는 다시 발급되지 않습니다.</p>
+
+              <p class="terms-more">
+                자세한 내용은 <a href="./privacy.html" target="_blank" rel="noopener">개인정보 처리방침</a>에서 확인하실 수 있습니다.
+              </p>
+            </div>
+
+            <label class="terms-agree" id="agree-wrap">
+              <input type="checkbox" id="agree" disabled />
+              <span id="agree-text">위 안내를 끝까지 읽으면 동의할 수 있습니다</span>
+            </label>
           </div>
 
           <div>
@@ -291,7 +311,7 @@
         $("notice-text").textContent = m.notice || "";
       } catch (e) {
         $("views").textContent = "—";
-        $("notice-text").textContent = "네 번째 무료 분석 케이스를 받고 있습니다.";
+        $("notice-text").textContent = "테스트 분석 케이스를 받고 있습니다.";
         console.error(e);
       }
     }
@@ -333,6 +353,25 @@
 
     loadMeta();
     loadBoard();
+
+    // ---------- 약관: 끝까지 스크롤해야 동의 가능 ----------
+    const termsBox = $("terms");
+    const agree = $("agree");
+    const agreeWrap = $("agree-wrap");
+    const agreeText = $("agree-text");
+
+    function checkScrolledToEnd() {
+      const reached = termsBox.scrollHeight - termsBox.scrollTop - termsBox.clientHeight < 8;
+      if (reached && agree.disabled) {
+        agree.disabled = false;
+        agreeWrap.classList.add("ready");
+        agreeText.textContent = "위 안내를 모두 확인했으며 이에 동의합니다";
+      }
+    }
+    termsBox.addEventListener("scroll", checkScrolledToEnd);
+    setTimeout(() => {
+      if (termsBox.scrollHeight <= termsBox.clientHeight + 8) checkScrolledToEnd();
+    }, 300);
 
     // ---------- 폼 ----------
     const OK_EXT = [".pdf", ".hwp", ".hwpx", ".docx", ".doc", ".txt", ".md", ".zip"];
@@ -379,6 +418,8 @@
 
     $("submit").addEventListener("click", async () => {
       $("error").style.display = "none";
+
+      if (!agree.checked) return fail("제출 자료 처리 안내를 끝까지 읽고 동의해주세요.");
 
       const kind = $("kind").value;
       const title = $("title").value.trim();
