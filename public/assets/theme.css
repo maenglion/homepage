@@ -982,3 +982,121 @@ css/* 위 1번 GNB 블록의 .nav-link 를 이걸로 교체 */
 @media (max-width: 760px) {
   .nav.is-open .header-cta-mobile { display: flex; }
 }
+
+/* ── 게시판 (early-access.html) ── */
+.board { margin-top: 28px; }
+
+.board-topbar {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+.board-views {
+  font-size: 0.85rem;
+  color: var(--text-dim);
+  font-family: var(--mono);
+  white-space: nowrap;
+}
+.board-views strong { color: var(--text-muted); font-weight: 600; }
+
+.notice {
+  display: flex;
+  gap: 14px;
+  align-items: flex-start;
+  padding: 18px 20px;
+  background: var(--navy-soft);
+  border-radius: var(--radius);
+  margin-bottom: 24px;
+}
+.notice-tag {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 11px;
+  border-radius: 100px;
+  background: var(--navy);
+  color: #fff;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  margin-top: 1px;
+}
+.notice p {
+  margin: 0;
+  font-size: 0.92rem;
+  line-height: 1.7;
+  color: var(--text);
+}
+
+.board-head,
+.board-row {
+  display: grid;
+  grid-template-columns: 140px 64px 1fr 92px 56px;
+  gap: 16px;
+  align-items: center;
+  padding: 16px 4px;
+}
+.board-head {
+  border-bottom: 1px solid var(--border-strong);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--text-dim);
+  text-transform: uppercase;
+}
+.board-row {
+  border-bottom: 1px solid var(--border);
+  font-size: 0.92rem;
+  transition: background 0.16s ease;
+}
+.board-row:hover { background: var(--bg-soft); }
+
+.b-nick { font-weight: 600; color: var(--navy); }
+.b-kind { font-size: 0.8rem; color: var(--text-muted); }
+.b-title { color: var(--text); }
+.b-title em { color: var(--text-dim); font-style: normal; }
+.b-date { font-family: var(--mono); font-size: 0.8rem; color: var(--text-dim); text-align: right; }
+
+.b-status {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px 10px;
+  border-radius: 100px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border: 1.5px solid var(--border-strong);
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+.b-status.s-ok   { border-color: var(--teal); color: var(--teal); }
+.b-status.s-run  { border-color: var(--navy); color: var(--navy); }
+.b-status.s-done { border-color: var(--navy); color: #fff; background: var(--navy); }
+.b-status.s-no   { border-color: var(--text-dim); color: var(--text-dim); }
+.b-status.s-purged { border-color: var(--border); color: var(--text-dim); border-style: dashed; }
+
+.board-empty {
+  padding: 44px 20px;
+  text-align: center;
+  color: var(--text-dim);
+  font-size: 0.92rem;
+  border: 1px dashed var(--border-strong);
+  border-radius: var(--radius);
+}
+
+@media (max-width: 720px) {
+  .board-head { display: none; }
+  .board-row {
+    grid-template-columns: 1fr auto;
+    grid-template-areas: "nick status" "title title" "kind date";
+    gap: 6px 12px;
+    padding: 18px 4px;
+  }
+  .b-nick   { grid-area: nick; }
+  .b-status { grid-area: status; justify-self: end; }
+  .b-title  { grid-area: title; font-size: 0.88rem; color: var(--text-muted); }
+  .b-kind   { grid-area: kind; }
+  .b-date   { grid-area: date; text-align: left; justify-self: start; }
+}
