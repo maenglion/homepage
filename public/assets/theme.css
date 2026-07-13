@@ -49,6 +49,7 @@ body {
 .brand-mark { height: 34px; width: auto; display: block; }
 
 .nav { display: flex; align-items: center; gap: 40px; }
+.nav-toggle { display: none; }
 
 .nav-link {
   position: relative;
@@ -909,4 +910,69 @@ css/* 위 1번 GNB 블록의 .nav-link 를 이걸로 교체 */
 
 @media (prefers-reduced-motion: reduce) {
   @view-transition { navigation: none; }
+}
+
+@media (max-width: 760px) {
+  /* 데스크톱 nav · 알약 숨김 */
+  .nav,
+  .header-cta { display: none; }
+
+  /* 햄버거 버튼 */
+  .nav-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px; height: 40px;
+    background: none;
+    border: 0;
+    cursor: pointer;
+    padding: 0;
+  }
+  .nav-toggle svg { display: block; }
+  .nav-toggle rect { fill: #fff; }
+
+  /* 펼침 패널 */
+  .nav.is-open {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    position: fixed;
+    top: 76px; left: 0; right: 0;
+    background: var(--gnb-to);
+    padding: 8px 20px 24px;
+    box-shadow: 0 12px 30px rgba(0,0,0,.24);
+    z-index: 999;
+  }
+  .nav.is-open .nav-link {
+    padding: 16px 4px;
+    font-size: 1.05rem;
+    border-bottom: 1px solid rgba(255,255,255,.12);
+    width: 100%;
+    justify-content: space-between;
+  }
+  .nav.is-open .nav-item { width: 100%; }
+
+  /* 모바일에선 서브메뉴를 항상 펼쳐 둔다 */
+  .nav.is-open .submenu {
+    position: static;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    background: transparent;
+    box-shadow: none;
+    padding: 0 0 8px 12px;
+  }
+  .nav.is-open .submenu a { padding: 12px 8px; }
+  .nav.is-open .submenu b { color: #fff; }
+  .nav.is-open .submenu span { color: rgba(255,255,255,.7); }
+  .nav.is-open .chev { display: none; }
+
+  /* 알약을 패널 안으로 */
+  .nav.is-open .header-cta-mobile {
+    display: flex;
+    gap: 10px;
+    margin-top: 18px;
+  }
+  .nav.is-open .header-cta-mobile .pill { flex: 1; justify-content: center; }
 }

@@ -37,11 +37,20 @@
 </head>
 
  <!-- Header -->
+ <!-- Header -->
   <header class="site-header">
     <div class="container header-inner">
       <a class="brand" href="./index.html" aria-label="소울스펙트럼 홈">
         <img class="brand-logo" src="./assets/soulspectrum_delta.png" width="28" height="44" alt="Soul Spectrum" />
       </a>
+
+      <button class="nav-toggle" aria-label="메뉴 열기" aria-expanded="false" onclick="this.setAttribute('aria-expanded', document.querySelector('.nav').classList.toggle('is-open'))">
+        <svg width="22" height="16" viewBox="0 0 22 16" aria-hidden="true">
+          <rect y="0" width="22" height="2" rx="1"/>
+          <rect y="7" width="22" height="2" rx="1"/>
+          <rect y="14" width="22" height="2" rx="1"/>
+        </svg>
+      </button>
 
       <nav class="nav">
         <div class="nav-item has-sub">
@@ -59,7 +68,12 @@
 
         <a class="nav-link" href="./engine.html">Engine</a>
         <a class="nav-link" href="./company.html">Company</a>
-        <a class="nav-link is-active" href="./founder.html">Founder</a>
+        <a class="nav-link" href="./founder.html">Founder</a>
+
+        <div class="header-cta-mobile">
+          <a class="pill pill-dark" href="./slda.html">Early Access</a>
+          <a class="pill pill-light" href="./contact.html">Partnership</a>
+        </div>
       </nav>
 
       <div class="header-cta">
