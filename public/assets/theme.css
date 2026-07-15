@@ -1133,3 +1133,451 @@ css/* 위 1번 GNB 블록의 .nav-link 를 이걸로 교체 */
 .terms-agree input { width: auto; margin: 0; }
 .terms-agree.ready #agree-text { color: var(--navy); font-weight: 600; }
 #agree-text { font-size: 0.88rem; color: var(--text-dim); }
+
+/* ════════════════════════════════════════════════════════════
+   여기부터 theme.css 맨 아래에 붙인다.
+   ════════════════════════════════════════════════════════════ */
+
+
+/* ── 제출 전 체크리스트 (early-access.html) ── */
+.checkbox-block { padding: 0; }
+
+.role-pick {
+  padding: 16px 18px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--bg-card);
+  margin-bottom: 14px;
+}
+.role-q {
+  font-size: 0.83rem;
+  font-weight: 600;
+  color: var(--text);
+  margin: 0 0 10px;
+}
+.role-opt {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  padding: 7px 0;
+  font-weight: 400;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  cursor: pointer;
+  margin: 0;
+}
+.role-opt input { width: auto; margin: 3px 0 0; flex-shrink: 0; }
+.role-opt strong { color: var(--text); font-weight: 600; }
+
+/* 마스킹 규칙 표 */
+.mask-rule {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.8rem;
+  margin-bottom: 12px;
+}
+.mask-rule th, .mask-rule td {
+  text-align: left;
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+  color: var(--text-muted);
+}
+.mask-rule th {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--text-dim);
+  background: var(--bg-soft);
+  border-bottom-color: var(--border-strong);
+}
+.mask-rule td:first-child { color: var(--text); font-weight: 600; white-space: nowrap; }
+.mask-rule code {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  color: var(--navy);
+  background: var(--navy-soft);
+  padding: 2px 6px;
+  border-radius: 3px;
+  white-space: nowrap;
+}
+.mask-note { font-size: 0.72rem; color: var(--text-dim); line-height: 1.5; }
+@media (max-width: 640px) {
+  .mask-rule th:nth-child(3), .mask-rule td:nth-child(3) { display: none; }
+}
+
+/* 체크 항목 */
+.checklist { list-style: none; padding: 0; margin: 14px 0 0; }
+.checklist li { margin-bottom: 2px; }
+.checklist label {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  padding: 10px 12px;
+  border-radius: 6px;
+  font-weight: 400;
+  font-size: 0.86rem;
+  color: var(--text-muted);
+  cursor: pointer;
+  margin: 0;
+  transition: background 0.14s ease;
+}
+.checklist label:hover { background: var(--bg-soft); }
+.checklist input { width: auto; margin: 2px 0 0; flex-shrink: 0; }
+.checklist input:checked + span { color: var(--text); }
+
+/* 공개 범위 안내 */
+.scope-note {
+  display: none;
+  padding: 12px 14px;
+  border-radius: var(--radius-sm);
+  font-size: 0.84rem;
+  line-height: 1.65;
+  margin-top: 12px;
+}
+.scope-note.ok { background: var(--teal-soft); color: var(--navy); }
+.scope-note.no {
+  background: rgba(192,57,43,0.06);
+  border: 1px solid rgba(192,57,43,0.3);
+  color: #C0392B;
+}
+
+
+/* ── 처리 절차 표 (slda.html) ── */
+.proc-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 32px;
+  font-size: 0.9rem;
+}
+.proc-table th {
+  text-align: left;
+  padding: 12px 14px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  border-bottom: 1.5px solid var(--navy);
+  white-space: nowrap;
+}
+.proc-table td {
+  padding: 18px 14px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+  color: var(--text-muted);
+  line-height: 1.75;
+}
+.proc-table td:first-child {
+  color: var(--navy);
+  font-weight: 700;
+  white-space: nowrap;
+  width: 148px;
+}
+.proc-table td:last-child { width: 190px; color: var(--text); }
+.proc-table strong { color: var(--text); font-weight: 600; }
+.proc-table tr:hover td { background: var(--bg-card); }
+
+.proc-no {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px; height: 20px;
+  margin-right: 8px;
+  border-radius: 50%;
+  background: var(--navy);
+  color: #fff;
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  font-weight: 700;
+  vertical-align: 1px;
+}
+.proc-purge .proc-no { background: var(--teal); }
+.proc-purge td:last-child { color: var(--teal); font-weight: 600; }
+
+.proc-note {
+  display: block;
+  margin-top: 4px;
+  font-size: 0.72rem;
+  color: var(--text-dim);
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+@media (max-width: 820px) {
+  .proc-table thead { display: none; }
+  .proc-table tr {
+    display: block;
+    padding: 18px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .proc-table td {
+    display: block;
+    padding: 0 0 8px;
+    border: 0;
+    width: auto !important;
+  }
+  .proc-table td:first-child { font-size: 1rem; margin-bottom: 6px; }
+  .proc-table td:last-child {
+    font-size: 0.8rem;
+    padding-top: 8px;
+    border-top: 1px dashed var(--border);
+  }
+  .proc-table tr:hover td { background: transparent; }
+}
+
+
+/* ── 검출 대상 표 (slda.html) ── */
+.pii-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 28px;
+  font-size: 0.86rem;
+}
+.pii-table th {
+  text-align: left;
+  padding: 12px 14px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  border-bottom: 1.5px solid var(--border-strong);
+  white-space: nowrap;
+}
+.pii-table td {
+  padding: 14px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+  color: var(--text-muted);
+  line-height: 1.7;
+}
+.pii-table td:first-child { color: var(--text); font-weight: 600; white-space: nowrap; }
+.pii-table code {
+  font-family: var(--mono);
+  font-size: 0.76rem;
+  color: var(--navy);
+  background: var(--navy-soft);
+  padding: 3px 7px;
+  border-radius: 3px;
+  white-space: nowrap;
+}
+.pii-table code.bad {
+  color: #C0392B;
+  background: rgba(192,57,43,0.07);
+  text-decoration: line-through;
+  text-decoration-color: rgba(192,57,43,0.4);
+}
+.pii-note {
+  display: block;
+  margin-top: 4px;
+  font-size: 0.72rem;
+  color: var(--text-dim);
+  font-weight: 400;
+  line-height: 1.5;
+}
+@media (max-width: 760px) {
+  .pii-table th:nth-child(3), .pii-table td:nth-child(3) { display: none; }
+}
+
+
+/* ── 사전 규모 칩 ── */
+.dict-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 28px;
+}
+.dict-chip {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 8px;
+  padding: 9px 16px;
+  border: 1.5px solid var(--border-strong);
+  border-radius: 100px;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+.dict-chip b {
+  font-family: var(--mono);
+  font-size: 0.88rem;
+  color: var(--navy);
+  font-weight: 700;
+}
+
+
+/* ── 경고 블록 ── */
+.warn {
+  margin-top: 32px;
+  padding: 20px 22px;
+  border-radius: var(--radius);
+  background: var(--bg-soft);
+  border-left: 3px solid var(--teal);
+}
+.warn-tag {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 100px;
+  background: var(--navy);
+  color: #fff;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  margin-bottom: 10px;
+}
+.warn p {
+  margin: 0 0 8px;
+  font-size: 0.9rem;
+  line-height: 1.8;
+  color: var(--text-muted);
+}
+.warn p:last-child { margin-bottom: 0; }
+.warn strong { color: var(--text); font-weight: 600; }
+.warn code {
+  font-family: var(--mono);
+  font-size: 0.8rem;
+  color: var(--navy);
+  background: var(--navy-soft);
+  padding: 2px 6px;
+  border-radius: 3px;
+}
+
+
+/* ── rows 태그 ── */
+.rows-tag {
+  display: inline-block;
+  margin-top: 6px;
+  padding: 3px 9px;
+  border-radius: 100px;
+  border: 1.5px solid var(--border-strong);
+  font-size: 0.66rem;
+  font-weight: 700;
+  color: var(--text-dim);
+  letter-spacing: 0.02em;
+}
+.rows-tag.ok { border-color: var(--teal); color: var(--teal); }
+
+
+/* ── 가이드 배너 (노션 연결) ── */
+.guide-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  margin-top: 40px;
+  padding: 28px 32px;
+  border-radius: var(--radius-lg);
+  background: var(--gradient-brand);
+  color: #fff;
+  box-shadow: var(--shadow-brand);
+  transition: transform 0.18s ease, box-shadow 0.2s ease;
+  flex-wrap: wrap;
+}
+.guide-banner:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 40px rgba(0,65,137,0.22);
+}
+.guide-tag {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 100px;
+  background: rgba(255,255,255,0.2);
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  margin-bottom: 10px;
+}
+.guide-copy h3 {
+  margin: 0 0 6px;
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: #fff;
+}
+.guide-copy p {
+  margin: 0;
+  font-size: 0.88rem;
+  color: rgba(255,255,255,0.82);
+  line-height: 1.7;
+}
+.guide-go {
+  flex-shrink: 0;
+  padding: 11px 22px;
+  border-radius: 100px;
+  background: #fff;
+  color: var(--navy);
+  font-size: 0.86rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+@media (max-width: 640px) {
+  .guide-banner { padding: 24px; }
+  .guide-go { width: 100%; text-align: center; }
+}
+/* ── 파일 태그 · 마스킹 리포트 (early-access.html) ── */
+.f-tag {
+  display: inline-block;
+  margin-left: 8px;
+  padding: 2px 8px;
+  border-radius: 100px;
+  border: 1px solid var(--border-strong);
+  font-size: 0.66rem;
+  font-weight: 600;
+  color: var(--text-dim);
+  vertical-align: 1px;
+}
+.f-tag.ok { border-color: var(--teal); color: var(--teal); }
+
+.mask-report { margin-top: 14px; }
+
+.mask-file {
+  padding: 14px 16px;
+  border-radius: var(--radius-sm);
+  background: var(--navy-soft);
+  border-left: 3px solid var(--navy);
+  margin-bottom: 10px;
+}
+.mask-file.ok {
+  background: var(--teal-soft);
+  border-left-color: var(--teal);
+}
+.mask-file b {
+  display: block;
+  font-size: 0.86rem;
+  color: var(--navy);
+  margin-bottom: 4px;
+}
+.mask-file > span {
+  display: block;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+.mask-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 10px;
+}
+.mask-chip {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 6px;
+  padding: 5px 11px;
+  border-radius: 100px;
+  background: var(--bg-card);
+  font-size: 0.72rem;
+  color: var(--text-muted);
+}
+.mask-chip b {
+  display: inline;
+  font-family: var(--mono);
+  font-size: 0.76rem;
+  color: var(--navy);
+  margin: 0;
+}
+.mask-chip i {
+  font-style: normal;
+  font-size: 0.66rem;
+  color: var(--text-dim);
+}
