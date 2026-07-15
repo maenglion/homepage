@@ -1,0 +1,2 @@
+[functions.purge]
+verify_jwt = true
