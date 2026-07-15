@@ -151,9 +151,9 @@
               <input type="number" id="doc_count" min="1" max="200" value="3" />
             </div>
             <div class="field">
-             <label for="page_est">대략 분량</label>
-<input type="number" id="page_est" min="1" max="100000" placeholder="선택" />
-<p class="hint">A4 기준 대략적인 장수입니다. 정확하지 않아도 됩니다.</p>
+              <label for="page_est">대략 분량</label>
+              <input type="number" id="page_est" min="1" max="100000" placeholder="선택" />
+              <p class="hint">A4 기준 대략적인 장수입니다. 정확하지 않아도 됩니다.</p>
             </div>
           </div>
 
@@ -297,6 +297,10 @@
       return `${p(d.getMonth() + 1)}.${p(d.getDate())}`;
     }
 
+    function fmtSize(b) {
+      return b < 1048576 ? `${(b / 1024).toFixed(0)}KB` : `${(b / 1048576).toFixed(1)}MB`;
+    }
+
     function escapeHtml(s) {
       return String(s).replace(/[&<>"']/g, (c) =>
         ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
@@ -388,6 +392,7 @@
     $("story").addEventListener("input", (e) => { $("cnt").textContent = e.target.value.length; });
 
     function extOf(name) { const i = name.lastIndexOf("."); return i < 0 ? "" : name.slice(i).toLowerCase(); }
+
     function validFiles() {
       return [...$("files").files].filter((f) => OK_EXT.includes(extOf(f.name)) && f.size <= MAX_BYTES);
     }
@@ -396,19 +401,23 @@
       const list = $("filelist");
       list.innerHTML = "";
       for (const f of $("files").files) {
-        const mb = (f.size / 1048576).toFixed(1);
         const bad = !OK_EXT.includes(extOf(f.name)) || f.size > MAX_BYTES;
         const row = document.createElement("div");
         if (bad) { row.className = "bad"; row.textContent = `${f.name} — 지원하지 않거나 용량 초과`; }
-        else { row.textContent = `${f.name} · ${mb}MB`; }
+        else { row.textContent = `${f.name} · ${fmtSize(f.size)}`; }
         list.appendChild(row);
       }
     });
 
+    // Storage 키는 ASCII 만 허용한다.
+    // 한글 파일명은 순번 + 확장자로 저장하고, 원본 파일명은 사연에 함께 기록한다.
     function safeName(name, i) {
       const ext = extOf(name);
-      const base = name.slice(0, name.length - ext.length).replace(/[^\w.\-가-힣]/g, "_").slice(0, 60);
-      return `${String(i + 1).padStart(2, "0")}_${base}${ext}`;
+      const base = name.slice(0, name.length - ext.length)
+        .replace(/[^A-Za-z0-9._-]/g, "")
+        .slice(0, 40);
+      const stamp = String(i + 1).padStart(2, "0");
+      return base ? `${stamp}_${base}${ext}` : `${stamp}${ext}`;
     }
 
     function fail(msg) {
@@ -439,13 +448,23 @@
         return fail("첨부한 파일이 모두 허용되지 않는 형식이거나 용량을 초과했습니다.");
       }
 
+      const totalBytes = files.reduce((s, f) => s + f.size, 0);
+
+      // 저장 파일명이 순번으로 바뀌므로, 원본 파일명 대조표를 사연 뒤에 붙인다.
+      const fileList = files
+        .map((f, i) => `${safeName(f.name, i)}  ←  ${f.name} (${fmtSize(f.size)})`)
+        .join("\n");
+      const storyWithFiles = files.length
+        ? `${story}\n\n---\n첨부 파일 ${files.length}개 · 총 ${fmtSize(totalBytes)}\n${fileList}`
+        : story;
+
       $("submit").disabled = true;
       $("submit").textContent = "접수 중...";
       $("progress").textContent = "접수번호를 발급하고 있습니다.";
 
       const { data, error } = await db.rpc("create_submission", {
         p_kind: kind,
-        p_story: story,
+        p_story: storyWithFiles,
         p_doc_count: doc_count,
         p_page_est: page_est,
         p_contact: contact,
@@ -475,7 +494,7 @@
         files.length === 0
           ? "파일 없이 접수되었습니다. 분석 가능 여부를 확인한 뒤 안내드립니다."
           : uploaded === files.length
-            ? `파일 ${uploaded}개가 함께 접수되었습니다.`
+            ? `파일 ${uploaded}개가 첨부되었습니다. 총 ${fmtSize(totalBytes)}`
             : `파일 ${uploaded} / ${files.length}개만 업로드되었습니다. 접수번호로 문의해주세요.`;
 
       $("form-wrap").style.display = "none";
