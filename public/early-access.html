@@ -186,8 +186,8 @@
               <h4>3. 분석할 수 없는 경우 즉시 파기</h4>
               <p>자료가 분석 조건에 맞지 않아 분석이 불가능하다고 판정되면, 그 즉시 자료를 파기합니다.</p>
 
-              <h4>4. 분석이 끝나면 30일 후 파기</h4>
-              <p>분석이 완료된 자료는 종료일로부터 30일이 지나면 파기합니다. 30일은 결과에 대한 문의·재확인을 위한 기간입니다.</p>
+              <h4>4. 분석이 끝나면 14일 후 파기</h4>
+              <p>분석이 완료된 자료는 종료일로부터 14일이 지나면 파기합니다. 14일은 결과에 대한 문의·재확인을 위한 기간입니다.</p>
 
               <h4>5. 파기는 사람이 아니라 예약 작업이 합니다</h4>
               <p>파기는 담당자가 손으로 지우는 것이 아니라, 매일 정해진 시각에 자동 실행되는 작업이 처리합니다. 파일이 실제로 삭제된 뒤에야 파기 기록이 남으므로, 사실과 다른 파기 기록이 만들어질 수 없습니다.</p>
@@ -200,6 +200,26 @@
 
               <h4>8. 익명 접수</h4>
               <p>연락처를 남기지 않으면 익명으로 접수됩니다. 이 경우 회사는 신청자를 알 수 있는 정보를 가지지 않으며, 접수 시 발급되는 접수번호가 유일한 확인 수단입니다. 접수번호를 잃어버리면 해당 건을 조회하거나 파기를 요청할 수 없고, 접수번호는 다시 발급되지 않습니다.</p>
+
+              <h4>9. 제출 전에 처리해주실 것</h4>
+              <p>
+                <strong>본인 정보</strong>는 그대로 두셔도 됩니다. 다만 주민등록번호는 뒷자리를 지워주세요.<br />
+                <strong>제3자(상대방·증인·대리인 등)의 실명</strong>은 마지막 글자를 가려주세요. 예를 들어 홍길동은 홍길*로 적어주시고, 같은 사람은 같은 표기를 유지해주세요. 분석에 필요한 것은 누가 누구인지의 구분이지 실명이 아닙니다.<br />
+                <strong>제3자의 주민등록번호·주소·연락처</strong>는 지워주세요. 분석에 쓰이지 않습니다.<br />
+                공개되지 않은 게시물, 즉 다수가 열람할 수 없는 상태의 글은 제출하지 말아주세요.<br />
+                처리되지 않은 자료는 분석하지 않고 즉시 파기할 수 있습니다.
+              </p>
+
+              <h4>10. 분석 도구와 국외 이전</h4>
+              <p>
+                분석 과정의 일부에서 인공지능 도구를 보조적으로 사용하며, 이 과정에서 자료의 텍스트가 <strong>미국(Anthropic PBC)으로 전송</strong>됩니다. 전송받는 곳은 이 자료를 인공지능 학습에 사용하지 않고, 처리한 뒤 보관하지 않습니다.
+              </p>
+              <p>
+                판정 기준은 회사가 설계하며, <strong>모든 결과는 분석자가 직접 검토하여 확정합니다.</strong> 인공지능의 출력만으로 결과가 나오지 않습니다.
+              </p>
+              <p>
+                <strong>국외 전송을 원하지 않으시면 아래 사연란에 그 뜻을 적어주세요.</strong> 이 경우 국내에서만 처리하며, 분석 기간이 길어질 수 있습니다. 거부하셔도 분석은 그대로 제공됩니다.
+              </p>
 
               <p class="terms-more">
                 자세한 내용은 <a href="./privacy.html" target="_blank" rel="noopener">개인정보 처리방침</a>에서 확인하실 수 있습니다.
@@ -370,7 +390,7 @@
       if (reached && agree.disabled) {
         agree.disabled = false;
         agreeWrap.classList.add("ready");
-        agreeText.textContent = "위 안내를 모두 확인했으며 이에 동의합니다";
+        agreeText.textContent = "위 안내를 모두 확인했으며, 국외 이전을 포함한 처리에 동의합니다";
       }
     }
     termsBox.addEventListener("scroll", checkScrolledToEnd);
@@ -411,15 +431,14 @@
 
     // Storage 키는 ASCII 만 허용한다.
     // 한글 파일명은 순번 + 확장자로 저장하고, 원본 파일명은 사연에 함께 기록한다.
- function safeName(name, i) {
-  const ext = extOf(name);
-  const base = name.slice(0, name.length - ext.length)
-    .replace(/[^A-Za-z0-9]+/g, "_")   // 연속된 비ASCII를 밑줄 하나로
-    .replace(/^_+|_+$/g, "")          // 앞뒤 밑줄 제거
-    .slice(0, 40);
-  const stamp = String(i + 1).padStart(2, "0");
-  return base ? `${stamp}_${base}${ext}` : `${stamp}${ext}`;
-}
+    function safeName(name, i) {
+      const ext = extOf(name);
+      const base = name.slice(0, name.length - ext.length)
+        .replace(/[^A-Za-z0-9._-]/g, "")
+        .slice(0, 40);
+      const stamp = String(i + 1).padStart(2, "0");
+      return base ? `${stamp}_${base}${ext}` : `${stamp}${ext}`;
+    }
 
     function fail(msg) {
       const box = $("error");
