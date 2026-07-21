@@ -13,10 +13,11 @@
 
    <link rel="stylesheet" href="assets/styles.css" />
   <link rel="stylesheet" href="assets/theme.css" />
+  <link rel="stylesheet" href="assets/slda-pipeline.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;500;600;700&display=swap" rel="stylesheet">
-  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.11.0/dist/tabler-icons.min.css">
 </head>
 
 <body>
@@ -86,6 +87,7 @@
           </div>
 
           <div class="msg err" id="error" style="display:none"></div>
+          <div id="pipeline" style="display:none"></div>
           <div class="log" id="log"></div>
 
           <p class="readonly-note" id="note" style="display:none">
@@ -131,6 +133,7 @@
   </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="assets/slda-pipeline.js"></script>
   <script>
     document.getElementById("y").textContent = new Date().getFullYear();
 
@@ -146,13 +149,78 @@
       return `${d.getFullYear()}-${p(d.getMonth() + 1)}-${p(d.getDate())} ${p(d.getHours())}:${p(d.getMinutes())}`;
     }
 
+    // 파이프라인 접수번호 (LIT/SNS/SPK-YYMMDD-SEQ) 여부
+    function isPipelineRef(ref) { return /^(LIT|SNS|SPK)-\d{6}-\d{3,4}$/.test(ref); }
+
+    const PL_STATE = {
+      received:  { cls: "received",  label: "접수됨",  ic: "clock",        desc: "검수 통과 · 대기 · 최대 3영업일" },
+      analyzing: { cls: "analyzing", label: "분석중",  ic: "loader-2",     desc: "SLDA 처리 · 검토 진행 중" },
+      done:      { cls: "done",      label: "완료",    ic: "circle-check", desc: "보고서 다운로드 · 게시 후 2주 자동 파기" },
+      rejected:  { cls: "rejected",  label: "파기됨",  ic: "file-x",       desc: "동일 번호로 사유코드를 재조회할 수 있습니다" }
+    };
+
+    function daysLeft(purgeAt) {
+      const ms = new Date(purgeAt).getTime() - Date.now();
+      return Math.max(0, Math.ceil(ms / 86400000));
+    }
+
+    function renderPipeline(ref, row) {
+      const box = $("pipeline");
+      const st = PL_STATE[row.status] || PL_STATE.received;
+      let html =
+        '<div class="pl" style="margin:0;padding:0">' +
+        '<div class="pl-model-tag"><i class="ti ti-file-search"></i> ' + SLDA.escapeHtml(ref) + '</div>' +
+        '<div style="margin:6px 0 18px"><span class="pl-status-badge ' + st.cls + '">' +
+          '<i class="ti ti-' + st.ic + '"></i> ' + st.label + '</span></div>' +
+        '<p class="pl-desc">' + SLDA.escapeHtml(st.desc) + '</p>';
+
+      if (row.status === "done" && Array.isArray(row.reports) && row.reports.length) {
+        html += '<div class="pl-download-list">' + row.reports.map(function (r) {
+          const dleft = r.purge_at ? '<span class="pl-countdown">D-' + daysLeft(r.purge_at) + '</span>' : '';
+          const go = r.url
+            ? '<a class="dl-go" href="' + SLDA.escapeHtml(r.url) + '" download>다운로드</a>'
+            : '<span class="dl-go" style="background:var(--text-dim)">준비중</span>';
+          return '<div class="pl-download"><span>' + SLDA.escapeHtml(r.filename) + '</span>' +
+                 '<span style="display:flex;gap:10px;align-items:center">' + dleft + go + '</span></div>';
+        }).join("") + '</div>' +
+        '<p class="readonly-note" style="margin-top:14px">게시 후 2주가 지나면 자동 파기됩니다. 기한 내 다운로드하세요.</p>';
+      }
+
+      if (row.status === "rejected" && row.code) {
+        SLDA.renderRejectCard(box, { code: row.code, receiptNo: ref, rejectedAt: row.rejected_at ? fmt(row.rejected_at) : "" });
+        // renderRejectCard replaces box contents; prepend the state badge
+        box.insertAdjacentHTML("afterbegin",
+          '<div class="pl-model-tag"><i class="ti ti-file-search"></i> ' + SLDA.escapeHtml(ref) + '</div>');
+        box.style.display = "block";
+        return;
+      }
+
+      html += '</div>';
+      box.innerHTML = html;
+      box.style.display = "block";
+    }
+
     async function lookup() {
       const ref = $("ref").value.trim().toUpperCase();
       $("error").style.display = "none";
       $("log").innerHTML = "";
+      $("pipeline").style.display = "none";
+      $("pipeline").innerHTML = "";
       $("note").style.display = "none";
 
       if (!ref) return;
+
+      // 파이프라인 접수번호는 새 상태 뷰로 (백엔드 미배포 시 로그 조회로 폴백)
+      if (isPipelineRef(ref)) {
+        try {
+          const { data, error } = await db.rpc("get_pipeline_status", { p_ref: ref });
+          if (!error && data && (Array.isArray(data) ? data.length : true)) {
+            renderPipeline(ref, Array.isArray(data) ? data[0] : data);
+            $("note").style.display = "block";
+            return;
+          }
+        } catch (e) { /* 폴백 */ }
+      }
 
       const { data, error } = await db.rpc("get_status", { p_ref: ref });
 

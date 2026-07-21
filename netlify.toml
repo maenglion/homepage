@@ -24,6 +24,32 @@
   to = "/slda.html"
   status = 301
 
+# SLDA 신청 파이프라인 — 클린 진입 경로
+[[redirects]]
+  from = "/start"
+  to = "/preprocess.html"
+  status = 301
+
+[[redirects]]
+  from = "/preprocess"
+  to = "/preprocess.html"
+  status = 301
+
+[[redirects]]
+  from = "/apply"
+  to = "/apply.html"
+  status = 301
+
+[[redirects]]
+  from = "/submit"
+  to = "/submit.html"
+  status = 301
+
+[[redirects]]
+  from = "/receipt"
+  to = "/receipt.html"
+  status = 301
+
 [[redirects]]
   from = "/casp-engine"
   to = "/index.html"
