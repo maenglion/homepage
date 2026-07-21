@@ -626,20 +626,27 @@
     if (!client) {
       return cb(null, { ref: makeReceiptNo(model.key), local: true });
     }
-    client.rpc("create_pipeline_submission", {
+    client.rpc("create_submission", {
       p_model: model.key,
-      p_stance: state.stance || null,
       p_block_b: state.blockB || "",
       p_block_c: state.blockC || "",
-      p_block_c_parsed: parsed.fields
+      p_block_c_parsed: parsed.fields,
+      p_stance: state.stance || null,
+      p_title: state.title || null,
+      p_title_public: !!state.titlePublic,
+      p_nickname: state.nickname || null
     }).then(function (r) {
       if (r.error) {
         // 함수 미배포 등 — Early Access 테스트에서는 로컬 발급으로 폴백
-        console.warn("create_pipeline_submission 실패, 로컬 발급:", r.error.message);
+        console.warn("create_submission 실패, 로컬 발급:", r.error.message);
         return cb(null, { ref: makeReceiptNo(model.key), local: true });
       }
       var row = Array.isArray(r.data) ? r.data[0] : r.data;
-      cb(null, { ref: (row && (row.ref || row)) || makeReceiptNo(model.key), local: false });
+      cb(null, {
+        ref: (row && (row.ref || row)) || makeReceiptNo(model.key),
+        nickname: row && row.nickname || null,
+        local: false
+      });
     }).catch(function (e) {
       console.warn(e);
       cb(null, { ref: makeReceiptNo(model.key), local: true });

@@ -339,7 +339,7 @@
           });
           // 파기 로그 기록 시도 (실명 없음)
           if (SLDA.db()) {
-            SLDA.db().rpc("log_pipeline_reject", { p_model: model.key, p_ref: receiptNo, p_code: review.code })
+            SLDA.db().rpc("slda_reject", { p_ref: receiptNo, p_code: review.code })
               .then(function () {}, function () {});
           }
           $("form-view").style.display = "none";

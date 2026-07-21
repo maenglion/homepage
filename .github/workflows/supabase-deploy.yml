@@ -23,6 +23,18 @@ jobs:
       - name: Link project
         run: supabase link --project-ref "$PROJECT_ID"
 
+      # 레거시 마이그레이션(이미 out-of-band 적용됨)은 이력 테이블이 비어 있어
+      # db push 가 재실행 → "type already exists" 로 실패한다.
+      # 이력만 'applied' 로 표시해 재실행을 차단한다. 0001 은 표시하지 않으므로
+      # db push 가 정상 실행하며, 0001 은 IF NOT EXISTS/OR REPLACE 로 멱등하다.
+      - name: Repair legacy migration history
+        run: |
+          for v in 20260710000000 20260711000000 20260712000000 \
+                   20260715000000 20260715000001 20260715000002 \
+                   20260715000003 20260715000004 20260715000005; do
+            supabase migration repair --status applied "$v" || true
+          done
+
       - name: Push migrations
         run: supabase db push
 

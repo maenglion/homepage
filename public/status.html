@@ -178,8 +178,8 @@
       if (row.status === "done" && Array.isArray(row.reports) && row.reports.length) {
         html += '<div class="pl-download-list">' + row.reports.map(function (r) {
           const dleft = r.purge_at ? '<span class="pl-countdown">D-' + daysLeft(r.purge_at) + '</span>' : '';
-          const go = r.url
-            ? '<a class="dl-go" href="' + SLDA.escapeHtml(r.url) + '" download>다운로드</a>'
+          const go = r.file_url
+            ? '<a class="dl-go" href="' + SLDA.escapeHtml(r.file_url) + '" download>다운로드</a>'
             : '<span class="dl-go" style="background:var(--text-dim)">준비중</span>';
           return '<div class="pl-download"><span>' + SLDA.escapeHtml(r.filename) + '</span>' +
                  '<span style="display:flex;gap:10px;align-items:center">' + dleft + go + '</span></div>';
@@ -187,8 +187,8 @@
         '<p class="readonly-note" style="margin-top:14px">게시 후 2주가 지나면 자동 파기됩니다. 기한 내 다운로드하세요.</p>';
       }
 
-      if (row.status === "rejected" && row.code) {
-        SLDA.renderRejectCard(box, { code: row.code, receiptNo: ref, rejectedAt: row.rejected_at ? fmt(row.rejected_at) : "" });
+      if (row.status === "rejected" && row.reject_code) {
+        SLDA.renderRejectCard(box, { code: row.reject_code, receiptNo: ref, rejectedAt: "" });
         // renderRejectCard replaces box contents; prepend the state badge
         box.insertAdjacentHTML("afterbegin",
           '<div class="pl-model-tag"><i class="ti ti-file-search"></i> ' + SLDA.escapeHtml(ref) + '</div>');
@@ -214,9 +214,10 @@
       // 파이프라인 접수번호는 새 상태 뷰로 (백엔드 미배포 시 로그 조회로 폴백)
       if (isPipelineRef(ref)) {
         try {
-          const { data, error } = await db.rpc("get_pipeline_status", { p_ref: ref });
-          if (!error && data && (Array.isArray(data) ? data.length : true)) {
-            renderPipeline(ref, Array.isArray(data) ? data[0] : data);
+          // slda_status_lookup 은 jsonb 단일 객체를 반환한다 ({found, status, model, reports|reject_code})
+          const { data, error } = await db.rpc("slda_status_lookup", { p_ref: ref });
+          if (!error && data && data.found) {
+            renderPipeline(ref, data);
             $("note").style.display = "block";
             return;
           }
