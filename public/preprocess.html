@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="view-transition" content="same-origin" />
+  <meta name="theme-color" content="#036E8D" />
+  <meta name="robots" content="noindex" />
+  <title>전처리 · 익명화 | SLDA 신청</title>
+  <meta name="description" content="SLDA 분석 신청 — 전처리 단계. 원문·실명은 이 사이트로 전송되지 않습니다. 사용자 AI로 라벨화한 뒤 BLOCK B·C만 제출합니다." />
+
+  <link rel="stylesheet" href="assets/styles.css" />
+  <link rel="stylesheet" href="assets/theme.css" />
+  <link rel="stylesheet" href="assets/slda-pipeline.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.11.0/dist/tabler-icons.min.css">
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="./index.html" aria-label="소울스펙트럼 홈">
+        <img class="brand-logo" src="./assets/soulspectrum_delta.png" width="28" height="44" alt="Soul Spectrum" />
+      </a>
+      <button class="nav-toggle" aria-label="메뉴 열기" aria-expanded="false" onclick="this.setAttribute('aria-expanded', document.querySelector('.nav').classList.toggle('is-open'))">
+        <svg width="22" height="16" viewBox="0 0 22 16" aria-hidden="true">
+          <rect y="0" width="22" height="2" rx="1"/><rect y="7" width="22" height="2" rx="1"/><rect y="14" width="22" height="2" rx="1"/>
+        </svg>
+      </button>
+      <nav class="nav">
+        <div class="nav-item has-sub">
+          <button class="nav-link" aria-expanded="false" aria-haspopup="true">Research
+            <svg class="chev" width="10" height="6" viewBox="0 0 10 6" aria-hidden="true"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>
+          </button>
+          <div class="submenu">
+            <a href="./research-casp.html"><b>CASP</b><span>음성 발화의 비언어 신호</span></a>
+            <a href="./slda.html"><b>SLDA</b><span>문서·논쟁의 의미 드리프트</span></a>
+          </div>
+        </div>
+        <a class="nav-link" href="./engine.html">Engine</a>
+        <a class="nav-link" href="./company.html">Company</a>
+        <a class="nav-link" href="./founder.html">Founder</a>
+        <div class="header-cta-mobile">
+          <a class="pill pill-dark" href="./early-access.html">Early Access</a>
+          <a class="pill pill-light" href="./contact.html">Partnership</a>
+        </div>
+      </nav>
+      <div class="header-cta">
+        <a class="pill pill-dark" href="./early-access.html">Early Access</a>
+        <a class="pill pill-light" href="./contact.html">Partnership</a>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="section">
+      <div class="container">
+        <div class="pl">
+          <div id="progress"></div>
+
+          <div class="pl-model-tag">
+            <i class="ti ti-file-shield" aria-hidden="true"></i>
+            <span id="model-label">Litigation</span> · <span class="mono" id="model-code">LIT</span>
+          </div>
+
+          <h1 class="pl-title">전처리 · 익명화</h1>
+          <p class="pl-desc">
+            원문과 실명은 <strong>이 사이트로 전송되지 않습니다.</strong>
+            아래 프롬프트를 사용자 본인의 AI에 넣어 원문을 라벨화한 뒤,
+            그 결과 중 <strong>BLOCK B·C만</strong> 다음 단계에서 붙여넣습니다.
+          </p>
+
+          <!-- 모델 선택 (SPEC 진행바 1단계) -->
+          <div class="pl-scope-tags" style="margin-top:18px" role="group" aria-label="분석 모델 선택">
+            <label class="pl-scope-tag"><input type="radio" name="model" value="lit" /> Litigation · 소송</label>
+            <label class="pl-scope-tag"><input type="radio" name="model" value="sns" /> SNS · 논쟁</label>
+            <label class="pl-scope-tag"><input type="radio" name="model" value="spk" /> Speaker · 공인 발언</label>
+          </div>
+
+          <!-- 3단계 안내 -->
+          <div class="pl-steps-num">
+            <div class="pl-card">
+              <div>
+                <h3>사용하는 AI에 원문 + 프롬프트를 함께 넣기</h3>
+                <p>서면·대화 원문 전체와 아래 프롬프트를 함께 입력합니다.
+                권장: <strong>GPT-4급 · Claude · Gemini 이상.</strong> 그 미만 모델의 산출은 규격 미달일 수 있습니다.</p>
+              </div>
+            </div>
+            <div class="pl-card">
+              <div>
+                <h3>AI가 BLOCK A·B·C를 출력 → B·C만 사용</h3>
+                <p>AI는 세 블록을 출력합니다. 그중 <strong>BLOCK B(라벨화 본문)</strong>와
+                <strong>BLOCK C(익명 요약)</strong>만 다음 단계에 붙여넣습니다.</p>
+              </div>
+            </div>
+            <div class="pl-card is-danger">
+              <div>
+                <h3><i class="ti ti-alert-triangle" aria-hidden="true"></i> BLOCK A(실명↔라벨 표)는 제출 금지</h3>
+                <p>BLOCK A는 <strong>실명과 라벨을 잇는 매핑표</strong>입니다.
+                <strong>본인 기기에만 보관</strong>하세요. 실수로 제출하면 접수 필터가 <strong>자동 반려</strong>합니다.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- 프롬프트 복사 박스 -->
+          <div class="pl-prompt">
+            <div class="pl-prompt-head">
+              <h4 id="prompt-title">Litigation 전처리 프롬프트</h4>
+              <button class="pl-copy-btn" id="copy-prompt" type="button">
+                <i class="ti ti-copy" aria-hidden="true"></i> 복사
+              </button>
+            </div>
+            <div class="pl-prompt-body">
+              <span class="pl-prompt-hidden"><i class="ti ti-eye-off" aria-hidden="true"></i> 내용 비공개 · 복사만 가능</span>
+              <pre id="prompt-preview" aria-hidden="true"></pre>
+            </div>
+          </div>
+
+          <div class="pl-nav">
+            <a class="btn btn-outline" href="./slda.html">← 이용동의</a>
+            <a class="btn btn-primary" id="to-submit" href="./apply.html?m=lit">제출 단계로 →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <div class="footer-left">
+        <div class="footer-brand">소울스펙트럼 Soul Spectrum Inc.</div>
+        <div class="footer-meta">
+          SLDA · Semantic Logic Drift Analysis · 의미·논리 드리프트 분석<br />
+          (주)소울스펙트럼 · 사업자등록번호: 651-81-03691<br />
+          개인정보 보호책임자: 맹난영 · nanyoung@soulspectrum.kr<br />
+          soulspectrum.kr · © <span id="y"></span> Soul Spectrum Inc.
+        </div>
+      </div>
+      <div class="footer-right footer-cols">
+        <div class="footer-col">
+          <div class="footer-col-title">SLDA</div>
+          <a class="footer-link" href="./slda.html">소개</a>
+          <a class="footer-link" href="./preprocess.html">전처리</a>
+          <a class="footer-link" href="./status.html">접수 조회</a>
+          <a class="footer-link" href="./privacy.html">개인정보 처리방침</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="assets/slda-pipeline.js"></script>
+  <script>
+    (function () {
+      var $ = function (id) { return document.getElementById(id); };
+      $("y").textContent = new Date().getFullYear();
+
+      var flow = SLDA.getFlow();
+      var model = SLDA.modelFromUrl();
+      if (!new URLSearchParams(location.search).get("m") && flow.model) {
+        model = SLDA.resolveModel(flow.model);
+      }
+
+      function apply(model) {
+        SLDA.setFlow({ model: model.key });
+        SLDA.renderProgress("progress", { current: "preprocess" });
+        $("model-label").textContent = model.label;
+        $("model-code").textContent = model.code;
+        $("prompt-title").textContent = model.label + " 전처리 프롬프트";
+        // blur 미리보기 — 내용은 어차피 흐려지므로 앞부분만 노출
+        $("prompt-preview").textContent = SLDA.PROMPTS[model.key].slice(0, 900);
+        $("to-submit").setAttribute("href", "./apply.html?m=" + model.key);
+        var r = document.querySelector('input[name="model"][value="' + model.key + '"]');
+        if (r) r.checked = true;
+      }
+      apply(model);
+
+      document.querySelectorAll('input[name="model"]').forEach(function (el) {
+        el.addEventListener("change", function () { apply(SLDA.resolveModel(el.value)); });
+      });
+
+      $("copy-prompt").addEventListener("click", function () {
+        var m = SLDA.resolveModel((document.querySelector('input[name="model"]:checked') || {}).value || model.key);
+        SLDA.copyText(SLDA.PROMPTS[m.key], function (ok) {
+          var b = $("copy-prompt");
+          b.classList.add("is-done");
+          b.innerHTML = ok
+            ? '<i class="ti ti-check" aria-hidden="true"></i> 복사되었습니다'
+            : '<i class="ti ti-x" aria-hidden="true"></i> 복사 실패';
+          setTimeout(function () {
+            b.classList.remove("is-done");
+            b.innerHTML = '<i class="ti ti-copy" aria-hidden="true"></i> 복사';
+          }, 1600);
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
