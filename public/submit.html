@@ -7,7 +7,7 @@
   <meta name="theme-color" content="#036E8D" />
   <meta name="robots" content="noindex" />
   <title>제출 · 자동검수 | SLDA 신청</title>
-  <meta name="description" content="SLDA 분석 신청 — 제출 단계. 라벨화된 BLOCK B·C를 붙여넣고 클라이언트 프리체크를 거쳐 자동검수에 제출합니다. 실명은 서버로 전송되지 않습니다." />
+  <meta name="description" content="SLDA 분석 신청 — 제출 단계. AI가 정리한 본문·요약 파일을 올리면 브라우저에서 프리체크 후 자동검수에 제출합니다. 실명·원문은 서버로 전송되지 않습니다." />
 
   <link rel="stylesheet" href="assets/styles.css" />
   <link rel="stylesheet" href="assets/theme.css" />
@@ -68,37 +68,54 @@
             </div>
             <h1 class="pl-title">제출 · 자동검수</h1>
             <p class="pl-desc">
-              라벨화된 <strong>BLOCK B·C</strong>를 붙여넣으세요.
-              붙여넣는 즉시 <strong>이 브라우저 안에서</strong> 식별자 잔존을 검사합니다.
+              전처리에서 <strong>AI가 정리한 결과 파일 2개</strong>(본문·요약 md)를 올리세요.
+              파일은 <strong>이 브라우저 안에서만</strong> 검사되고, 통과분만 접수됩니다.
               실명·원문은 서버로 전송되지 않습니다.
             </p>
 
             <!-- 선택 요약 -->
             <div class="pl-summary-badges" id="summary"></div>
 
-            <!-- BLOCK B -->
+            <!-- ① 본문 파일 (내부: BLOCK B) -->
             <div class="pl-card">
-              <h3>BLOCK B — 라벨화 본문</h3>
-              <p>전처리 AI가 출력한 BLOCK B를 그대로 붙여넣으세요.</p>
-              <textarea class="pl-block" id="block-b" placeholder="[준비서면 · 2026.03.14]&#10;원고는 피고1에게 …" spellcheck="false"></textarea>
+              <h3>① 본문 파일 <span style="font-weight:400;opacity:.6">— AI가 라벨화한 본문 (내부: BLOCK B)</span></h3>
+              <p>전처리 AI가 저장한 <code>..._본문.md</code> 파일을 올리세요.</p>
+              <label class="pl-drop" id="drop-b">
+                <input type="file" id="file-b" accept=".md,.txt,text/plain,text/markdown" />
+                <span class="di"><i class="ti ti-file-text" aria-hidden="true"></i></span>
+                <b id="name-b">본문 md 파일을 끌어놓거나 클릭</b>
+                <p>.md · .txt · 서버로 전송되지 않습니다</p>
+              </label>
               <div id="badge-b"></div>
             </div>
 
-            <!-- BLOCK C -->
+            <!-- ② 요약 파일 (내부: BLOCK C) -->
             <div class="pl-card">
-              <h3>BLOCK C — 익명 요약</h3>
-              <p>BLOCK C를 그대로 붙여넣으면 아래에 메타 카드가 표시됩니다.</p>
-              <textarea class="pl-block" id="block-c" placeholder="DOC_COMPOSITION: …&#10;ENTITY_SCALE: …" spellcheck="false"></textarea>
+              <h3>② 요약 파일 <span style="font-weight:400;opacity:.6">— AI가 만든 익명 요약 (내부: BLOCK C)</span></h3>
+              <p>전처리 AI가 저장한 <code>..._요약.md</code> 파일을 올리면 아래에 메타 카드가 표시됩니다.</p>
+              <label class="pl-drop" id="drop-c">
+                <input type="file" id="file-c" accept=".md,.txt,text/plain,text/markdown" />
+                <span class="di"><i class="ti ti-file-analytics" aria-hidden="true"></i></span>
+                <b id="name-c">요약 md 파일을 끌어놓거나 클릭</b>
+                <p>.md · .txt · 서버로 전송되지 않습니다</p>
+              </label>
               <div id="badge-c"></div>
               <div id="meta-cards"></div>
               <div id="balance-banner"></div>
             </div>
 
+            <!-- 매핑표 금지 (내부: BLOCK A) -->
+            <div class="pl-card is-danger">
+              <h3><i class="ti ti-alert-triangle" aria-hidden="true"></i> 실명↔라벨 표 파일은 올리지 마세요</h3>
+              <p>AI가 함께 만든 <strong>실명↔라벨 매핑표</strong>는 <strong>본인 기기에만</strong> 두세요.
+              실수로 올리면 <strong>자동 반려</strong>됩니다.</p>
+            </div>
+
             <!-- SubmitGate -->
             <label class="pl-gate-warrant">
               <input type="checkbox" id="warrant" />
-              <span id="warrant-text">제출하는 BLOCK B·C는 <strong>전처리 프롬프트로 라벨화·마스킹을 완료</strong>했으며,
-              실명·매핑(BLOCK A)이 포함되지 않았음을 <strong>위탁자로서 보증</strong>합니다.</span>
+              <span id="warrant-text">제출하는 본문·요약 파일은 <strong>전처리 프롬프트로 라벨화·마스킹을 완료</strong>했으며,
+              실명·매핑표가 포함되지 않았음을 <strong>위탁자로서 보증</strong>합니다.</span>
             </label>
 
             <button class="pl-gate-btn" id="gate-btn" type="button" disabled>
@@ -185,11 +202,11 @@
       // 위탁자 보증 문구 — 모델별 (SPEC §11.6)
       var WARRANT = {
         lit: '본인은 <strong>당사자 또는 정당한 대리인</strong>이며, <strong>소송수행 목적의 분석을 위탁</strong>함을 확인합니다. ' +
-             '제출하는 BLOCK B·C는 전처리 프롬프트로 라벨화·마스킹을 완료했고 실명·매핑(BLOCK A)이 포함되지 않았습니다.',
-        sns: '제출하는 BLOCK B·C는 <strong>양측 대칭</strong>을 갖췄고 전처리 프롬프트로 라벨화·마스킹을 완료했으며, ' +
-             '사인 실명·매핑(BLOCK A)이 포함되지 않았음을 <strong>위탁자로서 보증</strong>합니다.',
-        spk: '대상은 <strong>공인의 공개 발언</strong>이며, 제출하는 BLOCK B·C는 전처리 프롬프트로 라벨화·마스킹을 완료했고 ' +
-             '사인 실명·매핑(BLOCK A)이 포함되지 않았음을 <strong>위탁자로서 보증</strong>합니다.'
+             '제출하는 본문·요약 파일은 전처리 프롬프트로 라벨화·마스킹을 완료했고 실명·매핑표가 포함되지 않았습니다.',
+        sns: '제출하는 본문·요약 파일은 <strong>양측 대칭</strong>을 갖췄고 전처리 프롬프트로 라벨화·마스킹을 완료했으며, ' +
+             '사인 실명·매핑표가 포함되지 않았음을 <strong>위탁자로서 보증</strong>합니다.',
+        spk: '대상은 <strong>공인의 공개 발언</strong>이며, 제출하는 본문·요약 파일은 전처리 프롬프트로 라벨화·마스킹을 완료했고 ' +
+             '사인 실명·매핑표가 포함되지 않았음을 <strong>위탁자로서 보증</strong>합니다.'
       };
       $("warrant-text").innerHTML = WARRANT[model.key] || WARRANT.lit;
 
@@ -210,33 +227,35 @@
         $("summary").innerHTML = badges.join("");
       })();
 
-      var blockB = $("block-b"), blockC = $("block-c"), warrant = $("warrant");
+      // 업로드 파일 내용 — 브라우저 안에서만 보관, 서버 미전송 (내부: BLOCK B/C)
+      var contentB = "", contentC = "";
+      var warrant = $("warrant");
 
       function badgeFor(mount, scan, hasText) {
         var el = $(mount);
-        if (!hasText) { el.innerHTML = '<span class="pl-check-badge idle"><i class="ti ti-minus"></i> 미입력</span>'; return; }
+        if (!hasText) { el.innerHTML = '<span class="pl-check-badge idle"><i class="ti ti-minus"></i> 미업로드</span>'; return; }
         var chips = "";
         var html;
         if (scan.clean && !scan.soft.length && !scan.nameResidueWarn) {
           html = '<span class="pl-check-badge ok"><i class="ti ti-check"></i> 식별자 잔존 0 · 통과</span>';
         } else {
-          html = '<span class="pl-check-badge bad"><i class="ti ti-alert-triangle"></i> 식별자 4종 잔존 ' + scan.hardCount + '</span>';
+          html = '<span class="pl-check-badge bad"><i class="ti ti-alert-triangle"></i> 식별자 잔존 ' + scan.hardCount + '</span>';
         }
         scan.hard.forEach(function (h) { chips += '<span class="pl-check-chip">' + SLDA.escapeHtml(h.type) + ' ' + h.count + '</span>'; });
-        if (scan.blockA) chips += '<span class="pl-check-chip">BLOCK A 형태 감지</span>';
+        if (scan.blockA) chips += '<span class="pl-check-chip">매핑표(실명↔라벨) 형태 감지</span>';
         scan.soft.forEach(function (h) { chips += '<span class="pl-check-chip warn">' + SLDA.escapeHtml(h.type) + ' ' + h.count + ' · 경고</span>'; });
         if (scan.nameResidueWarn) chips += '<span class="pl-check-chip warn">미라벨 인명 의심 · 경고</span>';
         el.innerHTML = html + (chips ? '<div class="pl-check-detail">' + chips + '</div>' : "");
       }
 
       function renderMeta() {
-        var text = blockC.value;
+        var text = contentC;
         var parsed = SLDA.parseBlockC(text, model);
         var host = $("meta-cards"), banner = $("balance-banner");
         if (!text.trim()) { host.innerHTML = ""; banner.innerHTML = ""; return parsed; }
         if (!parsed.ok) {
           host.innerHTML = '<div class="pl-banner danger"><span class="pl-banner-tag">형식</span>' +
-            'BLOCK C 형식이 올바르지 않습니다. AI 출력을 그대로 붙여넣으세요.</div>';
+            '요약 파일 형식이 올바르지 않습니다. AI 출력을 그대로 저장해 올리세요.</div>';
           banner.innerHTML = ""; return parsed;
         }
         var f = parsed.fields;
@@ -265,9 +284,9 @@
       }
 
       function refresh() {
-        var g = SLDA.evalGate({ model: model.key, blockB: blockB.value, blockC: blockC.value, warranted: warrant.checked });
-        badgeFor("badge-b", g.scanB, !!blockB.value.trim());
-        badgeFor("badge-c", g.scanC, !!blockC.value.trim());
+        var g = SLDA.evalGate({ model: model.key, blockB: contentB, blockC: contentC, warranted: warrant.checked });
+        badgeFor("badge-b", g.scanB, !!contentB.trim());
+        badgeFor("badge-c", g.scanC, !!contentC.trim());
         renderMeta();
 
         $("gate-reasons").innerHTML = g.reasons.map(function (r) {
@@ -283,14 +302,28 @@
           : '<i class="ti ti-lock" aria-hidden="true"></i> 자동검수로 제출';
       }
 
-      blockB.addEventListener("input", refresh);
-      blockC.addEventListener("input", refresh);
+      // ── 파일 업로드 (브라우저 전용, 서버 미전송 · .md·.txt 만) ──
+      function okExt(name) { return /\.(md|txt)$/i.test(name); }
+      function wireDrop(inputId, dropId, nameId, setter) {
+        var input = $(inputId), drop = $(dropId), nameEl = $(nameId);
+        function take(file) {
+          if (!file) return;
+          if (!okExt(file.name)) { SLDA.toast(".md · .txt 파일만 올릴 수 있습니다"); return; }
+          file.text().then(function (t) { setter(t); nameEl.textContent = file.name; refresh(); });
+        }
+        input.addEventListener("change", function (e) { take(e.target.files && e.target.files[0]); });
+        ["dragenter", "dragover"].forEach(function (ev) { drop.addEventListener(ev, function (e) { e.preventDefault(); drop.classList.add("drag"); }); });
+        ["dragleave", "drop"].forEach(function (ev) { drop.addEventListener(ev, function (e) { e.preventDefault(); drop.classList.remove("drag"); }); });
+        drop.addEventListener("drop", function (e) { take(e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files[0]); });
+      }
+      wireDrop("file-b", "drop-b", "name-b", function (t) { contentB = t; });
+      wireDrop("file-c", "drop-c", "name-c", function (t) { contentC = t; });
       warrant.addEventListener("change", refresh);
       refresh();
 
       // 제출 → 검수 (SPEC §3.3 → §3.4/§3.5)
       $("gate-btn").addEventListener("click", function () {
-        var state = { model: model.key, stance: flow.stance || "전체", blockB: blockB.value, blockC: blockC.value };
+        var state = { model: model.key, stance: flow.stance || "전체", blockB: contentB, blockC: contentC };
         var review = SLDA.reviewSubmission(state);
 
         if (!review.ok) {
@@ -321,8 +354,8 @@
         SLDA.submit(state, function (err, res) {
           SLDA.setFlow({
             receiptNo: res.ref,
-            metaSummary: SLDA.parseBlockC(blockC.value, model).fields,
-            docCount: (SLDA.parseBlockC(blockC.value, model).fields[model.cKeys[0]] || "").replace(/[^0-9]/g, "") || null
+            metaSummary: SLDA.parseBlockC(contentC, model).fields,
+            docCount: (SLDA.parseBlockC(contentC, model).fields[model.cKeys[0]] || "").replace(/[^0-9]/g, "") || null
           });
           location.href = "./receipt.html?m=" + model.key;
         });

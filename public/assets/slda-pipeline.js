@@ -566,8 +566,8 @@
     var warranted = !!state.warranted;
 
     var reasons = [
-      { key: "blocks", label: "BLOCK B · C 붙여넣기", met: hasBlocks },
-      { key: "precheck", label: "프리체크 통과 (식별자 잔존 0 · BLOCK A 미감지)", met: hasBlocks && precheckOk },
+      { key: "blocks", label: "본문·요약 파일 업로드", met: hasBlocks },
+      { key: "precheck", label: "프리체크 통과 (식별자 잔존 0 · 매핑표 미감지)", met: hasBlocks && precheckOk },
       { key: "warrant", label: "위탁자 보증 체크", met: warranted }
     ];
     return {
