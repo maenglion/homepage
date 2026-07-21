@@ -654,6 +654,28 @@
   }
 
   /* -----------------------------------------------------------
+     10.5 프롬프트 발급 (§7·§14) — 1단 프롬프트를 서버에서 발급받는다.
+     slda-issue-prompt Edge Function 우선. 미도달 시 임베드 PROMPTS 폴백(오프라인 내성).
+     반환은 Promise<string>. 모델당 1회 캐시.
+     ----------------------------------------------------------- */
+  var _promptCache = {};
+  function issuePrompt(model) {
+    var key = resolveModel(model).key;
+    var fallback = PROMPTS[key];
+    if (_promptCache[key]) return Promise.resolve(_promptCache[key]);
+    if (typeof fetch !== "function") return Promise.resolve(fallback);
+    var url = SUPABASE_URL + "/functions/v1/slda-issue-prompt?m=" + key;
+    return fetch(url, { headers: { apikey: SUPABASE_KEY, Authorization: "Bearer " + SUPABASE_KEY } })
+      .then(function (r) { if (!r.ok) throw new Error("issue " + r.status); return r.json(); })
+      .then(function (d) {
+        if (!d || !d.prompt) throw new Error("empty");
+        _promptCache[key] = d.prompt;
+        return d.prompt;
+      })
+      .catch(function () { return fallback; });
+  }
+
+  /* -----------------------------------------------------------
      11. 상태 저장 — 페이지 간 flow 상태 (sessionStorage)
      BLOCK A(실명 매핑)는 절대 저장하지 않는다. B·C는 이미 라벨화된 것.
      ----------------------------------------------------------- */
@@ -811,6 +833,7 @@
     parseUploadName: parseUploadName,
     mergeDocs: mergeDocs,
     makeReceiptNo: makeReceiptNo,
+    issuePrompt: issuePrompt,
     submit: submit,
     getFlow: getFlow, setFlow: setFlow, clearFlow: clearFlow,
     copyText: copyText, toast: toast,

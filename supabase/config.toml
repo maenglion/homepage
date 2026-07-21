@@ -1,2 +1,10 @@
 [functions.purge]
 verify_jwt = true
+
+# §7·§14 — 1단 전처리 프롬프트 발급(공개: 브라우저 anon 호출)
+[functions.slda-issue-prompt]
+verify_jwt = false
+
+# §14.2 — 2단 정규화(비공개: service-role 전용, 프론트 노출 금지)
+[functions.slda-normalize]
+verify_jwt = true
