@@ -7,7 +7,7 @@
   <meta name="theme-color" content="#036E8D" />
   <meta name="robots" content="noindex" />
   <title>전처리 · 익명화 | SLDA 신청</title>
-  <meta name="description" content="SLDA 분석 신청 — 전처리 단계. 원문·실명은 이 사이트로 전송되지 않습니다. 사용자 AI로 라벨화한 뒤 BLOCK B·C만 제출합니다." />
+  <meta name="description" content="SLDA 분석 신청 — 전처리 단계. 파일은 브라우저 안에서만 합쳐지고 사이트로 전송되지 않습니다. 합친 자료를 사용자 AI에 넣어 라벨화한 결과만 제출합니다." />
 
   <link rel="stylesheet" href="assets/styles.css" />
   <link rel="stylesheet" href="assets/theme.css" />
@@ -68,49 +68,79 @@
           <h1 class="pl-title">전처리 · 익명화</h1>
           <p class="pl-desc">
             원문과 실명은 <strong>이 사이트로 전송되지 않습니다.</strong>
-            아래 프롬프트를 사용자 본인의 AI에 넣어 원문을 라벨화한 뒤,
-            그 결과 중 <strong>BLOCK B·C만</strong> 다음 단계에서 붙여넣습니다.
+            파일은 <strong>이 브라우저 안에서만</strong> 하나로 합쳐집니다.
+            합친 자료를 사용자 본인의 AI에 넣어 정리한 결과만 다음 단계에서 제출합니다.
           </p>
 
-          <!-- 모델 선택 (SPEC 진행바 1단계) -->
+          <!-- 모델 선택 -->
           <div class="pl-scope-tags" style="margin-top:18px" role="group" aria-label="분석 모델 선택">
-            <label class="pl-scope-tag"><input type="radio" name="model" value="lit" /> Litigation · 소송</label>
-            <label class="pl-scope-tag"><input type="radio" name="model" value="sns" /> SNS · 논쟁</label>
-            <label class="pl-scope-tag"><input type="radio" name="model" value="spk" /> Speaker · 공인 발언</label>
+            <label class="pl-scope-tag"><input type="radio" name="model" value="lit" /> 소송 Litigation</label>
+            <label class="pl-scope-tag"><input type="radio" name="model" value="sns" /> 논쟁 SNS</label>
+            <label class="pl-scope-tag"><input type="radio" name="model" value="spk" /> 발화 Speaker</label>
           </div>
 
-          <!-- 3단계 안내 -->
-          <div class="pl-steps-num">
-            <div class="pl-card">
-              <div>
-                <h3>사용하는 AI에 원문 + 프롬프트를 함께 넣기</h3>
-                <p>서면·대화 원문 전체와 아래 프롬프트를 함께 입력합니다.
-                권장: <strong>GPT-4급 · Claude · Gemini 이상.</strong> 그 미만 모델의 산출은 규격 미달일 수 있습니다.</p>
-              </div>
-            </div>
-            <div class="pl-card">
-              <div>
-                <h3>AI가 BLOCK A·B·C를 출력 → B·C만 사용</h3>
-                <p>AI는 세 블록을 출력합니다. 그중 <strong>BLOCK B(라벨화 본문)</strong>와
-                <strong>BLOCK C(익명 요약)</strong>만 다음 단계에 붙여넣습니다.</p>
-              </div>
-            </div>
-            <div class="pl-card is-danger">
-              <div>
-                <h3><i class="ti ti-alert-triangle" aria-hidden="true"></i> BLOCK A(실명↔라벨 표)는 제출 금지</h3>
-                <p>BLOCK A는 <strong>실명과 라벨을 잇는 매핑표</strong>입니다.
-                <strong>본인 기기에만 보관</strong>하세요. 실수로 제출하면 접수 필터가 <strong>자동 반려</strong>합니다.</p>
+          <!-- ① 전처리가 뭔가요 -->
+          <div class="pl-card">
+            <h3>① 전처리가 뭔가요?</h3>
+            <p>원문 대신 <strong>이름을 지운(라벨로 바꾼) 자료</strong>를 넣는 과정입니다.
+            상대방의 개인정보를 보호하고, <strong>우리가 원문을 아예 받지 않기 위해서</strong>입니다.
+            어려운 작업은 사용자의 AI가 자동으로 하고, 여기서는 <strong>파일을 올리기만</strong> 하면 됩니다.</p>
+          </div>
+
+          <!-- ② 파일명 규칙 -->
+          <div class="pl-card">
+            <h3>② 파일 이름은 이렇게 지어주세요</h3>
+            <p id="name-rule-desc">날짜가 이름에 있으면 <strong>자동으로 시간순 정렬</strong>됩니다. (형식: <code id="name-fmt"></code>)</p>
+            <div class="pl-scope-tags" id="name-examples"></div>
+            <p class="pl-desc" style="font-size:0.82rem;margin-top:8px">
+              이름의 '주체'는 <strong>지위 라벨</strong>(원고·피고·단체방 등)이라 실명이 드러나지 않습니다.
+              형식을 못 맞춰도 올릴 수 있고, 그 파일은 <strong>올린 순서대로</strong> 뒤에 붙습니다.
+            </p>
+          </div>
+
+          <!-- ③ 파일 올리기 → 병합 -->
+          <div class="pl-card">
+            <h3>③ 파일 올리기 <span style="font-weight:400;opacity:.6">— .md · .txt · 여러 개</span></h3>
+            <label class="pl-drop" id="drop">
+              <input type="file" id="files" accept=".md,.txt,text/plain,text/markdown" multiple />
+              <span class="di"><i class="ti ti-upload" aria-hidden="true"></i></span>
+              <b>여기로 파일을 끌어놓거나 클릭해서 선택</b>
+              <p>브라우저 안에서만 합쳐집니다 · 파일은 서버로 전송되지 않습니다</p>
+            </label>
+            <div class="pl-filelist" id="filelist"></div>
+
+            <div id="merged-wrap" style="display:none;margin-top:14px">
+              <label class="pl-meta-k" style="display:block;margin-bottom:6px">합쳐진 자료 미리보기</label>
+              <textarea class="pl-merged" id="merged" spellcheck="false" readonly></textarea>
+              <div class="pl-copy-row">
+                <button class="pl-copy-btn" id="copy-merged" type="button"><i class="ti ti-copy"></i> 합친 자료만 복사</button>
+                <button class="pl-copy-btn" id="copy-both" type="button" style="background:var(--pl-accent)"><i class="ti ti-wand"></i> 프롬프트 + 내 자료 함께 복사</button>
               </div>
             </div>
           </div>
 
-          <!-- 프롬프트 복사 박스 -->
+          <!-- ④ 비텍스트 안내 -->
+          <div class="pl-card is-warn">
+            <h3><i class="ti ti-photo" aria-hidden="true"></i> ④ 사진·이모티콘은 '보이는 대로' 적어주세요</h3>
+            <p>SLDA는 글자만 읽습니다. 사진·이모티콘·스티커는 자동으로 담기지 않으니,
+            중요한 것은 <strong>파일 본문에 직접</strong> 적어주세요. 안 적으면 그 부분은 분석에서 빠집니다.</p>
+            <p style="margin-top:8px">
+              <code>[이미지: 홍콩 밋업 현장 사진 6장]</code><br />
+              <code>[이모티콘: 강아지가 "호엥" 하고 놀라는 큰 스티커]</code>
+            </p>
+            <p><strong>무슨 뜻인지(비꼼·농담 등)는 쓰지 마세요.</strong> 외형만 적으면 됩니다 — 의미 판정은 SLDA가 합니다.</p>
+          </div>
+
+          <!-- ⑤ 프롬프트 -->
+          <div class="pl-card">
+            <h3>⑤ 이 자료 + 프롬프트를 AI에 넣으세요</h3>
+            <p>위 '함께 복사'를 누른 뒤 사용하는 AI(권장: GPT-4급·Claude·Gemini 이상)에 붙여넣으세요.
+            AI가 <strong>정리해준 결과(본문·요약)</strong>를 다음 단계에서 붙여넣습니다.</p>
+          </div>
           <div class="pl-prompt">
             <div class="pl-prompt-head">
               <h4 id="prompt-title">Litigation 전처리 프롬프트</h4>
-              <button class="pl-copy-btn" id="copy-prompt" type="button">
-                <i class="ti ti-copy" aria-hidden="true"></i> 복사
-              </button>
+              <button class="pl-copy-btn" id="copy-prompt" type="button"><i class="ti ti-copy"></i> 프롬프트만 복사</button>
             </div>
             <div class="pl-prompt-body">
               <span class="pl-prompt-hidden"><i class="ti ti-eye-off" aria-hidden="true"></i> 내용 비공개 · 복사만 가능</span>
@@ -118,9 +148,16 @@
             </div>
           </div>
 
+          <!-- ⑥ danger: 실명↔라벨 표 제출 금지 -->
+          <div class="pl-card is-danger">
+            <h3><i class="ti ti-alert-triangle" aria-hidden="true"></i> ⑥ AI가 만든 '실명↔라벨 표'는 제출하지 마세요</h3>
+            <p>AI는 실명과 라벨을 잇는 <strong>매핑표</strong>도 함께 만듭니다. 이 표는 <strong>본인 기기에만</strong> 두세요.
+            다음 단계엔 <strong>정리된 본문·요약만</strong> 붙여넣습니다. 실수로 표를 넣으면 접수 필터가 자동 반려합니다.</p>
+          </div>
+
           <div class="pl-nav">
-            <a class="btn btn-outline" id="to-consent" href="./early-access.html">← 이용동의</a>
-            <a class="btn btn-primary" id="to-submit" href="./apply.html?m=lit">신청서로 →</a>
+            <a class="btn btn-outline" href="./early-access.html">← 이용동의</a>
+            <a class="btn btn-primary" id="to-submit" href="./submit.html?m=lit">제출 단계로 →</a>
           </div>
         </div>
       </div>
@@ -159,41 +196,105 @@
 
       var flow = SLDA.getFlow();
       var model = SLDA.modelFromUrl();
-      if (!new URLSearchParams(location.search).get("m") && flow.model) {
-        model = SLDA.resolveModel(flow.model);
-      }
+      if (!new URLSearchParams(location.search).get("m") && flow.model) model = SLDA.resolveModel(flow.model);
 
-      function apply(model) {
-        SLDA.setFlow({ model: model.key });
+      var NAME = {
+        lit: { fmt: "YYYYMMDD_주체_문서종류_차수.md", ex: ["20241024_원고_소장_1.md", "20250924_피고_준비서면_2.md"] },
+        sns: { fmt: "YYYYMMDD_HHMM_채널_주체.md", ex: ["20180406_1752_카톡_단체방.md", "20180408_2109_문자_상대.md"] },
+        spk: { fmt: "YYYYMMDD_HHMM_출처_화자.md", ex: ["20230501_1000_방송_공인.md", "20240115_1400_기고_공인.md"] }
+      };
+
+      var lastFiles = [];   // [{name, text}]
+
+      function apply(m) {
+        model = m;
+        SLDA.setFlow({ model: m.key });
         SLDA.renderProgress("progress", { current: "preprocess" });
-        $("model-label").textContent = model.label;
-        $("model-code").textContent = model.code;
-        $("prompt-title").textContent = model.label + " 전처리 프롬프트";
-        // blur 미리보기 — 내용은 어차피 흐려지므로 앞부분만 노출
-        $("prompt-preview").textContent = SLDA.PROMPTS[model.key].slice(0, 900);
-        $("to-submit").setAttribute("href", "./apply.html?m=" + model.key);
-        var r = document.querySelector('input[name="model"][value="' + model.key + '"]');
+        $("model-label").textContent = m.label;
+        $("model-code").textContent = m.code;
+        $("prompt-title").textContent = m.label + " 전처리 프롬프트";
+        $("prompt-preview").textContent = SLDA.PROMPTS[m.key].slice(0, 900);
+        $("to-submit").setAttribute("href", "./submit.html?m=" + m.key);
+        var nm = NAME[m.key];
+        $("name-fmt").textContent = nm.fmt;
+        $("name-examples").innerHTML = nm.ex.map(function (e) {
+          return '<span class="pl-scope-tag" style="cursor:default"><code style="font-size:.76rem">' + SLDA.escapeHtml(e) + '</code></span>';
+        }).join("");
+        var r = document.querySelector('input[name="model"][value="' + m.key + '"]');
         if (r) r.checked = true;
+        if (lastFiles.length) rebuild();   // 모델 바뀌면 헤더/정렬 재계산
       }
-      apply(model);
 
       document.querySelectorAll('input[name="model"]').forEach(function (el) {
         el.addEventListener("change", function () { apply(SLDA.resolveModel(el.value)); });
       });
+      apply(model);
 
-      $("copy-prompt").addEventListener("click", function () {
-        var m = SLDA.resolveModel((document.querySelector('input[name="model"]:checked') || {}).value || model.key);
-        SLDA.copyText(SLDA.PROMPTS[m.key], function (ok) {
-          var b = $("copy-prompt");
-          b.classList.add("is-done");
-          b.innerHTML = ok
-            ? '<i class="ti ti-check" aria-hidden="true"></i> 복사되었습니다'
-            : '<i class="ti ti-x" aria-hidden="true"></i> 복사 실패';
-          setTimeout(function () {
-            b.classList.remove("is-done");
-            b.innerHTML = '<i class="ti ti-copy" aria-hidden="true"></i> 복사';
-          }, 1600);
+      // ── 파일 읽기 (브라우저 전용, 서버 미전송) ──
+      function readFiles(fileList) {
+        var arr = [].slice.call(fileList);
+        return Promise.all(arr.map(function (f) {
+          return f.text().then(function (t) { return { name: f.name, text: t }; });
+        }));
+      }
+
+      function rebuild() {
+        var res = SLDA.mergeDocs(lastFiles, model);
+        // 파일 목록 (정렬·파싱 상태 표시)
+        $("filelist").innerHTML = lastFiles.map(function (f) {
+          var p = SLDA.parseUploadName(f.name, model);
+          return '<div class="pl-fileitem"><span class="fi-name">' + SLDA.escapeHtml(f.name) + '</span>' +
+                 '<span class="fi-tag ' + (p.ok ? "ok" : "bad") + '">' +
+                 (p.ok ? '자동 정렬됨' : '이름 형식 밖 · 순서대로') + '</span></div>';
+        }).join("");
+        // 미리보기
+        $("merged").value = res.merged;
+        $("merged-wrap").style.display = lastFiles.length ? "block" : "none";
+      }
+
+      $("files").addEventListener("change", function (e) {
+        if (!e.target.files || !e.target.files.length) return;
+        readFiles(e.target.files).then(function (items) {
+          lastFiles = items;
+          rebuild();
+          SLDA.toast(items.length + "개 파일을 브라우저에서 합쳤습니다");
         });
+      });
+
+      // drag & drop
+      var drop = $("drop");
+      ["dragenter", "dragover"].forEach(function (ev) {
+        drop.addEventListener(ev, function (e) { e.preventDefault(); drop.classList.add("drag"); });
+      });
+      ["dragleave", "drop"].forEach(function (ev) {
+        drop.addEventListener(ev, function (e) { e.preventDefault(); drop.classList.remove("drag"); });
+      });
+      drop.addEventListener("drop", function (e) {
+        var fs = e.dataTransfer && e.dataTransfer.files;
+        if (!fs || !fs.length) return;
+        readFiles(fs).then(function (items) { lastFiles = items; rebuild(); SLDA.toast(items.length + "개 파일을 합쳤습니다"); });
+      });
+
+      // ── 복사 ──
+      function copyBtn(btn, text, doneLabel) {
+        SLDA.copyText(text, function (ok) {
+          var orig = btn.innerHTML;
+          btn.classList.add("is-done");
+          btn.innerHTML = ok ? '<i class="ti ti-check"></i> ' + doneLabel : '<i class="ti ti-x"></i> 복사 실패';
+          setTimeout(function () { btn.classList.remove("is-done"); btn.innerHTML = orig; }, 1600);
+        });
+      }
+      $("copy-prompt").addEventListener("click", function () { copyBtn(this, SLDA.PROMPTS[model.key], "복사되었습니다"); });
+      $("copy-merged").addEventListener("click", function () {
+        if (!$("merged").value.trim()) return SLDA.toast("먼저 파일을 올리세요");
+        copyBtn(this, $("merged").value, "복사되었습니다");
+      });
+      $("copy-both").addEventListener("click", function () {
+        if (!$("merged").value.trim()) return SLDA.toast("먼저 파일을 올리세요");
+        var combined = SLDA.PROMPTS[model.key] +
+          "\n\n────────  아래는 내가 올린 자료입니다. 위 규격으로 처리하세요.  ────────\n\n" +
+          $("merged").value;
+        copyBtn(this, combined, "함께 복사되었습니다");
       });
     })();
   </script>

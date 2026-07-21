@@ -95,6 +95,10 @@
 "- 계좌: [계좌X·은행명]   (은행명 보존, 계좌번호 전체 미노출, 소유자 라벨 결합 금지)\n" +
 "- 법인: 소외회사N / 피고회사N\n" +
 "동일 인물·계좌 = 사건 전체 서면에 걸쳐 DETERMINISTIC 동일 라벨. 라벨 드리프트 금지.\n\n" +
+"## 1.5 파일명 파싱 · 자동 정렬 · 전원 라벨 (사용자 개입 없이 자동)\n" +
+"- 각 문서 첫 줄의 구분 헤더([주체 · 종류 · 날짜])에서 주체·날짜·차수를 추출해 시간순으로 정렬한다. 이미 정렬돼 있으면 유지한다.\n" +
+"- 등장인물을 전원 식별해 라벨을 배정한다. 발화·언급이 적은 인물도 제외하지 않고 모두 라벨을 부여해 등재한다. 채점 여부는 사람이 판정하므로 여기서 임계로 거르지 않는다.\n" +
+"- 채점 대상과 단순 언급 대상은 BLOCK C에 카운트로만 구분해 표시한다(실명·값 없음).\n\n" +
 "## 2. IDENTIFIER MASKING (자릿수 보존 별표)\n" +
 "정규식 식별자는 자릿수 1:1 별표, 구분자(하이픈) 유지:\n" +
 "- 주민등록번호/외국인등록번호: 13자리 전체 마스킹(생년월일 포함) → ******-*******\n" +
@@ -104,7 +108,8 @@
 "인명 형태(성1자+명1~2자)가 매핑에 없으면 §0에 따라 전처리 미완으로 처리하고 산출을 중단한다.\n\n" +
 "## 3. BLOCK B — LABELED CORPUS (제출용)\n" +
 "치환 완료 본문. 서면 단위로 구획, 각 구획 헤더에 [문서종류 · YYYY.MM.DD] 표기. 순서 = 원문 순서.\n" +
-"문장 단위 개행 유지. 표·수치는 라벨/별표 치환 후 원형 유지.\n\n" +
+"문장 단위 개행 유지. 표·수치는 라벨/별표 치환 후 원형 유지.\n" +
+"이미지·이모티콘·스티커는 [이미지: …] · [이모티콘: …] 형식의 외형 기술을 그대로 유지한다. 감정·의도로 재해석하지 않는다(외형만).\n\n" +
 "## 4. BLOCK C — ANONYMIZED HANDOFF NOTE (제출용, 실명 0)\n" +
 "아래 필드만. 실명·번호·주소 절대 미포함. 라벨·카운트·구간만.\n" +
 "이 블록이 존재한다는 것은 §0의 완전 마스킹 조건이 충족되었음을 의미한다.\n" +
@@ -144,6 +149,10 @@
 "- 계좌·연락처 등 식별자: 공인 여부와 무관하게 §2로 전부 마스킹\n" +
 "동일 화자·대상 = 스레드 전체에 걸쳐 DETERMINISTIC 동일 처리. 드리프트 금지.\n" +
 "공인/사인 판정이 불확실하면 사인으로 처리한다(보수적 익명화).\n\n" +
+"## 1.5 파일명 파싱 · 자동 정렬 · 전원 라벨 (사용자 개입 없이 자동)\n" +
+"- 각 발화 블록 첫 줄의 구분 헤더([채널 주체 · 날짜 시각])에서 채널·주체·날짜·시각을 추출해 시간순으로 정렬한다. 이미 정렬돼 있으면 유지한다.\n" +
+"- 등장 화자를 전원 식별해 라벨(화자A/화자B/공인N/사인N)을 배정한다. 발화가 적은 화자도 제외하지 않고 모두 등재한다. 채점 여부는 사람이 판정하므로 여기서 임계로 거르지 않는다.\n" +
+"- 채점 대상과 단순 언급 대상은 BLOCK C에 카운트로만 구분해 표시한다(사인 실명·값 없음).\n\n" +
 "## 2. IDENTIFIER MASKING (자릿수 보존 별표)\n" +
 "정규식 식별자는 공인·사인 불문 전부 마스킹. 자릿수 1:1 별표, 구분자 유지:\n" +
 "- 주민등록번호 13자리 전체 → ******-*******   전화 → ***-****-****\n" +
@@ -152,7 +161,8 @@
 "사인 인명·계정 형태가 매핑에 없으면 §0에 따라 전처리 미완으로 처리하고 산출을 중단한다.\n\n" +
 "## 3. BLOCK B — LABELED CORPUS (제출용)\n" +
 "치환 완료 본문. 발화 단위로 [화자 라벨 또는 공인 실명 · YYYY.MM.DD HH:MM] 헤더 부착. 순서 = 원문 순서.\n" +
-"스레드 구조(답글·인용) 유지. 표·수치는 라벨/별표 치환 후 원형 유지.\n\n" +
+"스레드 구조(답글·인용) 유지. 표·수치는 라벨/별표 치환 후 원형 유지.\n" +
+"이미지·이모티콘·스티커는 [이미지: …] · [이모티콘: …] 형식의 외형 기술을 그대로 유지한다. 감정·의도로 재해석하지 않는다(외형만).\n\n" +
 "## 4. BLOCK C — ANONYMIZED HANDOFF NOTE (제출용, 사인 실명 0)\n" +
 "아래 필드만. 사인 실명·계정명·번호 절대 미포함. 공인은 실명 대신 카운트로만 집계. 라벨·카운트·구간만.\n" +
 "이 블록이 존재한다는 것은 §0의 마스킹·대칭 조건이 충족되었음을 의미한다.\n" +
@@ -192,6 +202,10 @@
 "- 계좌·연락처 등 식별자: 공인 여부와 무관하게 §2로 전부 마스킹\n" +
 "동일 화자·대상 = 전체 자료에 걸쳐 DETERMINISTIC 동일 처리. 드리프트 금지.\n" +
 "공인/사인 판정이 불확실하면 사인으로 처리한다(보수적 익명화).\n\n" +
+"## 1.5 파일명 파싱 · 자동 정렬 · 전원 라벨 (사용자 개입 없이 자동)\n" +
+"- 각 발언 블록 첫 줄의 구분 헤더([화자 · 출처 · 날짜])에서 화자·출처·날짜를 추출해 시간순으로 정렬한다. 이미 정렬돼 있으면 유지한다.\n" +
+"- 대상 공인과 언급된 사인을 전원 식별해 처리한다. 언급이 적은 대상도 제외하지 않고 모두 등재한다. 채점 여부는 사람이 판정하므로 여기서 임계로 거르지 않는다.\n" +
+"- 채점 대상과 단순 언급 대상은 BLOCK C에 카운트로만 구분해 표시한다(사인 실명·값 없음).\n\n" +
 "## 2. IDENTIFIER MASKING (자릿수 보존 별표)\n" +
 "정규식 식별자는 공인·사인 불문 전부 마스킹. 자릿수 1:1 별표, 구분자 유지:\n" +
 "- 주민등록번호 13자리 전체 → ******-*******   전화 → ***-****-****\n" +
@@ -199,7 +213,8 @@
 "사인 인명·계정 형태가 매핑에 없으면 §0에 따라 전처리 미완으로 처리하고 산출을 중단한다.\n\n" +
 "## 3. BLOCK B — LABELED CORPUS (제출용)\n" +
 "치환 완료 본문. 발언 단위로 [화자 실명 · 출처 · YYYY.MM.DD] 헤더 부착. 순서 = 시간순.\n" +
-"동일 화자 발언은 시점 오름차순으로 그룹화. 표·수치는 라벨/별표 치환 후 원형 유지.\n\n" +
+"동일 화자 발언은 시점 오름차순으로 그룹화. 표·수치는 라벨/별표 치환 후 원형 유지.\n" +
+"이미지·이모티콘·스티커는 [이미지: …] · [이모티콘: …] 형식의 외형 기술을 그대로 유지한다. 감정·의도로 재해석하지 않는다(외형만).\n\n" +
 "## 4. BLOCK C — ANONYMIZED HANDOFF NOTE (제출용, 사인 실명 0)\n" +
 "아래 필드만. 사인 실명·번호 절대 미포함. 대상 공인은 카운트로만 집계. 라벨·카운트·구간만.\n" +
 "이 블록이 존재한다는 것은 §0의 공인 게이트·화자 동일성·마스킹 조건이 충족되었음을 의미한다.\n" +
@@ -699,6 +714,60 @@
   }
 
   /* -----------------------------------------------------------
+     13. 파일 업로드·병합 (SPEC §13) — 브라우저 전용
+     파일은 서버로 전송되지 않는다(FileReader). 파일명 규칙으로 자동 정렬·헤더 삽입.
+     파일명 규칙:
+       소송(lit):         YYYYMMDD_주체_문서종류_차수.md
+       논쟁·발화(sns/spk): YYYYMMDD_HHMM_채널_주체.md
+     ----------------------------------------------------------- */
+  function fmtDot(d) { return d.slice(0, 4) + "." + d.slice(4, 6) + "." + d.slice(6, 8); }
+
+  function parseUploadName(name, model) {
+    var base = String(name || "").replace(/\.[^.]+$/, "");
+    var parts = base.split("_");
+    var m = resolveModel(model);
+    var isChat = (m.key === "sns" || m.key === "spk");
+    var out = { name: name, ok: false, ts: 0, header: null };
+    var d = (parts[0] && /^\d{8}$/.test(parts[0])) ? parts[0] : null;
+    if (!d) return out;
+
+    if (isChat) {
+      // YYYYMMDD_HHMM_채널_주체
+      var t = (parts[1] && /^\d{3,4}$/.test(parts[1])) ? parts[1].padStart(4, "0") : null;
+      if (!t) return out;
+      var chan = parts[2] || "", subj = parts.slice(3).join("_") || "";
+      out.ok = true;
+      out.ts = Number(d) * 10000 + Number(t);
+      out.header = "[" + [chan, subj].filter(Boolean).join(" ") + " · " +
+                   fmtDot(d) + " " + t.slice(0, 2) + ":" + t.slice(2) + "]";
+    } else {
+      // YYYYMMDD_주체_문서종류_차수
+      var subj2 = parts[1] || "", kind = parts[2] || "", seq = parts[3] || "";
+      out.ok = true;
+      out.ts = Number(d) * 10000 + (parseInt(seq, 10) || 0);
+      out.header = "[" + [subj2, kind].filter(Boolean).join(" · ") + " · " +
+                   fmtDot(d) + (seq ? (" · " + seq + "차") : "") + "]";
+    }
+    return out;
+  }
+
+  // items: [{name, text}] → { merged, count, unparsed:[names] }
+  function mergeDocs(items, model) {
+    var parsed = (items || []).map(function (it) {
+      return { p: parseUploadName(it.name, model), text: it.text || "", name: it.name };
+    });
+    var ok = parsed.filter(function (x) { return x.p.ok; })
+                   .sort(function (a, b) { return a.p.ts - b.p.ts; });
+    var bad = parsed.filter(function (x) { return !x.p.ok; });   // 파싱 실패분은 업로드 순서 유지, 뒤로
+    var ordered = ok.concat(bad);
+    var merged = ordered.map(function (x) {
+      var header = x.p.ok ? x.p.header : ("[" + x.name + "]");
+      return header + "\n" + x.text.trim();
+    }).join("\n\n");
+    return { merged: merged, count: ordered.length, unparsed: bad.map(function (x) { return x.name; }) };
+  }
+
+  /* -----------------------------------------------------------
      노출
      ----------------------------------------------------------- */
   global.SLDA = {
@@ -721,6 +790,8 @@
     renderRejectCard: renderRejectCard,
     evalGate: evalGate,
     buildFilename: buildFilename,
+    parseUploadName: parseUploadName,
+    mergeDocs: mergeDocs,
     makeReceiptNo: makeReceiptNo,
     submit: submit,
     getFlow: getFlow, setFlow: setFlow, clearFlow: clearFlow,

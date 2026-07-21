@@ -686,3 +686,35 @@
   font-family:var(--mono); font-size:.74rem; color:var(--text-muted); }
 .drift-chip b { color:var(--pl-accent); font-weight:700; }
 .drift-note { font-size:.78rem; color:var(--text-dim); margin-top:14px; padding-left:2px; }
+
+/* ============================================================
+   11. 파일 업로드·병합 (SPEC §13) — preprocess.html
+   ============================================================ */
+.pl-drop {
+  border:2px dashed var(--border-strong); border-radius:12px;
+  padding:28px 20px; text-align:center; background:var(--bg-soft);
+  cursor:pointer; transition:border-color .15s ease, background .15s ease;
+}
+.pl-drop.drag { border-color:var(--pl-accent); background:rgba(3,110,141,.07); }
+.pl-drop input[type=file] { display:none; }
+.pl-drop .di { font-size:1.7rem; color:var(--pl-accent); line-height:1; }
+.pl-drop b { display:block; margin-top:10px; font-size:.94rem; color:var(--text); }
+.pl-drop p { margin:4px 0 0; font-size:.82rem; color:var(--text-muted); }
+
+.pl-filelist { display:grid; gap:6px; margin:12px 0 0; }
+.pl-fileitem {
+  display:flex; align-items:center; justify-content:space-between; gap:10px;
+  padding:9px 13px; border:1px solid var(--border); border-radius:8px;
+  font-family:var(--mono); font-size:.78rem; color:var(--text-muted);
+}
+.pl-fileitem .fi-name { overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+.pl-fileitem .fi-tag { flex-shrink:0; font-weight:700; }
+.pl-fileitem .fi-tag.ok  { color:var(--ok-fg); }
+.pl-fileitem .fi-tag.bad { color:var(--warn-fg); }
+
+.pl-merged {
+  width:100%; min-height:160px; padding:14px 16px; box-sizing:border-box;
+  font-family:var(--mono); font-size:.78rem; line-height:1.65; color:var(--text);
+  background:var(--bg-card); border:1px solid var(--border); border-radius:8px; resize:vertical;
+}
+.pl-copy-row { display:flex; flex-wrap:wrap; gap:8px; margin-top:12px; }
