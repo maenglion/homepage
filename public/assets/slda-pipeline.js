@@ -599,13 +599,24 @@
      10. 접수 — Supabase 기록 (라벨화 결과만 전송)
      서버 함수가 없으면 로컬 데모 접수번호를 발급한다(Early Access 테스트).
      ----------------------------------------------------------- */
+  // SPEC §8 — 조회 키는 64비트 난수(추측 불가). 순번 포맷 금지(인접 접수 추측·열람 방지).
+  // 표시 = 모델 접두어 + 난수 16 hex. 예: LIT-a3f9c2e1b4d5f6a7
+  function randomHex(bytes) {
+    var c = global.crypto || global.msCrypto;
+    if (c && c.getRandomValues) {
+      var arr = new Uint8Array(bytes);
+      c.getRandomValues(arr);
+      var out = "";
+      for (var i = 0; i < arr.length; i++) out += ("0" + arr[i].toString(16)).slice(-2);
+      return out;
+    }
+    // 안전 폴백(암호학적 아님) — 서버 RPC가 실제 난수를 발급하므로 로컬 데모 한정
+    var s = "";
+    for (var j = 0; j < bytes * 2; j++) s += "0123456789abcdef"[Math.floor(Math.random() * 16)];
+    return s;
+  }
   function makeReceiptNo(model) {
-    var code = resolveModel(model).code;
-    var d = new Date();
-    var yy = String(d.getFullYear()).slice(2);
-    var stamp = yy + pad2(d.getMonth() + 1) + pad2(d.getDate());
-    var seq = String(Math.floor(1000 + (d.getHours() * 60 + d.getMinutes()) % 9000)).slice(0, 4);
-    return code + "-" + stamp + "-" + seq;
+    return resolveModel(model).code + "-" + randomHex(8);
   }
 
   function submit(state, cb) {

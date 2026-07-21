@@ -263,7 +263,8 @@
           card("서면 수", f[model.cKeys[0]] || "—"),
           card("엔티티 · 스케일", f[model.cKeys[1]] || "—"),
           card("시간축 (확정/추정)", f["TIMELINE_CONFIDENCE"] || "—"),
-          card("표본축 · " + parsed.balance.field, parsed.balance.raw || "—")
+          // SPEC §15.4 — 표본축은 서버 정규화(2단)가 채우는 필드. 부재를 결함으로 보지 않는다.
+          card("표본축 · " + parsed.balance.field, parsed.balance.raw || "정규화 단계에서 채워집니다")
         ];
         host.innerHTML = '<div class="pl-meta-grid">' + cards.join("") + '</div>';
 

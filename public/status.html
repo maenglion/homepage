@@ -150,7 +150,8 @@
     }
 
     // 파이프라인 접수번호 (LIT/SNS/SPK-YYMMDD-SEQ) 여부
-    function isPipelineRef(ref) { return /^(LIT|SNS|SPK)-\d{6}-\d{3,4}$/.test(ref); }
+    // SPEC §8 — 64비트 난수 조회키(모델 접두어 + 16 hex). 구 순번 포맷도 하위호환 허용.
+    function isPipelineRef(ref) { return /^(LIT|SNS|SPK)-([0-9a-f]{16}|\d{6}-\d{3,4})$/i.test(ref); }
 
     const PL_STATE = {
       received:  { cls: "received",  label: "접수됨",  ic: "clock",        desc: "자동검수 통과 · 대기 · 최대 3영업일" },
