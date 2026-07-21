@@ -153,7 +153,7 @@
     function isPipelineRef(ref) { return /^(LIT|SNS|SPK)-\d{6}-\d{3,4}$/.test(ref); }
 
     const PL_STATE = {
-      received:  { cls: "received",  label: "접수됨",  ic: "clock",        desc: "검수 통과 · 대기 · 최대 3영업일" },
+      received:  { cls: "received",  label: "접수됨",  ic: "clock",        desc: "자동검수 통과 · 대기 · 최대 3영업일" },
       analyzing: { cls: "analyzing", label: "분석중",  ic: "loader-2",     desc: "SLDA 처리 · 검토 진행 중" },
       done:      { cls: "done",      label: "완료",    ic: "circle-check", desc: "보고서 다운로드 · 게시 후 2주 자동 파기" },
       rejected:  { cls: "rejected",  label: "파기됨",  ic: "file-x",       desc: "동일 번호로 사유코드를 재조회할 수 있습니다" }

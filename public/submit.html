@@ -6,8 +6,8 @@
   <meta name="view-transition" content="same-origin" />
   <meta name="theme-color" content="#036E8D" />
   <meta name="robots" content="noindex" />
-  <title>제출 · 검수 | SLDA 신청</title>
-  <meta name="description" content="SLDA 분석 신청 — 제출 단계. 라벨화된 BLOCK B·C를 붙여넣고 클라이언트 프리체크를 거쳐 검수에 제출합니다. 실명은 서버로 전송되지 않습니다." />
+  <title>제출 · 자동검수 | SLDA 신청</title>
+  <meta name="description" content="SLDA 분석 신청 — 제출 단계. 라벨화된 BLOCK B·C를 붙여넣고 클라이언트 프리체크를 거쳐 자동검수에 제출합니다. 실명은 서버로 전송되지 않습니다." />
 
   <link rel="stylesheet" href="assets/styles.css" />
   <link rel="stylesheet" href="assets/theme.css" />
@@ -66,7 +66,7 @@
               <i class="ti ti-clipboard-check" aria-hidden="true"></i>
               <span id="model-label">Litigation</span> · <span class="mono" id="model-code">LIT</span>
             </div>
-            <h1 class="pl-title">제출 · 검수</h1>
+            <h1 class="pl-title">제출 · 자동검수</h1>
             <p class="pl-desc">
               라벨화된 <strong>BLOCK B·C</strong>를 붙여넣으세요.
               붙여넣는 즉시 <strong>이 브라우저 안에서</strong> 식별자 잔존을 검사합니다.
@@ -102,7 +102,7 @@
             </label>
 
             <button class="pl-gate-btn" id="gate-btn" type="button" disabled>
-              <i class="ti ti-lock" aria-hidden="true"></i> 검수로 제출
+              <i class="ti ti-lock" aria-hidden="true"></i> 자동검수로 제출
             </button>
             <div class="pl-gate-reasons" id="gate-reasons"></div>
 
@@ -115,7 +115,7 @@
           <!-- 검수 결과: 파기 (SPEC §3.4) -->
           <div id="reject-view" style="display:none">
             <div class="pl-model-tag" style="background:var(--danger-fg)">
-              <i class="ti ti-file-x" aria-hidden="true"></i> 검수 결과 · 파기
+              <i class="ti ti-file-x" aria-hidden="true"></i> 자동검수 결과 · 파기
             </div>
             <h1 class="pl-title">제출물이 파기됐습니다</h1>
             <p class="pl-desc">
@@ -279,8 +279,8 @@
         var btn = $("gate-btn");
         btn.disabled = !g.enabled;
         btn.innerHTML = g.enabled
-          ? '<i class="ti ti-send" aria-hidden="true"></i> 검수로 제출'
-          : '<i class="ti ti-lock" aria-hidden="true"></i> 검수로 제출';
+          ? '<i class="ti ti-send" aria-hidden="true"></i> 자동검수로 제출'
+          : '<i class="ti ti-lock" aria-hidden="true"></i> 자동검수로 제출';
       }
 
       blockB.addEventListener("input", refresh);

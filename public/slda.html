@@ -405,56 +405,102 @@
       </div>
     </section>
 
-    <!-- FAQ -->
-    <section class="section section-muted">
+    <!-- FAQ 아코디언 게시판 (§12.2) -->
+    <section class="section section-muted" id="faq">
       <div class="container">
         <h2 class="section-title">자주 묻는 질문</h2>
-        <div class="form-grid">
-          <div class="tile">
-            <h3>SDLA 분석인가요, SLDA 분석인가요?</h3>
-            <p>
+        <p class="section-desc">궁금한 항목을 눌러 펼쳐보세요.</p>
+
+        <div class="faq">
+          <div class="faq-cat">표기 · 개념</div>
+          <details class="faq-item">
+            <summary><span class="faq-q">SDLA 분석인가요, SLDA 분석인가요?</span><span class="faq-date">2026.07.21</span><span class="faq-mk">+</span></summary>
+            <div class="faq-a">
               정확한 표기는 <strong>SLDA (Semantic Logic Drift Analysis)</strong> 입니다.
               Semantic <strong>L</strong>ogic <strong>D</strong>rift Analysis 의 약어이며, SDLA로 잘못 표기되는 경우가 있습니다.
               국문으로는 의미·논리 드리프트 분석, 줄여서 논리 드리프트 분석 또는 논리 정합성 분석이라 합니다.
-            </p>
-          </div>
-          <div class="tile">
-            <h3>제 개인정보는 안전한가요?</h3>
-            <p>
-              SLDA는 개인정보를 <strong>받아서 지우지 않습니다. 애초에 받지 않습니다.</strong>
-              마스킹·라벨화는 사용자가 자신의 AI로 직접 하고, 사이트는 라벨화된 결과만 받습니다.
-              서버에는 원문·실명을 저장할 장소 자체가 없습니다.
-            </p>
-          </div>
-          <div class="tile">
-            <h3>논점 흐리기나 물타기를 잡아낼 수 있나요?</h3>
-            <p>
-              SLDA는 논점이 어디서 이동했는지를 문장 단위로 표시합니다.
+            </div>
+          </details>
+          <details class="faq-item">
+            <summary><span class="faq-q">전처리가 무엇인가요?</span><span class="faq-date">2026.07.21</span><span class="faq-mk">+</span></summary>
+            <div class="faq-a">
+              원문 대신 <strong>이름을 지운(라벨로 바꾼) 자료</strong>를 넣는 과정입니다.
+              상대방의 개인정보를 보호하고, 우리가 <strong>원문을 아예 받지 않기 위해서</strong>입니다.
+              어려운 작업은 사용자의 AI가 자동으로 하고, 사용자는 <code>전처리</code> 페이지에서 파일을 올려 합친 뒤 프롬프트와 함께 AI에 넣기만 하면 됩니다.
+            </div>
+          </details>
+
+          <div class="faq-cat">개인정보 · 파기</div>
+          <details class="faq-item" open>
+            <summary><span class="faq-q">개인정보 없이 분석이 가능한가요?</span><span class="faq-date">2026.07.21</span><span class="faq-mk">+</span></summary>
+            <div class="faq-a">
+              네. SLDA는 <strong>그 사람이 누구인지 알 필요가 없습니다.</strong>
+              필요한 것은 실명이 아니라 <strong>누가 누구인지의 구분</strong>(원고·피고1·화자A 같은 지칭)뿐입니다.
+              그래서 개인정보를 <strong>받아서 지우는</strong> 것이 아니라, <strong>애초에 원문을 받지 않습니다.</strong>
+              라벨화는 사용자가 자신의 AI로 하고, 서버에는 실명·원문을 저장할 장소 자체가 없습니다.
+            </div>
+          </details>
+          <details class="faq-item">
+            <summary><span class="faq-q">개인정보는 어떻게 자동파기되나요?</span><span class="faq-date">2026.07.21</span><span class="faq-mk">+</span></summary>
+            <div class="faq-a">
+              파기는 사람이 손으로 지우는 것이 아니라 <strong>예약 작업</strong>이 처리합니다.
+              완료 산출물은 게시 후 <strong>2주(14일)</strong>가 지나면 자동 파기되고, 부적격 접수는 즉시 파기됩니다.
+              <strong>파일이 실제로 삭제된 뒤에만</strong> 파기 기록이 남으며, 그 기록은 접수번호·사유코드·시각뿐 <strong>실명이 없습니다.</strong>
+              기록은 추가만 가능하고 수정·삭제할 수 없습니다.
+            </div>
+          </details>
+
+          <div class="faq-cat">사용 방법</div>
+          <details class="faq-item">
+            <summary><span class="faq-q">프롬프트는 어떻게 사용하나요?</span><span class="faq-date">2026.07.21</span><span class="faq-mk">+</span></summary>
+            <div class="faq-a">
+              <code>전처리</code> 페이지에서 파일을 <strong>파일명 규칙</strong>에 맞춰(예: <code>20241024_원고_소장_1.md</code>) 올리면 브라우저가 시간순으로 합쳐줍니다.
+              '프롬프트 + 내 자료 함께 복사'를 눌러 사용하는 AI(권장: GPT-4급·Claude·Gemini 이상)에 붙여넣으면,
+              AI가 <strong>정리해준 결과(본문·요약)</strong>를 만들어 줍니다. 그 결과만 다음 단계에 붙여넣으면 됩니다.
+            </div>
+          </details>
+          <details class="faq-item">
+            <summary><span class="faq-q">사진·이모티콘은 어떻게 넣나요?</span><span class="faq-date">2026.07.21</span><span class="faq-mk">+</span></summary>
+            <div class="faq-a">
+              SLDA는 글자만 읽습니다. 사진·이모티콘·스티커는 <strong>보이는 대로</strong> 본문에 적어주세요 —
+              <code>[이미지: 홍콩 밋업 현장 사진 6장]</code>, <code>[이모티콘: 웃는 강아지 스티커]</code>처럼요.
+              <strong>외형만 적고, 무슨 뜻인지(비꼼·농담 등)는 쓰지 마세요.</strong> 의미 판정은 SLDA가 합니다. 안 적으면 그 부분은 분석에서 빠집니다.
+            </div>
+          </details>
+
+          <div class="faq-cat">무엇을 잡아내나</div>
+          <details class="faq-item">
+            <summary><span class="faq-q">논점 흐리기·물타기를 잡아내나요?</span><span class="faq-date">2026.07.21</span><span class="faq-mk">+</span></summary>
+            <div class="faq-a">
+              SLDA는 논점이 <strong>어디서 이동했는지</strong>를 문장 단위로 표시합니다.
               어느 지점에서 쟁점이 바뀌었고 표현강도·주체귀속이 어떻게 변했는지가 관찰값으로 나옵니다.
-              그 이동을 무엇이라 부를지는 읽는 사람의 판단입니다.
-            </p>
-          </div>
-          <div class="tile">
-            <h3>말바꾸기나 논리적 모순을 찾을 수 있나요?</h3>
-            <p>
-              서로 양립하기 어려운 두 전제를 사용한 지점을 전제충돌 후보로 묶어 원문과 함께 제시합니다.
-              SLDA는 변화와 충돌 후보를 표시하며, 의도나 진위를 단정하지 않습니다.
-            </p>
-          </div>
-          <div class="tile">
-            <h3>토론이나 논쟁에서 쟁점 찾기에 쓸 수 있나요?</h3>
-            <p>
+              그 이동을 무엇이라 부를지는 읽는 사람의 판단입니다(SLDA는 단정하지 않습니다).
+            </div>
+          </details>
+          <details class="faq-item">
+            <summary><span class="faq-q">말바꾸기·논리 모순을 찾나요?</span><span class="faq-date">2026.07.21</span><span class="faq-mk">+</span></summary>
+            <div class="faq-a">
+              서로 양립하기 어려운 두 전제를 사용한 지점을 <strong>전제충돌 후보</strong>로 묶어 원문과 함께 제시합니다.
+              같은 결론을 몇 번 반복했는지, 근거를 몇 번 교체했는지도 셉니다.
+              변화와 충돌 후보를 <strong>표시</strong>할 뿐, 의도나 진위는 단정하지 않습니다.
+            </div>
+          </details>
+          <details class="faq-item">
+            <summary><span class="faq-q">논쟁 쟁점 찾기에 쓸 수 있나요?</span><span class="faq-date">2026.07.21</span><span class="faq-mk">+</span></summary>
+            <div class="faq-a">
               그것이 논쟁 모델의 주된 용도입니다. 논쟁 자료는 <strong>양쪽을 동시에</strong> 분석하며,
-              한쪽만 분석한 결과물은 제공하지 않습니다.
-            </p>
-          </div>
-          <div class="tile">
-            <h3>비용이 드나요?</h3>
-            <p>
-              현재는 <strong>Early Access · 무료</strong>입니다. 결제 단계가 없습니다.
+              한쪽만 분석한 결과물은 제공하지 않습니다(대칭 필수).
+            </div>
+          </details>
+
+          <div class="faq-cat">비용</div>
+          <details class="faq-item">
+            <summary><span class="faq-q">비용이 드나요?</span><span class="faq-date">2026.07.21</span><span class="faq-mk">+</span></summary>
+            <div class="faq-a">
+              현재는 <strong>Early Access · 무료</strong>입니다. <strong>결제 단계가 없습니다.</strong>
               정식 전환 시 요금 안내가 별도로 공지됩니다.
-            </p>
-          </div>
+            </div>
+          </details>
         </div>
       </div>
     </section>
