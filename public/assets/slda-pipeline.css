@@ -620,3 +620,69 @@
 .pl-status-badge.analyzing { background: rgba(3,110,141,0.10); color: var(--pl-accent); }
 .pl-status-badge.done { background: var(--ok-bg); color: var(--ok-fg); }
 .pl-status-badge.rejected { background: var(--danger-bg); color: var(--danger-fg); }
+
+/* ============================================================
+   10. slda.html 개편 (SPEC §12.2) — 모델 3구분 탭 · 변론 드리프트 세로 프로세스
+   진영색: 소송 coral / 논쟁 teal / 발화 blue
+   ============================================================ */
+:root {
+  --m-lit:#C65B3E; --m-lit-bg:#FBEDE8; --m-lit-fg:#8A3A22;
+  --m-sns:#036E8D; --m-sns-bg:#E2F1F4; --m-sns-fg:#054A5E;
+  --m-spk:#1B74C7; --m-spk-bg:#E7F0FB; --m-spk-fg:#134B85;
+}
+
+.slda-tabs { display:flex; gap:8px; flex-wrap:wrap; margin:6px 0 22px; }
+.slda-tab {
+  padding:11px 22px; border:1.5px solid var(--border-strong); border-radius:100px;
+  background:var(--bg-card); font:inherit; font-weight:600; font-size:.92rem;
+  color:var(--text-muted); cursor:pointer; transition:all .15s ease;
+}
+.slda-tab:hover { border-color:var(--text-dim); }
+.slda-tab[aria-selected="true"] { color:#fff; }
+.slda-tab[data-m="lit"][aria-selected="true"]{ background:var(--m-lit); border-color:var(--m-lit); }
+.slda-tab[data-m="sns"][aria-selected="true"]{ background:var(--m-sns); border-color:var(--m-sns); }
+.slda-tab[data-m="spk"][aria-selected="true"]{ background:var(--m-spk); border-color:var(--m-spk); }
+
+.slda-panel[hidden] { display:none; }
+.slda-panel {
+  border:1px solid var(--border); border-radius:14px; padding:26px 28px; background:var(--bg-card);
+  border-top:4px solid var(--border-strong);
+}
+.slda-panel.m-lit { border-top-color:var(--m-lit); }
+.slda-panel.m-sns { border-top-color:var(--m-sns); }
+.slda-panel.m-spk { border-top-color:var(--m-spk); }
+.slda-panel h3 { font-size:1.15rem; font-weight:700; color:var(--text); margin:0 0 6px; letter-spacing:-.01em; }
+.slda-panel .m-tag { font-family:var(--mono); font-size:.72rem; font-weight:700; letter-spacing:.06em; }
+.slda-panel.m-lit .m-tag { color:var(--m-lit); }
+.slda-panel.m-sns .m-tag { color:var(--m-sns); }
+.slda-panel.m-spk .m-tag { color:var(--m-spk); }
+.slda-panel p { color:var(--text-muted); line-height:1.75; margin:0 0 12px; font-size:.94rem; }
+.slda-metrics { display:flex; flex-wrap:wrap; gap:8px; margin:10px 0 4px; }
+.slda-metric {
+  display:inline-flex; align-items:center; gap:6px; padding:6px 13px; border-radius:100px;
+  background:var(--bg-soft); font-size:.8rem; color:var(--text-muted);
+}
+.slda-metric b { font-weight:700; color:var(--text); }
+
+.slda-sub { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-top:14px; }
+@media (max-width:640px){ .slda-sub { grid-template-columns:1fr; } }
+.slda-sub-card { padding:16px 18px; border:1px solid var(--border); border-radius:10px; background:var(--bg-soft); }
+.slda-sub-card .sc-k { font-size:.72rem; font-weight:700; letter-spacing:.04em; color:var(--m-sns); margin-bottom:5px; }
+.slda-sub-card h4 { font-size:.95rem; font-weight:700; color:var(--text); margin:0 0 4px; }
+.slda-sub-card p { font-size:.84rem; color:var(--text-muted); margin:0; line-height:1.6; }
+
+/* 변론 드리프트 세로 타임라인 */
+.drift-vtl { position:relative; margin:22px 0 8px; padding-left:30px; }
+.drift-vtl::before { content:''; position:absolute; left:9px; top:8px; bottom:8px; width:2px;
+  background:linear-gradient(180deg, var(--pl-accent) 0%, rgba(3,110,141,.12) 100%); border-radius:2px; }
+.drift-step { position:relative; padding:0 0 22px 8px; }
+.drift-step:last-child { padding-bottom:0; }
+.drift-step::before { content:''; position:absolute; left:-25px; top:3px; width:12px; height:12px;
+  border-radius:50%; background:var(--pl-accent); border:2px solid var(--bg-card); box-shadow:0 0 0 1px var(--border); }
+.drift-round { font-family:var(--mono); font-size:.74rem; font-weight:700; color:var(--pl-accent); }
+.drift-doc { font-size:.9rem; font-weight:600; color:var(--text); margin:2px 0 0; }
+.drift-obs { display:flex; flex-wrap:wrap; gap:6px; margin-top:8px; }
+.drift-chip { padding:4px 11px; border-radius:100px; background:var(--bg-soft);
+  font-family:var(--mono); font-size:.74rem; color:var(--text-muted); }
+.drift-chip b { color:var(--pl-accent); font-weight:700; }
+.drift-note { font-size:.78rem; color:var(--text-dim); margin-top:14px; padding-left:2px; }
