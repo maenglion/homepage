@@ -100,12 +100,12 @@
 
           <!-- ③ 파일 올리기 → 병합 -->
           <div class="pl-card">
-            <h3>③ 파일 올리기 <span style="font-weight:400;opacity:.6">— .md · .txt · 여러 개</span></h3>
+            <h3>③ 파일 올리기 <span style="font-weight:400;opacity:.6">— .md · .txt · 여러 개 (MD 권장)</span></h3>
             <label class="pl-drop" id="drop">
               <input type="file" id="files" accept=".md,.txt,text/plain,text/markdown" multiple />
               <span class="di"><i class="ti ti-upload" aria-hidden="true"></i></span>
               <b>여기로 파일을 끌어놓거나 클릭해서 선택</b>
-              <p>브라우저 안에서만 합쳐집니다 · 파일은 서버로 전송되지 않습니다</p>
+              <p>.md · .txt 만 지원 (MD 권장) · 브라우저 안에서만 합쳐집니다 · 파일은 서버로 전송되지 않습니다</p>
             </label>
             <div class="pl-filelist" id="filelist"></div>
 
@@ -230,9 +230,12 @@
       });
       apply(model);
 
-      // ── 파일 읽기 (브라우저 전용, 서버 미전송) ──
+      // ── 파일 읽기 (브라우저 전용, 서버 미전송 · .md·.txt 만) ──
       function readFiles(fileList) {
-        var arr = [].slice.call(fileList);
+        var all = [].slice.call(fileList);
+        var arr = all.filter(function (f) { return /\.(md|txt)$/i.test(f.name); });
+        if (!arr.length) { SLDA.toast(".md · .txt 파일만 올릴 수 있습니다 (MD 권장)"); return Promise.resolve(null); }
+        if (arr.length < all.length) SLDA.toast((all.length - arr.length) + "개는 .md·.txt가 아니라 제외했습니다");
         return Promise.all(arr.map(function (f) {
           return f.text().then(function (t) { return { name: f.name, text: t }; });
         }));
@@ -255,6 +258,7 @@
       $("files").addEventListener("change", function (e) {
         if (!e.target.files || !e.target.files.length) return;
         readFiles(e.target.files).then(function (items) {
+          if (!items) return;
           lastFiles = items;
           rebuild();
           SLDA.toast(items.length + "개 파일을 브라우저에서 합쳤습니다");
@@ -272,7 +276,7 @@
       drop.addEventListener("drop", function (e) {
         var fs = e.dataTransfer && e.dataTransfer.files;
         if (!fs || !fs.length) return;
-        readFiles(fs).then(function (items) { lastFiles = items; rebuild(); SLDA.toast(items.length + "개 파일을 합쳤습니다"); });
+        readFiles(fs).then(function (items) { if (!items) return; lastFiles = items; rebuild(); SLDA.toast(items.length + "개 파일을 합쳤습니다"); });
       });
 
       // ── 복사 ──

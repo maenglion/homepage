@@ -691,6 +691,7 @@
    11. 파일 업로드·병합 (SPEC §13) — preprocess.html
    ============================================================ */
 .pl-drop {
+  display:flex; flex-direction:column; align-items:center; justify-content:center; gap:2px;
   border:2px dashed var(--border-strong); border-radius:12px;
   padding:28px 20px; text-align:center; background:var(--bg-soft);
   cursor:pointer; transition:border-color .15s ease, background .15s ease;

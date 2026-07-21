@@ -237,7 +237,7 @@
     { key: "preprocess", label: "전처리" },
     { key: "apply",      label: "신청서" },
     { key: "submit",     label: "제출" },
-    { key: "review",     label: "검수" },
+    { key: "review",     label: "데이터자동검수" },
     { key: "fee",        label: "요금", skip: true },  // Early Access — 스킵 예약
     { key: "receipt",    label: "접수" },
     { key: "status",     label: "접수조회" }
