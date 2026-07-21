@@ -97,7 +97,7 @@
             <!-- SubmitGate -->
             <label class="pl-gate-warrant">
               <input type="checkbox" id="warrant" />
-              <span>제출하는 BLOCK B·C는 <strong>전처리 프롬프트로 라벨화·마스킹을 완료</strong>했으며,
+              <span id="warrant-text">제출하는 BLOCK B·C는 <strong>전처리 프롬프트로 라벨화·마스킹을 완료</strong>했으며,
               실명·매핑(BLOCK A)이 포함되지 않았음을 <strong>위탁자로서 보증</strong>합니다.</span>
             </label>
 
@@ -181,6 +181,17 @@
       $("model-code").textContent = model.code;
       $("back").setAttribute("href", "./apply.html?m=" + model.key);
       $("reject-preprocess").setAttribute("href", "./preprocess.html?m=" + model.key);
+
+      // 위탁자 보증 문구 — 모델별 (SPEC §11.6)
+      var WARRANT = {
+        lit: '본인은 <strong>당사자 또는 정당한 대리인</strong>이며, <strong>소송수행 목적의 분석을 위탁</strong>함을 확인합니다. ' +
+             '제출하는 BLOCK B·C는 전처리 프롬프트로 라벨화·마스킹을 완료했고 실명·매핑(BLOCK A)이 포함되지 않았습니다.',
+        sns: '제출하는 BLOCK B·C는 <strong>양측 대칭</strong>을 갖췄고 전처리 프롬프트로 라벨화·마스킹을 완료했으며, ' +
+             '사인 실명·매핑(BLOCK A)이 포함되지 않았음을 <strong>위탁자로서 보증</strong>합니다.',
+        spk: '대상은 <strong>공인의 공개 발언</strong>이며, 제출하는 BLOCK B·C는 전처리 프롬프트로 라벨화·마스킹을 완료했고 ' +
+             '사인 실명·매핑(BLOCK A)이 포함되지 않았음을 <strong>위탁자로서 보증</strong>합니다.'
+      };
+      $("warrant-text").innerHTML = WARRANT[model.key] || WARRANT.lit;
 
       // 선택 요약 배지 (읽기전용)
       (function () {
