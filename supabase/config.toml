@@ -1,7 +1,11 @@
 [functions.purge]
 verify_jwt = true
 
-# §7·§14 — 1단 전처리 프롬프트 발급(공개: 브라우저 anon 호출)
+# §14.4 — 발급 세션 시작(공개: 플로우 시작 시 토큰 발급)
+[functions.slda-start-session]
+verify_jwt = false
+
+# §7·§14 — 1단 전처리 프롬프트 발급(공개 엔드포인트 · 세션 토큰으로 게이팅)
 [functions.slda-issue-prompt]
 verify_jwt = false
 

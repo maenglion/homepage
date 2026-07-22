@@ -658,14 +658,48 @@
      slda-issue-prompt Edge Function 우선. 미도달 시 임베드 PROMPTS 폴백(오프라인 내성).
      반환은 Promise<string>. 모델당 1회 캐시.
      ----------------------------------------------------------- */
+  // §14.4 — 발급 세션. 플로우 시작 시 토큰을 발급받아 sessionStorage 에 보관하고,
+  // 프롬프트 발급 요청에 실어 보낸다. 봇·스크래퍼가 프롬프트를 긁어가는 것을 막는다.
+  var SESSION_KEY = "slda.session";
+  function getSession() {
+    try {
+      var s = JSON.parse(sessionStorage.getItem(SESSION_KEY) || "null");
+      if (s && s.token && s.expires_at && new Date(s.expires_at).getTime() > Date.now()) return s;
+    } catch (e) {}
+    return null;
+  }
+  function startSession() {
+    var s = getSession();
+    if (s) return Promise.resolve(s.token);
+    if (typeof fetch !== "function") return Promise.resolve(null);
+    return fetch(SUPABASE_URL + "/functions/v1/slda-start-session", {
+      method: "POST",
+      headers: { apikey: SUPABASE_KEY, Authorization: "Bearer " + SUPABASE_KEY, "Content-Type": "application/json" },
+      body: "{}"
+    })
+      .then(function (r) { if (!r.ok) throw new Error("session " + r.status); return r.json(); })
+      .then(function (d) {
+        if (!d || !d.token) throw new Error("no token");
+        try { sessionStorage.setItem(SESSION_KEY, JSON.stringify({ token: d.token, expires_at: d.expires_at })); } catch (e) {}
+        return d.token;
+      })
+      .catch(function () { return null; });
+  }
+
+  // §14.4 — 임베드 폴백. 서버 발급(세션·함수)이 실패해도 사이트가 멈추지 않게 유지한다.
+  // 엄격 모드(번들에서 프롬프트 전문 완전 제거)를 원하면 false 로 바꾼다.
+  var EMBEDDED_PROMPT_FALLBACK = true;
   var _promptCache = {};
   function issuePrompt(model) {
     var key = resolveModel(model).key;
-    var fallback = PROMPTS[key];
+    var fallback = EMBEDDED_PROMPT_FALLBACK ? PROMPTS[key] : "";
     if (_promptCache[key]) return Promise.resolve(_promptCache[key]);
     if (typeof fetch !== "function") return Promise.resolve(fallback);
-    var url = SUPABASE_URL + "/functions/v1/slda-issue-prompt?m=" + key;
-    return fetch(url, { headers: { apikey: SUPABASE_KEY, Authorization: "Bearer " + SUPABASE_KEY } })
+    return startSession().then(function (token) {
+      var headers = { apikey: SUPABASE_KEY, Authorization: "Bearer " + SUPABASE_KEY };
+      if (token) headers["x-slda-session"] = token;
+      return fetch(SUPABASE_URL + "/functions/v1/slda-issue-prompt?m=" + key, { headers: headers });
+    })
       .then(function (r) { if (!r.ok) throw new Error("issue " + r.status); return r.json(); })
       .then(function (d) {
         if (!d || !d.prompt) throw new Error("empty");
@@ -834,6 +868,7 @@
     mergeDocs: mergeDocs,
     makeReceiptNo: makeReceiptNo,
     issuePrompt: issuePrompt,
+    startSession: startSession,
     submit: submit,
     getFlow: getFlow, setFlow: setFlow, clearFlow: clearFlow,
     copyText: copyText, toast: toast,
