@@ -6,6 +6,8 @@
 -- LLM 후보(가능성)는 원장에 저장하지 않는다 — 응답에서 참고로만 제시하고,
 -- 운영자가 규칙표로 승격해야 확정이 된다. 채점은 확정(원장)만 사용한다.
 -- 안전: IF NOT EXISTS 로 멱등.
+-- 적용: 워크플로가 `supabase db push --include-all` 로 실행한다(000X 번호가
+--       레거시 타임스탬프 이력보다 앞이라 순서 무시 적용이 필요).
 -- =====================================================================
 alter table slda_norm_ledger
   add column if not exists source text not null default 'passthrough';

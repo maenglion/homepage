@@ -35,8 +35,11 @@ jobs:
             supabase migration repair --status applied "$v" || true
           done
 
+      # --include-all: 우리 스키마는 000X 번호, 레거시 이력은 2026… 타임스탬프라
+      # 새 000X 마이그레이션은 항상 "이미 적용된 것보다 앞"으로 판정된다. 순서 무시하고
+      # 이력에 없는 것만 적용한다(레거시·0001은 이력에 있어 건너뜀, 신규만 실행 · 전부 멱등).
       - name: Push migrations
-        run: supabase db push
+        run: supabase db push --include-all
 
       # Edge Function 배포 (functions 폴더가 있을 때만 시도)
       - name: Deploy Edge Functions
