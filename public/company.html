@@ -34,7 +34,7 @@
         <img class="brand-logo" src="./assets/soulspectrum_delta.png" width="28" height="44" alt="Soul Spectrum" />
       </a>
 
-      <button class="nav-toggle" data-i18n-aria="nav.menu-open" aria-label="메뉴 열기" aria-expanded="false" onclick="this.setAttribute('aria-expanded', document.querySelector('.nav').classList.toggle('is-open'))">
+      <button class="nav-toggle" aria-label="메뉴 열기" aria-expanded="false" onclick="this.setAttribute('aria-expanded', document.querySelector('.nav').classList.toggle('is-open'))">
         <svg width="22" height="16" viewBox="0 0 22 16" aria-hidden="true">
           <rect y="0" width="22" height="2" rx="1"/>
           <rect y="7" width="22" height="2" rx="1"/>
@@ -45,41 +45,45 @@
       <nav class="nav">
         <div class="nav-item has-sub">
           <button class="nav-link" aria-expanded="false" aria-haspopup="true">
-            <span data-i18n="nav.research">Research</span>
+            <span>Research</span>
             <svg class="chev" width="10" height="6" viewBox="0 0 10 6" aria-hidden="true">
               <path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6"/>
             </svg>
           </button>
           <div class="submenu">
-            <a href="./research-casp.html"><b>CASP</b><span data-i18n="nav.casp.sub">음성 발화의 비언어 신호</span></a>
-            <a href="./slda.html"><b>SLDA</b><span data-i18n="nav.slda.sub">문서·논쟁의 의미 드리프트</span></a>
+            <a href="./research-casp.html"><b>CASP</b><span>음성 발화의 비언어 신호</span></a>
+            <a href="./slda.html"><b>SLDA</b><span>문서·논쟁의 의미 드리프트</span></a>
           </div>
         </div>
 
-        <a class="nav-link" href="./engine.html" data-i18n="nav.engine">Engine</a>
-        <a class="nav-link" href="./company.html" data-i18n="nav.company">Company</a>
-        <a class="nav-link" href="./founder.html" data-i18n="nav.founder">Founder</a>
+        <a class="nav-link" href="./engine.html">Engine</a>
+        <a class="nav-link" href="./company.html">Company</a>
+        <a class="nav-link" href="./founder.html">Founder</a>
 
         <div class="header-cta-mobile">
-          <button id="lang-toggle-mobile" type="button" class="lang-toggle-mobile" aria-label="Switch to English">KOR</button>
-          <a class="pill pill-dark" href="./early-access.html" data-i18n="nav.early-access">Early Access</a>
-          <a class="pill pill-light" href="./contact.html" data-i18n="nav.partnership">Partnership</a>
+          <a class="pill pill-dark" href="./early-access.html">Early Access</a>
+          <a class="pill pill-light" href="./contact.html">Partnership</a>
         </div>
       </nav>
 
       <div class="header-cta">
-        <button id="lang-toggle" type="button" aria-label="Switch to English">KOR</button>
-        <a class="pill pill-dark" href="./early-access.html" data-i18n="nav.early-access">Early Access</a>
-        <a class="pill pill-light" href="./contact.html" data-i18n="nav.partnership">Partnership</a>
+        <a class="pill pill-dark" href="./early-access.html">Early Access</a>
+        <a class="pill pill-light" href="./contact.html">Partnership</a>
       </div>
     </div>
   </header>
+  <div class="lang-subbar">
+    <div class="container lang-subbar-inner">
+      <a class="lang-tab lang-tab--active" href="#" aria-current="page">KOR</a>
+      <a class="lang-tab" href="./en/company.html">ENG</a>
+    </div>
+  </div>
   <main>
     <!-- Hero -->
     <section class="page-hero">
       <div class="container page-hero-inner">
         <span class="eyebrow">Company</span>
-        <h1 class="page-title" data-i18n="company.hero.title">변화가 일어난 지점을 찾습니다</h1>
+        <h1 class="page-title">변화가 일어난 지점을 찾습니다</h1>
         <p class="page-desc">
           소울스펙트럼은 음성과 문서에서 발생하는 변이량을 데이터 구조로 변환하는 기술 프로젝트입니다.
           무엇이 옳은지 판정하지 않습니다. 어디에서 얼마나 달라졌는지를 측정합니다.
@@ -97,7 +101,7 @@
     <section class="section section-lead">
       <div class="container">
         <div class="lead-head">
-          <h2 class="section-title" data-i18n="company.why.title">왜 변이량인가</h2>
+          <h2 class="section-title">왜 변이량인가</h2>
           <p class="section-desc">
             사람은 절대값으로 이해되지 않습니다.
             같은 말속도라도 어떤 사람에게는 평소이고 어떤 사람에게는 이례적입니다.
@@ -126,7 +130,7 @@
     <section class="section section-brand">
       <div class="container">
         <span class="eyebrow">One Proposition</span>
-        <h2 class="section-title" data-i18n="company.prop.title">두 제품, 하나의 명제</h2>
+        <h2 class="section-title">두 제품, 하나의 명제</h2>
         <p class="section-desc">
           CASP는 <strong>음성의 드리프트</strong>를, SLDA는 <strong>문서의 드리프트</strong>를 봅니다.
           입력은 다르지만 묻는 질문은 같습니다.
@@ -152,7 +156,7 @@
     <!-- Origin -->
 <section class="section">
   <div class="container">
-    <h2 class="section-title" data-i18n="company.origin.title">이 관점은 어디에서 왔는가</h2>
+    <h2 class="section-title">이 관점은 어디에서 왔는가</h2>
     <p class="section-desc">
       CASP의 구조는 창업자의 인지 특성을 데이터 구조로 옮긴 것입니다.
       개인의 감각에 머무는 관찰을 재현 가능한 지표로 바꾸려는 시도입니다.
@@ -202,7 +206,7 @@
     <!-- Journey -->
     <section class="section section-muted">
       <div class="container">
-        <h2 class="section-title" data-i18n="company.journey.title">Journey</h2>
+        <h2 class="section-title">Journey</h2>
         <p class="section-desc">
           대화 기반 리포트에서 출발해, 음성 비언어 지표 분석을 거쳐, 재현 가능한 프로토콜로 발전해왔습니다.
         </p>
@@ -342,7 +346,7 @@
     <!-- What we do not do -->
     <section class="section">
       <div class="container">
-        <h2 class="section-title" data-i18n="company.not.title">우리가 하지 않는 것</h2>
+        <h2 class="section-title">우리가 하지 않는 것</h2>
         <p class="section-desc">
           변화가 어디에서, 어느 정도, 어떤 방식으로 발생했는지를 구조화합니다.
           그 변화가 왜 일어났는지는 산출하지 않습니다.
@@ -376,33 +380,33 @@
   <footer class="site-footer">
     <div class="container footer-inner">
       <div class="footer-left">
-        <div class="footer-brand" data-i18n="footer.brand">소울스펙트럼 Soul Spectrum Inc.</div>
+        <div class="footer-brand">소울스펙트럼 Soul Spectrum Inc.</div>
         <div class="footer-meta">
-          <span data-i18n="footer.casp-line">CASP ENGINE · Cognitive–Adaptive Stress Paralinguistic Engine</span><br />
-          <span data-i18n="footer.slda-line">SLDA · Semantic Logic Drift Analysis · 의미·논리 드리프트 분석</span><br />
-          <span data-i18n="footer.biz">(주)소울스펙트럼 · 사업자등록번호: 651-81-03691</span><br />
-          <span data-i18n="footer.addr">인천광역시 연수구 테크노파크로111번길 5, 8층 801-에스7호</span><br />
-          <span data-i18n="footer.privacy-officer">개인정보 보호책임자: 맹난영 · nanyoung@soulspectrum.kr</span><br />
-          <a class="footer-link" href="http://pf.kakao.com/_GCYfX/chat" target="_blank" data-i18n="footer.kakao">카카오톡 채널: @soulspectrum</a><br />
+          <span>CASP ENGINE · Cognitive–Adaptive Stress Paralinguistic Engine</span><br />
+          <span>SLDA · Semantic Logic Drift Analysis · 의미·논리 드리프트 분석</span><br />
+          <span>(주)소울스펙트럼 · 사업자등록번호: 651-81-03691</span><br />
+          <span>인천광역시 연수구 테크노파크로111번길 5, 8층 801-에스7호</span><br />
+          <span>개인정보 보호책임자: 맹난영 · nanyoung@soulspectrum.kr</span><br />
+          <a class="footer-link" href="http://pf.kakao.com/_GCYfX/chat" target="_blank">카카오톡 채널: @soulspectrum</a><br />
           soulspectrum.kr · © <span id="y"></span> Soul Spectrum Inc. All rights reserved.
         </div>
       </div>
 
       <div class="footer-right footer-cols">
         <div class="footer-col">
-          <div class="footer-col-title" data-i18n="footer.col-casp">CASP</div>
-          <a class="footer-link" href="./index.html" data-i18n="footer.intro">Intro</a>
-          <a class="footer-link" href="./engine.html" data-i18n="footer.engine">Engine</a>
-          <a class="footer-link" href="./company.html" data-i18n="footer.company">Company</a>
-          <a class="footer-link" href="./founder.html" data-i18n="footer.founder">Founder</a>
-          <a class="footer-link" href="./contact.html" data-i18n="footer.contact">Partnership</a>
+          <div class="footer-col-title">CASP</div>
+          <a class="footer-link" href="./index.html">Intro</a>
+          <a class="footer-link" href="./engine.html">Engine</a>
+          <a class="footer-link" href="./company.html">Company</a>
+          <a class="footer-link" href="./founder.html">Founder</a>
+          <a class="footer-link" href="./contact.html">Partnership</a>
         </div>
 
         <div class="footer-col">
-          <div class="footer-col-title" data-i18n="footer.col-slda">SLDA</div>
-          <a class="footer-link" href="./slda.html" data-i18n="footer.slda-apply">분석 문의</a>
-          <a class="footer-link" href="./status.html" data-i18n="footer.slda-status">접수 조회</a>
-          <a class="footer-link" href="./privacy.html" data-i18n="footer.privacy">개인정보 처리방침</a>
+          <div class="footer-col-title">SLDA</div>
+          <a class="footer-link" href="./slda.html">분석 문의</a>
+          <a class="footer-link" href="./status.html">접수 조회</a>
+          <a class="footer-link" href="./privacy.html">개인정보 처리방침</a>
         </div>
       </div>
     </div>
@@ -411,6 +415,5 @@
   <script>
     document.getElementById("y").textContent = new Date().getFullYear();
   </script>
-  <script src="assets/i18n.js"></script>
 </body>
 </html>
