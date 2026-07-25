@@ -304,15 +304,17 @@
 
         <!-- 개인정보 국제 기준 명시 박스 -->
         <div class="warn" style="margin-bottom:32px;background:rgba(3,110,141,.06);border-color:#036E8D;">
-          <span class="warn-tag">국제 기준 준수</span>
+          <span class="warn-tag">개인정보보호 국제 기준 준수</span>
           <p>
-            SLDA의 데이터 처리 설계는 <strong>GDPR(EU 일반 개인정보보호 규정)</strong> 및
-            <strong>APEC CBPR(아태지역 국경 간 프라이버시 규칙)</strong>의 데이터 최소화(Data Minimisation)·
-            목적 제한(Purpose Limitation)·저장 제한(Storage Limitation) 원칙을 따릅니다.
+            SLDA의 데이터 처리 설계는 <strong>GDPR(EU 일반 개인정보보호 규정)</strong> 및 <strong>APEC CBPR</strong>을 엄격히 준수합니다. 특히 다음의 원칙을 시스템 구조(Privacy by Design)로 보장합니다.
           </p>
+          <ul style="margin: 12px 0 16px 20px; font-size: 0.95rem; line-height: 1.6;">
+            <li><strong>데이터 최소화 (Data Minimisation):</strong> 분석에 필요한 구조적 메타데이터(라벨, 태그)만 수집합니다.</li>
+            <li><strong>로컬 1차 변환 (Local Preprocessing):</strong> 실명, 식별자, 민감 정보가 포함된 원문의 1차 변환(마스킹·라벨화·익명화)은 <strong>사용자 본인의 기기(Local)에서만 수행</strong>됩니다.</li>
+            <li><strong>저장 및 목적 제한 (Storage & Purpose Limitation):</strong> 원문 데이터는 서버로 전송되지 않으며, 서버가 수령한 익명화 데이터는 통계 및 드리프트 분석 목적으로만 사용된 후 파기됩니다.</li>
+          </ul>
           <p>
-            핵심 원칙: <strong>1차 변환(라벨화·익명화)은 사용자 본인의 컴퓨터에서만 이루어집니다.</strong>
-            서버는 변환이 완료된 라벨 결과물만 수령하며, 원문·실명·식별자는 어떤 경로로도 서버에 도달하지 않습니다.
+            이는 추후 법적 리스크를 원천 차단하고, 의료·법률 등 민감 정보(Sensitive Data) 처리 시 요구되는 가장 높은 수준의 보안 및 익명화 요건을 충족하기 위한 설계입니다.
           </p>
         </div>
 
