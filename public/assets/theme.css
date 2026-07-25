@@ -942,7 +942,7 @@ css/* 위 1번 GNB 블록의 .nav-link 를 이걸로 교체 */
     position: fixed;
     top: 76px; left: 0; right: 0;
     background: var(--gnb-to);
-    padding: 8px 20px 24px;
+    padding: 12px 20px 24px;
     box-shadow: 0 12px 30px rgba(0,0,0,.24);
     z-index: 999;
   }
@@ -970,13 +970,26 @@ css/* 위 1번 GNB 블록의 .nav-link 를 이걸로 교체 */
   .nav.is-open .submenu span { color: rgba(255,255,255,.7); }
   .nav.is-open .chev { display: none; }
 
-  /* 알약을 패널 안으로 */
+  /* 알약을 패널 안으로 — lang 토글 포함 */
   .nav.is-open .header-cta-mobile {
     display: flex;
+    flex-direction: column;
     gap: 10px;
-    margin-top: 18px;
+    margin-top: 0;
+    padding-top: 0;
   }
+  /* lang 토글: 패널 맨 위, 오른쪽 정렬 */
+  .nav.is-open .header-cta-mobile .lang-toggle-mobile {
+    display: inline-flex;
+    align-self: flex-end;
+    margin-bottom: 4px;
+  }
+  /* pill 행 */
   .nav.is-open .header-cta-mobile .pill { flex: 1; justify-content: center; }
+  .nav.is-open .header-cta-mobile .pill:first-of-type,
+  .nav.is-open .header-cta-mobile .pill:last-of-type {
+    display: flex;
+  }
 }
 
 @media (max-width: 760px) {
@@ -1580,4 +1593,51 @@ css/* 위 1번 GNB 블록의 .nav-link 를 이걸로 교체 */
   font-style: normal;
   font-size: 0.66rem;
   color: var(--text-dim);
+}
+
+/* ============================================================
+   Lang Toggle — KO / EN
+   ============================================================ */
+/* ── 공통 lang-toggle 베이스 ── */
+#lang-toggle,
+.lang-toggle-mobile {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 44px;
+  height: 28px;
+  padding: 0 10px;
+  border-radius: 100px;
+  font-family: "Inter", "Pretendard", sans-serif;
+  font-size: 0.70rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  background: rgba(255,255,255,0.15);
+  color: #fff;
+  border: 1px solid rgba(255,255,255,0.35);
+  cursor: pointer;
+  transition: background 0.16s ease, border-color 0.16s ease;
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+#lang-toggle:hover,
+.lang-toggle-mobile:hover {
+  background: rgba(255,255,255,0.28);
+  border-color: rgba(255,255,255,0.6);
+}
+
+/* 데스크톱: nav 링크들과 pill 사이에 시각적 간격 확보 */
+.header-cta {
+  gap: 8px;
+}
+.header-cta #lang-toggle {
+  margin-right: 6px; /* pill들과 구분 */
+}
+
+/* 모바일: lang-toggle-mobile 숨김 (데스크톱에서) */
+.lang-toggle-mobile { display: none; }
+
+@media (max-width: 760px) {
+  /* 데스크톱 lang-toggle 숨김 */
+  #lang-toggle { display: none; }
 }
