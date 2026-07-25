@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>CASP Engine | Soul Spectrum</title>
-  <meta name="description" content="Architecture of the CASP Engine" />
+  <title>Engine | Soul Spectrum</title>
+  <meta name="description" content="CASP ENGINE: realtime paralinguistic analysis. The same audio yields the same value." />
   <link rel="stylesheet" href="../assets/styles.css" />
   <link rel="stylesheet" href="../assets/theme.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -37,7 +37,7 @@
             <a href="./slda.html"><b>SLDA</b><span>Semantic drift in text</span></a>
           </div>
         </div>
-        <a class="nav-link" href="./engine.html">Engine</a>
+        <a class="nav-link active" href="./engine.html">Engine</a>
         <a class="nav-link" href="./company.html">Company</a>
         <a class="nav-link" href="./founder.html">Founder</a>
         <div class="header-cta-mobile">
@@ -51,43 +51,135 @@
   </header>
   <div class="lang-subbar">
     <div class="container lang-subbar-inner">
-      <a class="lang-tab" href="../index.html">KOR</a>
+      <a class="lang-tab" href="../engine.html">KOR</a>
       <a class="lang-tab lang-tab--active" href="#" aria-current="page">ENG</a>
     </div>
   </div>
   <main>
-
-    <section class="page-hero">
+    <!-- Hero -->
+    <section class="page-hero section-ink" style="background: var(--ink); color: #fff;">
       <div class="container page-hero-inner">
-        <p class="eyebrow">Architecture</p>
-        <h1 class="page-title">CASP Engine</h1>
-        <p class="page-desc">
-          A real-time processing pipeline for extracting and indexing paralinguistic features.
+        <span class="eyebrow">CASP ENGINE</span>
+        <h1 class="page-title">Realtime Paralinguistic Analysis Engine</h1>
+        <p class="page-desc">The same audio yields the same value</p>
+        <div style="margin-top:20px; display:flex; flex-wrap:wrap; gap:8px;">
+          <span class="eyebrow" style="font-size:0.78rem;">Feature · 20+</span>
+          <span class="eyebrow" style="font-size:0.78rem;">Transition Indicator · 6</span>
+          <span class="eyebrow" style="font-size:0.78rem;">QA · 5</span>
+        </div>
+        <p style="margin-top:20px; color:rgba(255,255,255,0.8); max-width:640px;">
+          CASP ENGINE does not convert speech into text. It extracts indicators from the voice signal and aligns them
+          as an amount of deviation against a personal baseline. Even when the reference values are updated,
+          past analysis results remain reproducible.
         </p>
       </div>
     </section>
 
+    <!-- Analysis pipeline -->
     <section class="section">
-      <div class="container doc-content">
-        <h2>System Architecture</h2>
-        <p>The CASP Engine is designed to process audio streams in real time, bypassing traditional STT bottlenecks. It extracts low-level acoustic features and maps them into a high-dimensional variance index.</p>
-        
-        <ul>
-          <li><strong>Audio Ingestion:</strong> Real-time chunking of audio streams.</li>
-          <li><strong>Feature Extraction:</strong> Computation of Mel-frequency cepstral coefficients (MFCCs), pitch, jitter, shimmer, and energy envelopes.</li>
-          <li><strong>Baseline Calibration:</strong> Dynamic anchor-point generation based on initial neutral segments.</li>
-          <li><strong>Variance Scoring:</strong> Continuous calculation of deviation from the baseline, outputting a multidimensional stress/load index.</li>
-        </ul>
-
-        <h2>Privacy by Design</h2>
-        <p>Because the engine analyzes acoustic features rather than semantic content, it is inherently more privacy-preserving than STT-based systems. The primary feature extraction (labeling and anonymization) can be performed on the edge device, ensuring that raw voice data does not need to be transmitted to central servers.</p>
+      <div class="container">
+        <div class="lead-head">
+          <h2 class="section-title">Analysis pipeline</h2>
+          <p class="section-desc">Five stages operate in order. Each stage's output feeds the next, and every stage's value remains in the source record.</p>
+        </div>
+        <ol class="rows">
+          <li>
+            <span class="rows-k">1. Raw Signal</span>
+            <p>The session audio is segmented into 10–15 second windows on pause boundaries. No text conversion.</p>
+          </li>
+          <li>
+            <span class="rows-k">2. Feature</span>
+            <p>About twenty paralinguistic indicators are extracted: speech rate, pause ratio, pitch standard deviation, energy variance, and others.</p>
+          </li>
+          <li>
+            <span class="rows-k">3. Transition</span>
+            <p>Not a single point but the change between one segment and the next. Shifts in rate, pitch, and volume around a pause are captured here.</p>
+          </li>
+          <li>
+            <span class="rows-k">4. Score</span>
+            <p>Indicators and transition values are combined into a raw score. This is a source value that has undergone no correction.</p>
+          </li>
+          <li>
+            <span class="rows-k">5. Calibration</span>
+            <p>The raw score is aligned to a personal baseline and group distribution into an interpretable coordinate system. Individual change and position within the group can be read together.</p>
+          </li>
+        </ol>
       </div>
     </section>
+
+    <!-- Realtime -->
+    <section class="section section-muted">
+      <div class="container">
+        <div class="lead-head">
+          <h2 class="section-title">Realtime — separating live processing from reference updates</h2>
+          <p class="section-desc">If live analysis wavered every time reference values changed, the engine could not be trusted. CASP keeps the two flows apart.</p>
+        </div>
+        <div class="grid-2">
+          <div class="tile">
+            <h3>Realtime · per session</h3>
+            <p>Incoming audio is immediately converted into indicators and a raw score. This path does not query reference data, so it is unaffected by reference-value updates.</p>
+          </div>
+          <div class="tile">
+            <h3>Batch · reference sync</h3>
+            <p>Reference data does not intervene directly in live analysis; it is synchronised in batches. Even if the calibration basis changes, sessions in progress are unaffected.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Reproducibility -->
+    <section class="section">
+      <div class="container">
+        <div class="lead-head">
+          <h2 class="section-title">Reproducibility</h2>
+          <p class="section-desc">To use an analysis result as evidence, the same value must appear months later. If past results shifted as reference values grew more refined, those results could not serve as evidence. CASP preserves both the source value and the calibrated value.</p>
+        </div>
+        <div class="grid-3">
+          <div class="tile">
+            <h3>Raw-score preservation</h3>
+            <p>The uncorrected source value is stored as is. It does not change when reference values are updated.</p>
+          </div>
+          <div class="tile">
+            <h3>Calibrated-score preservation</h3>
+            <p>The corrected value is stored separately, together with a record of which basis it was corrected against.</p>
+          </div>
+          <div class="tile">
+            <h3>Snapshot calibration</h3>
+            <p>The state of the reference data at a given moment is kept as a snapshot. Past analyses can be re-checked against the basis of their time.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Two references -->
+    <section class="section section-muted">
+      <div class="container">
+        <div class="lead-head">
+          <h2 class="section-title">Two references</h2>
+          <p class="section-desc">The basis for producing indicators and the basis for interpreting the result play different roles; merging them misflags an individual's traits as anomalies.</p>
+        </div>
+        <div class="grid-2">
+          <div class="tile">
+            <h3>Anchor Point</h3>
+            <p>Fixes the endpoints of the reference axis: what to set as 0 and what as 100 when computing an amount of change.</p>
+          </div>
+          <div class="tile">
+            <h3>Normal Range</h3>
+            <p>The group distribution by region, age, and sex. It lets an individual's indicators be read as a relative position within the group.</p>
+          </div>
+        </div>
+        <div style="margin-top:28px; display:flex; gap:12px; flex-wrap:wrap;">
+          <a class="btn btn-outline" href="./research.html">View research</a>
+          <a class="btn btn-ghost" href="./contact.html">Partnership inquiry</a>
+        </div>
+      </div>
+    </section>
+
   </main>
-  <footer class="site-footer">
+  <footer class="site-footer site-footer--dark">
     <div class="container footer-grid">
       <div class="footer-col">
-        <img src="../assets/soulspectrum_delta.png" width="20" height="32" alt="Soul Spectrum" style="margin-bottom:16px; opacity:0.6;" />
+        <img src="../assets/soulspectrum_delta.png" width="20" height="32" alt="Soul Spectrum" style="margin-bottom:16px; opacity:0.8;" />
         <p><strong>Soul Spectrum</strong><br/>Measuring the unwritten signals in communication.</p>
         <p class="copy">&copy; <span id="y"></span> Soul Spectrum. All rights reserved.</p>
       </div>
