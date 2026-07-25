@@ -74,7 +74,7 @@
         <img class="brand-logo" src="./assets/soulspectrum_delta.png" width="28" height="44" alt="Soul Spectrum" />
       </a>
 
-      <button class="nav-toggle" aria-label="메뉴 열기" aria-expanded="false" onclick="this.setAttribute('aria-expanded', document.querySelector('.nav').classList.toggle('is-open'))">
+      <button class="nav-toggle" data-i18n-aria="nav.menu-open" aria-label="메뉴 열기" aria-expanded="false" onclick="this.setAttribute('aria-expanded', document.querySelector('.nav').classList.toggle('is-open'))">
         <svg width="22" height="16" viewBox="0 0 22 16" aria-hidden="true">
           <rect y="0" width="22" height="2" rx="1"/>
           <rect y="7" width="22" height="2" rx="1"/>
@@ -85,30 +85,32 @@
       <nav class="nav">
         <div class="nav-item has-sub">
           <button class="nav-link" aria-expanded="false" aria-haspopup="true">
-            Research
+            <span data-i18n="nav.research">Research</span>
             <svg class="chev" width="10" height="6" viewBox="0 0 10 6" aria-hidden="true">
               <path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6"/>
             </svg>
           </button>
           <div class="submenu">
-            <a href="./research-casp.html"><b>CASP</b><span>음성 발화의 비언어 신호</span></a>
-            <a href="./slda.html"><b>SLDA</b><span>문서·논쟁의 의미 드리프트</span></a>
+            <a href="./research-casp.html"><b>CASP</b><span data-i18n="nav.casp.sub">음성 발화의 비언어 신호</span></a>
+            <a href="./slda.html"><b>SLDA</b><span data-i18n="nav.slda.sub">문서·논쟁의 의미 드리프트</span></a>
           </div>
         </div>
 
-        <a class="nav-link" href="./engine.html">Engine</a>
-        <a class="nav-link" href="./company.html">Company</a>
-        <a class="nav-link" href="./founder.html">Founder</a>
+        <a class="nav-link" href="./engine.html" data-i18n="nav.engine">Engine</a>
+        <a class="nav-link" href="./company.html" data-i18n="nav.company">Company</a>
+        <a class="nav-link" href="./founder.html" data-i18n="nav.founder">Founder</a>
 
         <div class="header-cta-mobile">
-          <a class="pill pill-dark" href="./early-access.html">Early Access</a>
-          <a class="pill pill-light" href="./contact.html">Partnership</a>
+          <button id="lang-toggle-mobile" type="button" class="lang-toggle-mobile" aria-label="Switch to English">KOR</button>
+          <a class="pill pill-dark" href="./early-access.html" data-i18n="nav.early-access">Early Access</a>
+          <a class="pill pill-light" href="./contact.html" data-i18n="nav.partnership">Partnership</a>
         </div>
       </nav>
 
       <div class="header-cta">
-        <a class="pill pill-dark" href="./early-access.html">Early Access</a>
-        <a class="pill pill-light" href="./contact.html">Partnership</a>
+        <button id="lang-toggle" type="button" aria-label="Switch to English">KOR</button>
+        <a class="pill pill-dark" href="./early-access.html" data-i18n="nav.early-access">Early Access</a>
+        <a class="pill pill-light" href="./contact.html" data-i18n="nav.partnership">Partnership</a>
       </div>
     </div>
   </header>
@@ -271,33 +273,33 @@
   <footer class="site-footer">
     <div class="container footer-inner">
       <div class="footer-left">
-        <div class="footer-brand">소울스펙트럼 Soul Spectrum Inc.</div>
+        <div class="footer-brand" data-i18n="footer.brand">소울스펙트럼 Soul Spectrum Inc.</div>
         <div class="footer-meta">
-          CASP ENGINE · Cognitive–Adaptive Stress Paralinguistic Engine<br />
-          SLDA · Semantic Logic Drift Analysis · 의미·논리 드리프트 분석<br />
-          (주)소울스펙트럼 · 사업자등록번호: 651-81-03691<br />
-          인천광역시 연수구 테크노파크로111번길 5, 8층 801-에스7호<br />
-          개인정보 보호책임자: 맹난영 · nanyoung@soulspectrum.kr<br />
-          <a class="footer-link" href="http://pf.kakao.com/_GCYfX/chat" target="_blank">카카오톡 채널: @soulspectrum</a><br />
+          <span data-i18n="footer.casp-line">CASP ENGINE · Cognitive–Adaptive Stress Paralinguistic Engine</span><br />
+          <span data-i18n="footer.slda-line">SLDA · Semantic Logic Drift Analysis · 의미·논리 드리프트 분석</span><br />
+          <span data-i18n="footer.biz">(주)소울스펙트럼 · 사업자등록번호: 651-81-03691</span><br />
+          <span data-i18n="footer.addr">인천광역시 연수구 테크노파크로111번길 5, 8층 801-에스7호</span><br />
+          <span data-i18n="footer.privacy-officer">개인정보 보호책임자: 맹난영 · nanyoung@soulspectrum.kr</span><br />
+          <a class="footer-link" href="http://pf.kakao.com/_GCYfX/chat" target="_blank" data-i18n="footer.kakao">카카오톡 채널: @soulspectrum</a><br />
           soulspectrum.kr · © <span id="y"></span> Soul Spectrum Inc. All rights reserved.
         </div>
       </div>
 
       <div class="footer-right footer-cols">
         <div class="footer-col">
-          <div class="footer-col-title">CASP</div>
-          <a class="footer-link" href="./index.html">Intro</a>
-          <a class="footer-link" href="./engine.html">Engine</a>
-          <a class="footer-link" href="./company.html">Company</a>
-          <a class="footer-link" href="./founder.html">Founder</a>
-          <a class="footer-link" href="./contact.html">Partnership</a>
+          <div class="footer-col-title" data-i18n="footer.col-casp">CASP</div>
+          <a class="footer-link" href="./index.html" data-i18n="footer.intro">Intro</a>
+          <a class="footer-link" href="./engine.html" data-i18n="footer.engine">Engine</a>
+          <a class="footer-link" href="./company.html" data-i18n="footer.company">Company</a>
+          <a class="footer-link" href="./founder.html" data-i18n="footer.founder">Founder</a>
+          <a class="footer-link" href="./contact.html" data-i18n="footer.contact">Partnership</a>
         </div>
 
         <div class="footer-col">
-          <div class="footer-col-title">SLDA</div>
-          <a class="footer-link" href="./slda.html">분석 신청</a>
-          <a class="footer-link" href="./status.html">접수 조회</a>
-          <a class="footer-link" href="./privacy.html">개인정보 처리방침</a>
+          <div class="footer-col-title" data-i18n="footer.col-slda">SLDA</div>
+          <a class="footer-link" href="./slda.html" data-i18n="footer.slda-apply">분석 문의</a>
+          <a class="footer-link" href="./status.html" data-i18n="footer.slda-status">접수 조회</a>
+          <a class="footer-link" href="./privacy.html" data-i18n="footer.privacy">개인정보 처리방침</a>
         </div>
       </div>
     </div>
@@ -305,5 +307,6 @@
   <script>
     document.getElementById("y").textContent = new Date().getFullYear();
   </script>
+  <script src="assets/i18n.js"></script>
 </body>
 </html>
