@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>SLDA | Soul Spectrum</title>
-  <meta name="description" content="SLDA (Semantic Logic Drift Analysis) — measuring argument drift, expressive intensity shifts, subject attribution transitions, and premise conflicts at the sentence level." />
+  <meta name="description" content="SLDA (Semantic Logic Drift Analysis) — measuring, at the sentence level, how claims move, how expression intensity shifts, how attribution changes, and where mutually incompatible premises collide." />
   <link rel="stylesheet" href="../assets/styles.css" />
   <link rel="stylesheet" href="../assets/theme.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -51,54 +51,269 @@
   </header>
   <div class="lang-subbar">
     <div class="container lang-subbar-inner">
-      <a class="lang-tab" href="../index.html">KOR</a>
+      <a class="lang-tab" href="../slda.html">KOR</a>
       <a class="lang-tab lang-tab--active" href="#" aria-current="page">ENG</a>
     </div>
   </div>
   <main>
 
+    <!-- Hero -->
     <section class="page-hero section-ink" style="background: var(--ink); color: #fff;">
       <div class="container page-hero-inner">
         <p class="eyebrow">Methodology</p>
         <h1 class="page-title">SLDA</h1>
         <p class="page-desc" style="color: rgba(255,255,255,0.8);">
           Semantic Logic Drift Analysis.<br/>
-          Mapping the semantic and logical drift in texts, disputes, and discourse.
+          SLDA cross-analyses multiple rounds of documents and dispute material — by time, by party, and by issue —
+          measuring, at the sentence level, how claims move, how expression intensity shifts, how attribution changes,
+          and where mutually incompatible premises collide.
+        </p>
+        <div style="margin-top:24px; display:flex; flex-wrap:wrap; gap:8px;">
+          <span class="eyebrow" style="font-size:0.78rem;">Early Access · 3 / 20 · Free</span>
+          <span class="eyebrow" style="font-size:0.78rem;">Methodology in closed beta (CBT) · 20 participants</span>
+          <span class="eyebrow" style="font-size:0.78rem;">No payment step at this time</span>
+          <span class="eyebrow" style="font-size:0.78rem;">As of 2026.07</span>
+        </div>
+        <p style="margin-top:20px; color:rgba(255,255,255,0.7); font-size:0.9rem; max-width:640px;">
+          The SLDA scoring methodology is currently in closed beta (CBT): we are validating the rubric together with the first 20 participants.
+          Results are not immediate — they take up to three business days. This is not an unfinished product; it is early participation in refining the method.
         </p>
       </div>
     </section>
 
-    <section class="section">
-      <div class="container doc-content">
-        <h2>What SLDA Measures</h2>
-        <p>SLDA (Semantic Logic Drift Analysis) is an original analytical framework developed at Soul Spectrum. It measures, at the sentence level, four structural dimensions of logical and semantic change in documents and disputes:</p>
-        <ul style="margin: 16px 0 16px 20px; font-size: 0.95rem; line-height: 1.8;">
-          <li><strong>Argument drift (논점 이동):</strong> Whether the central claim shifts across the document without explicit acknowledgment.</li>
-          <li><strong>Expressive intensity shift (표현강도 변화):</strong> Whether the rhetorical force applied to a given claim increases or decreases over time.</li>
-          <li><strong>Subject attribution transition (주체귀속 전환):</strong> Whether the responsible agent assigned to an action or claim changes across statements.</li>
-          <li><strong>Premise conflict (전제충돌):</strong> Whether later statements contradict the logical premises established earlier in the same document.</li>
-        </ul>
-        <p>SLDA does not judge the truth or merit of a claim. It measures the quantity, distribution, and amplitude of structural change—and leaves interpretation to the reader.</p>
-
-        <hr style="margin: 48px 0; border: 0; border-top: 1px solid var(--border-color);" />
-
-        <h2>Data Privacy and Ethical Compliance</h2>
-        <p>The SLDA analysis pipeline strictly adheres to the <strong>EU General Data Protection Regulation (GDPR)</strong> and is built on a Privacy by Design architecture:</p>
-        
-        <ul>
-          <li><strong>Data Minimisation:</strong> We collect only the structural metadata (labels and tags) required for analysis.</li>
-          <li><strong>Local Preprocessing:</strong> The primary transformation of raw text—including masking, labeling, and anonymization of names, identifiers, and sensitive information—is executed <strong>entirely on the user's local device</strong>.</li>
-          <li><strong>Storage & Purpose Limitation:</strong> Original raw text is never transmitted to our servers. The anonymized data received is used exclusively for statistical and drift analysis before being securely discarded.</li>
-        </ul>
-        
-        <p>This architecture is designed to reduce legal exposure and meet the security and anonymization standards required for processing sensitive data in legal and institutional contexts.</p>
-
-        <div class="note-box" style="margin-top:32px; background:#f8f9fa; padding:24px; border-radius:8px;">
-          <h3 style="margin-top:0;">English Service Status</h3>
-          <p style="margin-bottom:0;">The automated SLDA analysis service is currently optimized for Korean semantics. The English-language service is under development. Therefore, direct application for analysis is not available on the English site at this time.</p>
+    <!-- Privacy: first transformation on device -->
+    <section class="section section-muted">
+      <div class="container">
+        <div class="rule">
+          <span>
+            🔒 <strong>The first transformation happens on your device</strong><br/>
+            <span style="opacity:.85">
+              SLDA is designed in line with the EU General Data Protection Regulation (GDPR) and the principle of Privacy by Design.
+              Original text and real names are never transmitted to our servers. All first-stage transformation — labeling and anonymization —
+              is performed entirely on your own computer. What the server receives is only the already-labeled result.
+            </span>
+          </span>
+        </div>
+        <div style="margin-top:28px; display:flex; gap:12px; flex-wrap:wrap;">
+          <a class="btn btn-outline" href="./contact.html">Inquire about SLDA analysis</a>
+          <a class="btn btn-ghost" href="../status.html">Check submission status</a>
+        </div>
+        <div class="warn" style="margin-top:28px; background:rgba(3,110,141,.06); border-color:#036E8D;">
+          <span class="warn-tag">English service status</span>
+          <p style="margin-bottom:0;">
+            The automated SLDA methodology is currently tuned for Korean-language semantics.
+            The English-language analysis service is under development, and direct application is not available on the English site at this time.
+          </p>
         </div>
       </div>
     </section>
+
+    <!-- Same material, same result -->
+    <section class="section">
+      <div class="container">
+        <div class="lead-head">
+          <h2 class="section-title">Same material, same result — whoever submits it</h2>
+          <p class="section-desc">
+            SLDA does not judge whether a matter is true or false, right or wrong, or who will win.
+            It scores by a rubric we developed ourselves, decomposing the features of words, syllables, and sentences through semantic analysis.
+            When the analysed data is identical, the result is the same no matter who requests it.
+          </p>
+        </div>
+
+        <ol class="rows">
+          <li>
+            <span class="rows-k">Fixed rubric</span>
+            <p>Each item is judged against a predefined scoring table. Rules, not the analyst's judgment, set the score, so the same material yields the same result whenever it is analysed.</p>
+          </li>
+          <li>
+            <span class="rows-k">Gate method</span>
+            <p>A claim that does not address the designated issue cannot earn points on internal coherence alone. However well-formed a sentence is, if it departs from the issue it does not pass that item.</p>
+          </li>
+          <li>
+            <span class="rows-k">Citation-unit normalisation</span>
+            <p>Repeated identical strings are counted as a single citation unit. Repeating the same expression is not inflated into new evidence.</p>
+          </li>
+          <li>
+            <span class="rows-k">Pre-analysis normalisation</span>
+            <p>Submitted labeled material is normalised for analysis (format consistency, notation unification). The original content is not altered, so evidence traceability and reproducibility are preserved.</p>
+          </li>
+          <li>
+            <span class="rows-k">Evidence traceability</span>
+            <p>Every judged value is recorded alongside the original sentence it came from. You can trace back to the source why a given score was produced.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- Observation discipline -->
+    <section class="section section-muted">
+      <div class="container">
+        <div class="rule" style="margin-bottom:0">
+          <span>
+            SLDA reports the <strong>amount, distribution, and amplitude</strong> of change.<br/>
+            It does <strong>not</strong> report the cause, truth, or intent of that change.<br/>
+            <span style="opacity:.75">It counts and displays; it does not judge right or wrong, win or loss, advantage or disadvantage. "Why did it change here?" is left to the reader.</span>
+          </span>
+        </div>
+      </div>
+    </section>
+
+    <!-- One engine, three models -->
+    <section class="section">
+      <div class="container">
+        <div class="lead-head">
+          <h2 class="section-title">One engine, three models</h2>
+          <p class="section-desc">
+            The measurement axes — drift, premise collision, attribution — are a single engine.
+            On top of it sit models (packages) by material type, tuning only the observation rules to each context.
+          </p>
+        </div>
+
+        <div class="slda-tabs" role="tablist" aria-label="Analysis models">
+          <button class="slda-tab" data-m="lit" role="tab" aria-selected="true"  aria-controls="panel-lit-en">Litigation (LIT)</button>
+          <button class="slda-tab" data-m="sns" role="tab" aria-selected="false" aria-controls="panel-sns-en">Controversy (SNS)</button>
+          <button class="slda-tab" data-m="spk" role="tab" aria-selected="false" aria-controls="panel-spk-en">Speaker (SPK)</button>
+        </div>
+
+        <div id="panel-lit-en" class="slda-panel" role="tabpanel">
+          <h3>Litigation (LIT) · legal filings</h3>
+          <p>Reads multi-round briefs and opinions separately by side (plaintiff / defendant / non-party — never mixed). Registers only measured values; does not judge win/loss or advantage.</p>
+          <div class="drift-obs" style="margin-top:12px;">
+            <span class="drift-chip">Expression-intensity trend</span>
+            <span class="drift-chip">Repetition count of the same conclusion</span>
+            <span class="drift-chip">Count of evidence substitutions</span>
+            <span class="drift-chip">Premise-collision registry</span>
+            <span class="drift-chip">Attribution shift</span>
+          </div>
+        </div>
+        <div id="panel-sns-en" class="slda-panel" role="tabpanel" hidden>
+          <h3>Controversy (SNS) · public discourse</h3>
+          <p>Accepted only when both sides of the dispute are included symmetrically. Scored by per-issue gates; cited documents are registered separately. Not analysed from one side's material alone.</p>
+          <div class="drift-obs" style="margin-top:12px;">
+            <span class="drift-chip">Symmetry balance</span>
+            <span class="drift-chip">Per-issue gate scoring</span>
+            <span class="drift-chip">Separate registry of cited documents</span>
+            <span class="drift-chip">Symmetric expression-intensity trend</span>
+          </div>
+        </div>
+        <div id="panel-spk-en" class="slda-panel" role="tabpanel" hidden>
+          <h3>Speaker (SPK) · public-figure drift</h3>
+          <p>Accepts only public statements by public figures (public-figure gate). Groups one speaker's statements in temporal order and observes drift in tone and stance over time. Makes no value judgment (hypocrisy, falsehood).</p>
+          <div class="drift-obs" style="margin-top:12px;">
+            <span class="drift-chip">Public-figure gate</span>
+            <span class="drift-chip">Temporal drift</span>
+            <span class="drift-chip">Count of stance reversals</span>
+            <span class="drift-chip">Expression-intensity trend over time</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Round by round -->
+    <section class="section section-gray">
+      <div class="container">
+        <div class="lead-head">
+          <h2 class="section-title">Round by round, observed values only</h2>
+          <p class="section-desc">
+            Only the values observed in each round's document are stacked vertically. No interpretation or conclusion is attached —
+            only how the values moved is left on record.
+          </p>
+        </div>
+
+        <div class="drift-timeline">
+          <div class="drift-round">
+            <div class="drift-label">Round 1 · brief</div>
+            <div class="drift-doc">first claim registered</div>
+            <div class="drift-obs">
+              <span class="drift-chip">intensity <b>0.41</b></span>
+              <span class="drift-chip">conclusion repeated <b>×1</b></span>
+              <span class="drift-chip">premise collisions <b>0</b></span>
+            </div>
+          </div>
+          <div class="drift-round">
+            <div class="drift-label">Round 2 · brief</div>
+            <div class="drift-doc">same conclusion, evidence substituted</div>
+            <div class="drift-obs">
+              <span class="drift-chip">intensity <b>0.56</b></span>
+              <span class="drift-chip">repeated <b>×2</b></span>
+              <span class="drift-chip">substitutions <b>1</b></span>
+              <span class="drift-chip">collisions <b>1</b></span>
+            </div>
+          </div>
+          <div class="drift-round">
+            <div class="drift-label">Round 3 · reply</div>
+            <div class="drift-doc">attribution-label shift observed</div>
+            <div class="drift-obs">
+              <span class="drift-chip">intensity <b>0.63</b></span>
+              <span class="drift-chip">repeated <b>×3</b></span>
+              <span class="drift-chip">substitutions <b>2</b></span>
+              <span class="drift-chip">label changes <b>1</b></span>
+              <span class="drift-chip">collisions <b>2</b></span>
+            </div>
+          </div>
+        </div>
+        <p class="drift-note">Values above are display examples. SLDA counts and displays; what to call that movement, it does not judge.</p>
+      </div>
+    </section>
+
+    <!-- We do not receive the original text -->
+    <section class="section" id="process">
+      <div class="container">
+        <div class="lead-head">
+          <h2 class="section-title">We do not receive the original text at all</h2>
+          <p class="section-desc">
+            This is not a method of receiving personal data and then deleting it.
+            It is a method of not receiving the original in the first place.
+            Masking and labeling are performed by the user with their own AI, and the site receives only the result.
+          </p>
+        </div>
+
+        <div class="warn" style="margin-bottom:32px; background:rgba(3,110,141,.06); border-color:#036E8D;">
+          <span class="warn-tag">International standards</span>
+          <p>
+            SLDA's data-processing design follows the <strong>GDPR (EU General Data Protection Regulation)</strong> principles of
+            data minimisation, purpose limitation, and storage limitation.
+          </p>
+          <p style="margin-bottom:0;">
+            Core principle: <strong>first-stage transformation (labeling, anonymization) occurs only on the user's own computer.</strong>
+            The server receives only the completed labeled result; original text, real names, and identifiers never reach the server by any path.
+          </p>
+        </div>
+
+        <table class="proc-table">
+          <thead>
+            <tr>
+              <th>Step</th>
+              <th>Action</th>
+              <th>Location of original text</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1. Masking &amp; labeling</td>
+              <td>User masks real names and sensitive content; labels each sentence</td>
+              <td><strong>User's device only</strong></td>
+            </tr>
+            <tr>
+              <td>2. Submission</td>
+              <td>Only the labeled result is submitted to the site</td>
+              <td>Original stays on user's device</td>
+            </tr>
+            <tr>
+              <td>3. Analysis</td>
+              <td>SLDA engine scores the labeled data</td>
+              <td>Original never transmitted</td>
+            </tr>
+            <tr>
+              <td>4. Report</td>
+              <td>Scored result returned; labeled data discarded after analysis</td>
+              <td>Original stays on user's device</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
   </main>
   <footer class="site-footer">
     <div class="container footer-grid">
@@ -119,6 +334,20 @@
       </div>
     </div>
   </footer>
-  <script>document.getElementById("y").textContent = new Date().getFullYear();</script>
+  <script>
+    document.getElementById("y").textContent = new Date().getFullYear();
+    // Tab logic
+    document.querySelectorAll(".slda-tab").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const m = btn.dataset.m;
+        document.querySelectorAll(".slda-tab").forEach(b => { b.setAttribute("aria-selected","false"); b.classList.remove("active"); });
+        document.querySelectorAll(".slda-panel").forEach(p => p.hidden = true);
+        btn.setAttribute("aria-selected","true"); btn.classList.add("active");
+        const panel = document.getElementById("panel-" + m + "-en");
+        if (panel) panel.hidden = false;
+      });
+    });
+    document.querySelector('.slda-tab[data-m="lit"]')?.click();
+  </script>
 </body>
 </html>
