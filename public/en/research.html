@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Research: CASP | Soul Spectrum</title>
-  <meta name="description" content="Research on Cognitive-Adaptive Stress Paralinguistic Engine" />
+  <title>Research · CASP | Soul Spectrum</title>
+  <meta name="description" content="CASP: turning the paralinguistic signal STT discards into quantitative indicators." />
   <link rel="stylesheet" href="../assets/styles.css" />
   <link rel="stylesheet" href="../assets/theme.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -51,56 +51,160 @@
   </header>
   <div class="lang-subbar">
     <div class="container lang-subbar-inner">
-      <a class="lang-tab" href="../index.html">KOR</a>
+      <a class="lang-tab" href="../research-casp.html">KOR</a>
       <a class="lang-tab lang-tab--active" href="#" aria-current="page">ENG</a>
     </div>
   </div>
   <main>
-
-    <section class="page-hero">
+    <!-- Hero -->
+    <section class="page-hero section-ink" style="background: var(--ink); color: #fff;">
       <div class="container page-hero-inner">
-        <p class="eyebrow">Research</p>
-        <h1 class="page-title">CASP</h1>
+        <span class="eyebrow">Research · CASP</span>
+        <h1 class="page-title">What remains in what STT throws away</h1>
         <p class="page-desc">
-          Cognitive–Adaptive Stress Paralinguistic.<br/>
-          Measuring non-verbal acoustic signals to quantify cognitive load and emotional variance.
+          Speech recognition turns an utterance into text and discards the rest.
+          The discarded side — rate, pause, rhythm, stress, discontinuity — also carries information.
+          CASP is the research of turning that signal into quantitative indicators.
         </p>
       </div>
     </section>
 
-    <section class="section">
-      <div class="container doc-content">
-        <h2>The Paralinguistic Signal</h2>
-        <p>Human speech carries two parallel streams of information: the semantic content (what is said) and the paralinguistic signal (how it is spoken). While modern AI heavily relies on Speech-to-Text (STT) to process the former, it systematically discards the latter. CASP focuses entirely on the discarded signal.</p>
-        
-        <p>We hypothesize that variations in speech rate, pause duration, rhythm, jitter, and energy correlate strongly with internal cognitive states. A sudden increase in cognitive load, hesitation, or emotional stress manifests as measurable deviations from an individual's baseline acoustic profile.</p>
-
-        <h2>Anchor-Point Engine and Baseline Construction</h2>
-        <p>The CASP Engine does not rely on universal thresholds. Instead, it operates on a Bayesian-inspired <strong>Anchor-Point</strong> methodology. It first establishes a personalized baseline—the anchor—during a neutral state. Subsequent speech is continuously measured against this anchor, computing variance and drift in real time.</p>
-        
-        <p>We are currently conducting sampling research to refine the anchor-point calibration process and validate the robustness of the extracted acoustic features across diverse environments.</p>
-        
-        <div class="note-box" style="margin-top:32px; background:#f8f9fa; padding:24px; border-radius:8px;">
-          <h3 style="margin-top:0;">Research Ethics and Data Protection</h3>
-          <p>All data collection and sampling research for the CASP Engine are conducted in strict compliance with <strong>research ethics and data protection regulations</strong>.</p>
-          <ul style="margin: 12px 0 0 20px; font-size: 0.95rem; line-height: 1.6;">
-            <li><strong>Informed Consent:</strong> The purpose and scope of data collection are clearly communicated to all participants prior to explicit consent.</li>
-            <li><strong>Sensitive Data Separation:</strong> Voice data, which may imply sensitive information such as stress levels, is processed separately from general personally identifiable information (PII).</li>
-            <li><strong>Immediate Anonymization:</strong> Semantic content (STT) is entirely discarded. Only pure paralinguistic signals (numerical variance data) are extracted and stored, ensuring the impossibility of reverse identification.</li>
-          </ul>
+    <!-- What disappears -->
+    <section class="section section-lead">
+      <div class="container">
+        <div class="lead-head">
+          <h2 class="section-title">What disappears</h2>
+          <p class="section-desc">
+            The same sentence becomes a different event depending on how it is spoken.
+            After passing through STT, that difference does not remain.
+            A text-only system treats the two utterances as identical.
+          </p>
         </div>
-        
-        <hr style="margin: 48px 0; border: 0; border-top: 1px solid var(--border-color);" />
-        
-        <h2>Sister Methodology: SLDA</h2>
-        <p>While CASP measures the acoustic variance in speech, its sister methodology, <strong>SLDA (Semantic Logic Drift Analysis)</strong>, tracks the semantic and logical drift in text—measuring argument drift, expressive intensity shifts, subject attribution transitions, and premise conflicts at the sentence level. Both systems share the same underlying Bayesian reasoning framework: continuously updating the state of a network based on sequential observations, whether those observations are acoustic frames or semantic tokens.</p>
+        <ol class="rows">
+          <li>
+            <span class="rows-k">Pause</span>
+            <p>Where the break falls. A pause between sentences and a pause between words carry different meanings. What is observed is how an utterance changes before and after a long silence.</p>
+          </li>
+          <li>
+            <span class="rows-k">Rhythm</span>
+            <p>Whether speech flows evenly or breaks up. A collapse in rhythm is visible only in comparison with the speaker's own norm.</p>
+          </li>
+          <li>
+            <span class="rows-k">Energy</span>
+            <p>Loudness and stress distribution. Drops and surges are judged not by absolute value but within that person's usual range.</p>
+          </li>
+          <li>
+            <span class="rows-k">Transition</span>
+            <p>Change that occurs between one segment and the next. The indicator is not a value at a single point but the size and direction of movement.</p>
+          </li>
+        </ol>
       </div>
     </section>
+
+    <!-- Korean -->
+    <section class="section section-muted">
+      <div class="container">
+        <div class="lead-head">
+          <h2 class="section-title">Korean — how something is said changes the relationship</h2>
+          <p class="section-desc">
+            Honorific systems, sentence-ending processing, intonation, the placement of pauses.
+            Korean is a language in which meaning and relational context shift sharply with the manner of utterance.
+            The same vocabulary can become an entirely different statement.
+          </p>
+        </div>
+        <div class="grid-2">
+          <div class="tile">
+            <h3>The limit of English-centric models</h3>
+            <p>Applying general-purpose overseas models directly can misflag a Korean speaker's normal speech patterns as anomalous signals. The range of normal variation differs by language.</p>
+          </div>
+          <div class="tile">
+            <h3>The absence of reference data</h3>
+            <p>There is not yet an industry-standard dataset defining the range of normal paralinguistic variation for Korean speakers. Without reference values, measuring an individual's change does not let you interpret it.</p>
+          </div>
+        </div>
+        <p class="section-desc" style="margin-top:32px;">
+          To measure an individual's change you must know their own norm; to judge whether that norm is unusual you must know the group's norm.
+        </p>
+      </div>
+    </section>
+
+    <!-- Two references -->
+    <section class="section">
+      <div class="container">
+        <div class="lead-head">
+          <h2 class="section-title">Two references</h2>
+          <p class="section-desc">
+            A personal baseline and a group distribution (Normal Range) play different roles.
+            Merging the two causes an individual's distinctive traits to be misread as anomalous signals.
+          </p>
+        </div>
+        <div class="grid-2">
+          <div class="tile">
+            <h3>Personal baseline</h3>
+            <p>Repeated measurement establishes that person's norm. Change is always a comparison against oneself.</p>
+          </div>
+          <div class="tile">
+            <h3>Normal Range</h3>
+            <p>The range of normal variation at the level of region, age, and sex. It lets an individual's indicators be read as a relative position within the group.</p>
+            <p style="margin-top:12px; font-size:0.9rem; opacity:.75;">The Normal Range dataset for Korean speakers is currently being constructed, with the aim of establishing an interpretive standard that reflects regional, age, and sex distributions.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Current stage -->
+    <section class="section section-muted">
+      <div class="container">
+        <div class="lead-head">
+          <h2 class="section-title">Current stage — engine complete, sampling under study</h2>
+          <p class="section-desc">
+            The anchor-point engine is complete. What remains under active research is how to assemble a sample suitable for it —
+            that is, defining what to place at each end of the reference axis and constructing the Korean-speaker Normal Range that makes
+            change measurable and interpretable. This is why CASP does not simply ingest arbitrary audio: the reference frame must be
+            built before deviation can mean anything.
+          </p>
+        </div>
+        <div class="grid-3">
+          <div class="tile">
+            <h3>SQ · Systemizing Quotient</h3>
+            <p>The systemizing-tendency scale proposed by Simon Baron-Cohen, referenced as the cognitive axis of Protocol v1.</p>
+          </div>
+          <div class="tile">
+            <h3>Session-based repeated measurement</h3>
+            <p>Recording is repeated by session, not a single measurement. A personal baseline is created only through repetition.</p>
+          </div>
+          <div class="tile">
+            <h3>Anchor Point</h3>
+            <p>A separate protocol that fixes the endpoints of the reference axis. What to place at each end must be set before an amount of change can be computed.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Does not replace diagnosis -->
+    <section class="section">
+      <div class="container">
+        <div class="rule">
+          <span>
+            CASP measures the amount of variation in speech signals.<br/>
+            It structures where, by how much, and in what manner change occurred.<br/>
+            <span style="opacity:.75">It speaks of an amount of variation — not cause, diagnosis, or intent.
+            The aim is to redefine communication as a data structure that can be researched, validated, and applied,
+            and it is oriented toward a <strong>Human-in-the-Loop</strong> approach.</span>
+          </span>
+        </div>
+        <div style="margin-top:28px; display:flex; gap:12px; flex-wrap:wrap;">
+          <a class="btn btn-outline" href="./contact.html">Research collaboration inquiry</a>
+          <a class="btn btn-ghost" href="./engine.html">View engine architecture</a>
+        </div>
+      </div>
+    </section>
+
   </main>
-  <footer class="site-footer">
+  <footer class="site-footer site-footer--dark">
     <div class="container footer-grid">
       <div class="footer-col">
-        <img src="../assets/soulspectrum_delta.png" width="20" height="32" alt="Soul Spectrum" style="margin-bottom:16px; opacity:0.6;" />
+        <img src="../assets/soulspectrum_delta.png" width="20" height="32" alt="Soul Spectrum" style="margin-bottom:16px; opacity:0.8;" />
         <p><strong>Soul Spectrum</strong><br/>Measuring the unwritten signals in communication.</p>
         <p class="copy">&copy; <span id="y"></span> Soul Spectrum. All rights reserved.</p>
       </div>
