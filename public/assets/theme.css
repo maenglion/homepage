@@ -1633,3 +1633,23 @@ css/* 위 1번 GNB 블록의 .nav-link 를 이걸로 교체 */
   .lang-subbar { top: 76px; height: 30px; }
   .lang-tab { font-size: 0.66rem; padding: 0 12px; }
 }
+
+/* ============================================================
+   EN footer — dark navy (logo is white, needs dark bg)
+   ============================================================ */
+.site-footer--dark {
+  background: #061524;
+  border-top-color: rgba(255,255,255,0.08);
+  color: rgba(255,255,255,0.75);
+}
+.site-footer--dark p,
+.site-footer--dark strong,
+.site-footer--dark .copy {
+  color: rgba(255,255,255,0.75);
+}
+.site-footer--dark .footer-link {
+  color: rgba(255,255,255,0.5);
+}
+.site-footer--dark .footer-link:hover {
+  color: #8FDCEC;
+}
