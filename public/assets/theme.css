@@ -970,26 +970,14 @@ css/* 위 1번 GNB 블록의 .nav-link 를 이걸로 교체 */
   .nav.is-open .submenu span { color: rgba(255,255,255,.7); }
   .nav.is-open .chev { display: none; }
 
-  /* 알약을 패널 안으로 — lang 토글 포함 */
+  /* 알약을 패널 안으로 */
   .nav.is-open .header-cta-mobile {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     gap: 10px;
-    margin-top: 0;
-    padding-top: 0;
+    margin-top: 18px;
   }
-  /* lang 토글: 패널 맨 위, 오른쪽 정렬 */
-  .nav.is-open .header-cta-mobile .lang-toggle-mobile {
-    display: inline-flex;
-    align-self: flex-end;
-    margin-bottom: 4px;
-  }
-  /* pill 행 */
   .nav.is-open .header-cta-mobile .pill { flex: 1; justify-content: center; }
-  .nav.is-open .header-cta-mobile .pill:first-of-type,
-  .nav.is-open .header-cta-mobile .pill:last-of-type {
-    display: flex;
-  }
 }
 
 @media (max-width: 760px) {
@@ -1596,48 +1584,52 @@ css/* 위 1번 GNB 블록의 .nav-link 를 이걸로 교체 */
 }
 
 /* ============================================================
-   Lang Toggle — KO / EN
+   Lang Subbar — KOR / ENG 서브바
+   메인바 아래 얼은 남색 바. 데스크톱·모바일 동일.
    ============================================================ */
-/* ── 공통 lang-toggle 베이스 ── */
-#lang-toggle,
-.lang-toggle-mobile {
+.lang-subbar {
+  background: #0A1E3D;          /* 메인바보다 한 단계 진한 남색 */
+  height: 32px;
+  display: flex;
+  align-items: center;
+  position: sticky;
+  top: 76px;                    /* site-header 높이와 동일 */
+  z-index: 998;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.lang-subbar-inner {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  height: 100%;
+}
+.lang-tab {
   display: inline-flex;
   align-items: center;
-  justify-content: center;
-  min-width: 44px;
-  height: 28px;
-  padding: 0 10px;
-  border-radius: 100px;
+  height: 100%;
+  padding: 0 14px;
   font-family: "Inter", "Pretendard", sans-serif;
-  font-size: 0.70rem;
+  font-size: 0.68rem;
   font-weight: 700;
-  letter-spacing: 0.06em;
-  background: rgba(255,255,255,0.15);
-  color: #fff;
-  border: 1px solid rgba(255,255,255,0.35);
-  cursor: pointer;
-  transition: background 0.16s ease, border-color 0.16s ease;
-  flex-shrink: 0;
+  letter-spacing: 0.08em;
+  color: rgba(255,255,255,0.45);
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+  transition: color 0.15s ease, border-color 0.15s ease;
   white-space: nowrap;
 }
-#lang-toggle:hover,
-.lang-toggle-mobile:hover {
-  background: rgba(255,255,255,0.28);
-  border-color: rgba(255,255,255,0.6);
+.lang-tab:hover {
+  color: rgba(255,255,255,0.85);
+}
+.lang-tab--active {
+  color: #fff;
+  border-bottom-color: #8FDCEC;  /* 메인바 틸 색 */
+  pointer-events: none;
+  cursor: default;
 }
 
-/* 데스크톱: nav 링크들과 pill 사이에 시각적 간격 확보 */
-.header-cta {
-  gap: 8px;
-}
-.header-cta #lang-toggle {
-  margin-right: 6px; /* pill들과 구분 */
-}
-
-/* 모바일: lang-toggle-mobile 숨김 (데스크톱에서) */
-.lang-toggle-mobile { display: none; }
-
+/* 모바일: 서브바 높이 유지 */
 @media (max-width: 760px) {
-  /* 데스크톱 lang-toggle 숨김 */
-  #lang-toggle { display: none; }
+  .lang-subbar { top: 76px; height: 30px; }
+  .lang-tab { font-size: 0.66rem; padding: 0 12px; }
 }
