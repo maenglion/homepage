@@ -12,3 +12,5 @@ verify_jwt = false
 # §14.2 — 2단 정규화(비공개: service-role 전용, 프론트 노출 금지)
 [functions.slda-normalize]
 verify_jwt = true
+[functions.slda-skills]
+verify_jwt = false
